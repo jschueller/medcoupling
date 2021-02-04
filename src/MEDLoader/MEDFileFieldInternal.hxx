@@ -83,7 +83,7 @@ namespace MEDCoupling
   {
   public:
     MEDLOADER_EXPORT void simpleRepr(std::ostream& oss) const;
-    MEDLOADER_EXPORT std::string getName() const { return _name; }
+    std::string getName() const { return _name; }
     MEDLOADER_EXPORT void setName(const std::string& name);
     std::string getClassName() const override { return std::string("MEDFileFieldLoc"); }
     static MEDFileFieldLoc *New(med_idt fid, const std::string& locName);
@@ -94,17 +94,17 @@ namespace MEDCoupling
     MEDFileFieldLoc *deepCopy() const;
     bool isOnStructureElement() const;
     const MEDFileGTKeeper *getUndergroundGTKeeper() const { return _gt; }
-    MEDLOADER_EXPORT int getNbOfGaussPtPerCell() const { return _nb_gauss_pt; }
+    int getNbOfGaussPtPerCell() const { return _nb_gauss_pt; }
     MEDLOADER_EXPORT void writeLL(med_idt fid) const;
     MEDLOADER_EXPORT std::string repr() const;
-    MEDLOADER_EXPORT bool isName(const std::string& name) const { return _name==name; }
-    MEDLOADER_EXPORT int getDimension() const { return _dim; }
-    MEDLOADER_EXPORT int getNumberOfGaussPoints() const { return _nb_gauss_pt; }
-    MEDLOADER_EXPORT int getNumberOfPointsInCells() const { return _nb_node_per_cell; }
-    MEDLOADER_EXPORT const std::vector<double>& getRefCoords() const { return _ref_coo; }
-    MEDLOADER_EXPORT const std::vector<double>& getGaussCoords() const { return _gs_coo; }
-    MEDLOADER_EXPORT const std::vector<double>& getGaussWeights() const { return _w; }
-    MEDLOADER_EXPORT INTERP_KERNEL::NormalizedCellType getGeoType() const { return _gt->getGeoType(); }
+    bool isName(const std::string& name) const { return _name==name; }
+    int getDimension() const { return _dim; }
+    int getNumberOfGaussPoints() const { return _nb_gauss_pt; }
+    int getNumberOfPointsInCells() const { return _nb_node_per_cell; }
+    const std::vector<double>& getRefCoords() const { return _ref_coo; }
+    const std::vector<double>& getGaussCoords() const { return _gs_coo; }
+    const std::vector<double>& getGaussWeights() const { return _w; }
+    INTERP_KERNEL::NormalizedCellType getGeoType() const { return _gt->getGeoType(); }
     MEDLOADER_EXPORT bool isEqual(const MEDFileFieldLoc& other, double eps) const;
   private:
     MEDFileFieldLoc(const MEDFileFieldLoc& other);

@@ -64,74 +64,74 @@ namespace MEDCoupling
   /*!
    * Use class.
    */
-  class MEDFileFields : public RefCountObject, public MEDFileFieldGlobsReal, public MEDFileWritableStandAlone
+  class MEDLOADER_EXPORT MEDFileFields : public RefCountObject, public MEDFileFieldGlobsReal, public MEDFileWritableStandAlone
   {
   public:
-    MEDLOADER_EXPORT static MEDFileFields *New();
-    MEDLOADER_EXPORT static MEDFileFields *New(const std::string& fileName, bool loadAll=true);
-    MEDLOADER_EXPORT static MEDFileFields *New(med_idt fid, bool loadAll=true);
-    MEDLOADER_EXPORT static MEDFileFields *NewAdv(const std::string& fileName, bool loadAll, const MEDFileEntities *entities);
-    MEDLOADER_EXPORT static MEDFileFields *NewAdv(med_idt fid, bool loadAll, const MEDFileEntities *entities);
-    MEDLOADER_EXPORT static MEDFileFields *NewWithDynGT(const std::string& fileName, const MEDFileStructureElements *se, bool loadAll=true);
-    MEDLOADER_EXPORT static MEDFileFields *NewWithDynGT(med_idt fid, const MEDFileStructureElements *se, bool loadAll=true);
-    MEDLOADER_EXPORT static MEDFileFields *New(DataArrayByte *db) { return BuildFromMemoryChunk<MEDFileFields>(db); }
-    MEDLOADER_EXPORT std::string getClassName() const override { return std::string("MEDFileFields"); }
-    MEDLOADER_EXPORT static MEDFileFields *LoadPartOf(const std::string& fileName, bool loadAll=true, const MEDFileMeshes *ms=0);
-    MEDLOADER_EXPORT static MEDFileFields *LoadSpecificEntities(const std::string& fileName, const std::vector< std::pair<TypeOfField,INTERP_KERNEL::NormalizedCellType> >& entities, bool loadAll=true);
-    MEDLOADER_EXPORT std::size_t getHeapMemorySizeWithoutChildren() const;
-    MEDLOADER_EXPORT std::vector<const BigMemoryObject *> getDirectChildrenWithNull() const;
-    MEDLOADER_EXPORT MEDFileFields *deepCopy() const;
-    MEDLOADER_EXPORT MEDFileFields *shallowCpy() const;
-    MEDLOADER_EXPORT void writeLL(med_idt fid) const;
-    MEDLOADER_EXPORT void loadArrays();
-    MEDLOADER_EXPORT void loadArraysIfNecessary();
-    MEDLOADER_EXPORT void unloadArrays();
-    MEDLOADER_EXPORT void unloadArraysWithoutDataLoss();
-    MEDLOADER_EXPORT int getNumberOfFields() const;
-    MEDLOADER_EXPORT std::vector< std::pair<int,int> > getCommonIterations(bool& areThereSomeForgottenTS) const;
-    MEDLOADER_EXPORT std::vector<std::string> getFieldsNames() const;
-    MEDLOADER_EXPORT std::vector<std::string> getMeshesNames() const;
-    MEDLOADER_EXPORT std::string simpleRepr() const;
-    MEDLOADER_EXPORT void simpleRepr(int bkOffset, std::ostream& oss) const;
+    static MEDFileFields *New();
+    static MEDFileFields *New(const std::string& fileName, bool loadAll=true);
+    static MEDFileFields *New(med_idt fid, bool loadAll=true);
+    static MEDFileFields *NewAdv(const std::string& fileName, bool loadAll, const MEDFileEntities *entities);
+    static MEDFileFields *NewAdv(med_idt fid, bool loadAll, const MEDFileEntities *entities);
+    static MEDFileFields *NewWithDynGT(const std::string& fileName, const MEDFileStructureElements *se, bool loadAll=true);
+    static MEDFileFields *NewWithDynGT(med_idt fid, const MEDFileStructureElements *se, bool loadAll=true);
+    static MEDFileFields *New(DataArrayByte *db) { return BuildFromMemoryChunk<MEDFileFields>(db); }
+    std::string getClassName() const override { return std::string("MEDFileFields"); }
+    static MEDFileFields *LoadPartOf(const std::string& fileName, bool loadAll=true, const MEDFileMeshes *ms=0);
+    static MEDFileFields *LoadSpecificEntities(const std::string& fileName, const std::vector< std::pair<TypeOfField,INTERP_KERNEL::NormalizedCellType> >& entities, bool loadAll=true);
+    std::size_t getHeapMemorySizeWithoutChildren() const;
+    std::vector<const BigMemoryObject *> getDirectChildrenWithNull() const;
+    MEDFileFields *deepCopy() const;
+    MEDFileFields *shallowCpy() const;
+    void writeLL(med_idt fid) const;
+    void loadArrays();
+    void loadArraysIfNecessary();
+    void unloadArrays();
+    void unloadArraysWithoutDataLoss();
+    int getNumberOfFields() const;
+    std::vector< std::pair<int,int> > getCommonIterations(bool& areThereSomeForgottenTS) const;
+    std::vector<std::string> getFieldsNames() const;
+    std::vector<std::string> getMeshesNames() const;
+    std::string simpleRepr() const;
+    void simpleRepr(int bkOffset, std::ostream& oss) const;
     //
-    MEDLOADER_EXPORT void resize(int newSize);
-    MEDLOADER_EXPORT void pushField(MEDFileAnyTypeFieldMultiTS *field);
-    MEDLOADER_EXPORT void pushFields(const std::vector<MEDFileAnyTypeFieldMultiTS *>& fields);
-    MEDLOADER_EXPORT void setFieldAtPos(int i, MEDFileAnyTypeFieldMultiTS *field);
-    MEDLOADER_EXPORT int getPosFromFieldName(const std::string& fieldName) const;
-    MEDLOADER_EXPORT MEDFileAnyTypeFieldMultiTS *getFieldAtPos(int i) const;
-    MEDLOADER_EXPORT MEDFileAnyTypeFieldMultiTS *getFieldWithName(const std::string& fieldName) const;
-    MEDLOADER_EXPORT MEDFileFields *buildSubPart(const int *startIds, const int *endIds) const;
-    MEDLOADER_EXPORT bool removeFieldsWithoutAnyTimeStep();
-    MEDLOADER_EXPORT MEDFileFields *partOfThisLyingOnSpecifiedMeshName(const std::string& meshName) const;
-    MEDLOADER_EXPORT MEDFileFields *partOfThisLyingOnSpecifiedTimeSteps(const std::vector< std::pair<int,int> >& timeSteps) const;
-    MEDLOADER_EXPORT MEDFileFields *partOfThisNotLyingOnSpecifiedTimeSteps(const std::vector< std::pair<int,int> >& timeSteps) const;
-    MEDLOADER_EXPORT bool presenceOfStructureElements() const;
-    MEDLOADER_EXPORT void killStructureElements();
-    MEDLOADER_EXPORT void keepOnlyStructureElements();
-    MEDLOADER_EXPORT void keepOnlyOnMeshSE(const std::string& meshName, const std::string& seName);
-    MEDLOADER_EXPORT void getMeshSENames(std::vector< std::pair<std::string,std::string> >& ps) const;
-    MEDLOADER_EXPORT void blowUpSE(MEDFileMeshes *ms, const MEDFileStructureElements *ses);
-    MEDLOADER_EXPORT MCAuto<MEDFileFields> partOfThisOnStructureElements() const;
-    MEDLOADER_EXPORT MCAuto<MEDFileFields> partOfThisLyingOnSpecifiedMeshSEName(const std::string& meshName, const std::string& seName) const;
-    MEDLOADER_EXPORT void aggregate(const MEDFileFields& other);
-    MEDLOADER_EXPORT MEDFileFieldsIterator *iterator();
-    MEDLOADER_EXPORT void destroyFieldAtPos(int i);
-    MEDLOADER_EXPORT void destroyFieldsAtPos(const int *startIds, const int *endIds);
-    MEDLOADER_EXPORT void destroyFieldsAtPos2(int bg, int end, int step);
-    MEDLOADER_EXPORT bool changeMeshNames(const std::vector< std::pair<std::string,std::string> >& modifTab);
-    MEDLOADER_EXPORT bool renumberEntitiesLyingOnMesh(const std::string& meshName, const std::vector<mcIdType>& oldCode, const std::vector<mcIdType>& newCode, const DataArrayIdType *renumO2N);
-    MEDLOADER_EXPORT void accept(MEDFileFieldVisitor& visitor) const;
-    MEDLOADER_EXPORT MCAuto<MEDFileFields> linearToQuadratic(const MEDFileMeshes *oldLin, const MEDFileMeshes *newQuad) const;
+    void resize(int newSize);
+    void pushField(MEDFileAnyTypeFieldMultiTS *field);
+    void pushFields(const std::vector<MEDFileAnyTypeFieldMultiTS *>& fields);
+    void setFieldAtPos(int i, MEDFileAnyTypeFieldMultiTS *field);
+    int getPosFromFieldName(const std::string& fieldName) const;
+    MEDFileAnyTypeFieldMultiTS *getFieldAtPos(int i) const;
+    MEDFileAnyTypeFieldMultiTS *getFieldWithName(const std::string& fieldName) const;
+    MEDFileFields *buildSubPart(const int *startIds, const int *endIds) const;
+    bool removeFieldsWithoutAnyTimeStep();
+    MEDFileFields *partOfThisLyingOnSpecifiedMeshName(const std::string& meshName) const;
+    MEDFileFields *partOfThisLyingOnSpecifiedTimeSteps(const std::vector< std::pair<int,int> >& timeSteps) const;
+    MEDFileFields *partOfThisNotLyingOnSpecifiedTimeSteps(const std::vector< std::pair<int,int> >& timeSteps) const;
+    bool presenceOfStructureElements() const;
+    void killStructureElements();
+    void keepOnlyStructureElements();
+    void keepOnlyOnMeshSE(const std::string& meshName, const std::string& seName);
+    void getMeshSENames(std::vector< std::pair<std::string,std::string> >& ps) const;
+    void blowUpSE(MEDFileMeshes *ms, const MEDFileStructureElements *ses);
+    MCAuto<MEDFileFields> partOfThisOnStructureElements() const;
+    MCAuto<MEDFileFields> partOfThisLyingOnSpecifiedMeshSEName(const std::string& meshName, const std::string& seName) const;
+    void aggregate(const MEDFileFields& other);
+    MEDFileFieldsIterator *iterator();
+    void destroyFieldAtPos(int i);
+    void destroyFieldsAtPos(const int *startIds, const int *endIds);
+    void destroyFieldsAtPos2(int bg, int end, int step);
+    bool changeMeshNames(const std::vector< std::pair<std::string,std::string> >& modifTab);
+    bool renumberEntitiesLyingOnMesh(const std::string& meshName, const std::vector<mcIdType>& oldCode, const std::vector<mcIdType>& newCode, const DataArrayIdType *renumO2N);
+    void accept(MEDFileFieldVisitor& visitor) const;
+    MCAuto<MEDFileFields> linearToQuadratic(const MEDFileMeshes *oldLin, const MEDFileMeshes *newQuad) const;
   public:
-    MEDLOADER_EXPORT MEDFileFields *extractPart(const std::map<int, MCAuto<DataArrayIdType> >& extractDef, MEDFileMesh *mm) const;
+    MEDFileFields *extractPart(const std::map<int, MCAuto<DataArrayIdType> >& extractDef, MEDFileMesh *mm) const;
   public:
-    MEDLOADER_EXPORT std::vector<std::string> getPflsReallyUsed() const;
-    MEDLOADER_EXPORT std::vector<std::string> getLocsReallyUsed() const;
-    MEDLOADER_EXPORT std::vector<std::string> getPflsReallyUsedMulti() const;
-    MEDLOADER_EXPORT std::vector<std::string> getLocsReallyUsedMulti() const;
-    MEDLOADER_EXPORT void changePflsRefsNamesGen(const std::vector< std::pair<std::vector<std::string>, std::string > >& mapOfModif);
-    MEDLOADER_EXPORT void changeLocsRefsNamesGen(const std::vector< std::pair<std::vector<std::string>, std::string > >& mapOfModif);
+    std::vector<std::string> getPflsReallyUsed() const;
+    std::vector<std::string> getLocsReallyUsed() const;
+    std::vector<std::string> getPflsReallyUsedMulti() const;
+    std::vector<std::string> getLocsReallyUsedMulti() const;
+    void changePflsRefsNamesGen(const std::vector< std::pair<std::vector<std::string>, std::string > >& mapOfModif);
+    void changeLocsRefsNamesGen(const std::vector< std::pair<std::vector<std::string>, std::string > >& mapOfModif);
   private:
     ~MEDFileFields() { }
     MEDFileFields();

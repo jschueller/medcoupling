@@ -33,38 +33,38 @@ namespace MEDCoupling
   /*!
    * User class.
    */
-  class MEDFileData : public RefCountObject, public MEDFileWritableStandAlone
+  class MEDLOADER_EXPORT MEDFileData : public RefCountObject, public MEDFileWritableStandAlone
   {
   public:
-    MEDLOADER_EXPORT static MEDFileData *New(const std::string& fileName);
-    MEDLOADER_EXPORT static MEDFileData *New(med_idt fid);
-    MEDLOADER_EXPORT static MEDFileData *New();
-    MEDLOADER_EXPORT static MEDFileData *New(DataArrayByte *db) { return BuildFromMemoryChunk<MEDFileData>(db); }
-    MEDLOADER_EXPORT std::string getClassName() const override { return std::string("MEDFileData"); }
-    MEDLOADER_EXPORT MEDFileData *deepCopy() const;
-    MEDLOADER_EXPORT std::size_t getHeapMemorySizeWithoutChildren() const;
-    MEDLOADER_EXPORT std::vector<const BigMemoryObject *> getDirectChildrenWithNull() const;
-    MEDLOADER_EXPORT MEDFileFields *getFields() const;
-    MEDLOADER_EXPORT MEDFileMeshes *getMeshes() const;
-    MEDLOADER_EXPORT MEDFileParameters *getParams() const;
-    MEDLOADER_EXPORT void setFields(MEDFileFields *fields);
-    MEDLOADER_EXPORT void setMeshes(MEDFileMeshes *meshes);
-    MEDLOADER_EXPORT void setParams(MEDFileParameters *params);
-    MEDLOADER_EXPORT int getNumberOfFields() const;
-    MEDLOADER_EXPORT int getNumberOfMeshes() const;
-    MEDLOADER_EXPORT int getNumberOfParams() const;
-    MEDLOADER_EXPORT std::string simpleRepr() const;
+    static MEDFileData *New(const std::string& fileName);
+    static MEDFileData *New(med_idt fid);
+    static MEDFileData *New();
+    static MEDFileData *New(DataArrayByte *db) { return BuildFromMemoryChunk<MEDFileData>(db); }
+    std::string getClassName() const override { return std::string("MEDFileData"); }
+    MEDFileData *deepCopy() const;
+    std::size_t getHeapMemorySizeWithoutChildren() const;
+    std::vector<const BigMemoryObject *> getDirectChildrenWithNull() const;
+    MEDFileFields *getFields() const;
+    MEDFileMeshes *getMeshes() const;
+    MEDFileParameters *getParams() const;
+    void setFields(MEDFileFields *fields);
+    void setMeshes(MEDFileMeshes *meshes);
+    void setParams(MEDFileParameters *params);
+    int getNumberOfFields() const;
+    int getNumberOfMeshes() const;
+    int getNumberOfParams() const;
+    std::string simpleRepr() const;
     //
-    MEDLOADER_EXPORT std::string getHeader() const;
-    MEDLOADER_EXPORT void setHeader(const std::string& header);
+    std::string getHeader() const;
+    void setHeader(const std::string& header);
     //
-    MEDLOADER_EXPORT bool changeMeshNames(const std::vector< std::pair<std::string,std::string> >& modifTab);
-    MEDLOADER_EXPORT bool changeMeshName(const std::string& oldMeshName, const std::string& newMeshName);
-    MEDLOADER_EXPORT bool unPolyzeMeshes();
-    MEDLOADER_EXPORT void dealWithStructureElements();
-    MEDLOADER_EXPORT static MCAuto<MEDFileData> Aggregate(const std::vector<const MEDFileData *>& mfds);
+    bool changeMeshNames(const std::vector< std::pair<std::string,std::string> >& modifTab);
+    bool changeMeshName(const std::string& oldMeshName, const std::string& newMeshName);
+    bool unPolyzeMeshes();
+    void dealWithStructureElements();
+    static MCAuto<MEDFileData> Aggregate(const std::vector<const MEDFileData *>& mfds);
     //
-    MEDLOADER_EXPORT void writeLL(med_idt fid) const;
+    void writeLL(med_idt fid) const;
   private:
     MEDFileData();
     MEDFileData(med_idt fid);

@@ -302,7 +302,7 @@ namespace MEDCoupling
   {
   public:
     MEDLOADER_EXPORT static MEDFileFastCellSupportComparator *New(const MEDFileMeshStruct *m, const MEDFileAnyTypeFieldMultiTS *ref);
-    MEDLOADER_EXPORT std::string getClassName() const override { return std::string("MEDFileFastCellSupportComparator"); }
+    std::string getClassName() const override { return std::string("MEDFileFastCellSupportComparator"); }
     MEDLOADER_EXPORT MEDMeshMultiLev *buildFromScratchDataSetSupport(int timeStepId, const MEDFileFieldGlobsReal *globs) const;
     MEDLOADER_EXPORT bool isDataSetSupportEqualToThePreviousOne(int timeStepId, const MEDFileFieldGlobsReal *globs) const;
     MEDLOADER_EXPORT int getNumberOfTS() const;

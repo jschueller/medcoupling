@@ -117,7 +117,7 @@ namespace INTERP_KERNEL
     INTERPKERNEL_EXPORT void setDouble(double val);
     INTERPKERNEL_EXPORT void setVarname(int fastPos, const std::string& var);
     //
-    INTERPKERNEL_EXPORT DecompositionInUnitBase getData() const { return _data; }
+    DecompositionInUnitBase getData() const { return _data; }
     INTERPKERNEL_EXPORT void positive();
     INTERPKERNEL_EXPORT void negate();
     INTERPKERNEL_EXPORT void sqrt();
