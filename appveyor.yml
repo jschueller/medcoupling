@@ -13,7 +13,7 @@ install:
   - appveyor-retry appveyor DownloadFile https://files.salome-platform.org/Salome/other/med-4.1.1.tar.gz
   - 7z x med-4.1.1.tar.gz > nul
   - 7z x med-4.1.1.tar -oC:\Libraries > nul
-  - pushd C:\Libraries\med-4.1.1
+  - pushd C:\Libraries\med-4.1.1_SRC
   - mkdir build && cd build
   - cmake -G"%VS_GEN%" -DCMAKE_INSTALL_PREFIX=C:\Libraries\med -DHDF5_ROOT_DIR="C:\Libraries\hdf5" -DMEDFILE_BUILD_TESTS=OFF -DMEDFILE_INSTALL_DOC=OFF ..
   - cmake --build . --config Release --target install
