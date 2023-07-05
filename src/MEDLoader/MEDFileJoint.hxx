@@ -43,20 +43,20 @@ public:
   MEDLOADER_EXPORT static MEDFileJointCorrespondence *New(DataArrayIdType* correspondence,  // cells
                                                           INTERP_KERNEL::NormalizedCellType loc_geo_type,
                                                           INTERP_KERNEL::NormalizedCellType rem_geo_type);
-  MEDLOADER_EXPORT std::string getClassName() const override { return std::string("MEDFileJointCorrespondence"); }
+  std::string getClassName() const override { return std::string("MEDFileJointCorrespondence"); }
   MEDLOADER_EXPORT std::size_t getHeapMemorySizeWithoutChildren() const;
   MEDLOADER_EXPORT std::vector<const BigMemoryObject *> getDirectChildrenWithNull() const;
   MEDLOADER_EXPORT MEDFileJointCorrespondence *deepCopy() const;
   MEDLOADER_EXPORT MEDFileJointCorrespondence *shallowCpy() const;
   MEDLOADER_EXPORT bool isEqual(const MEDFileJointCorrespondence *other) const;
-  MEDLOADER_EXPORT void setIsNodal(bool isNodal) { _is_nodal = isNodal; }
-  MEDLOADER_EXPORT bool getIsNodal() const { return _is_nodal; }
-  MEDLOADER_EXPORT void setLocalGeometryType(INTERP_KERNEL::NormalizedCellType type) { _loc_geo_type=type; }
-  MEDLOADER_EXPORT INTERP_KERNEL::NormalizedCellType getLocalGeometryType() const { return _loc_geo_type; }
-  MEDLOADER_EXPORT void setRemoteGeometryType(INTERP_KERNEL::NormalizedCellType type) { _rem_geo_type=type; }
-  MEDLOADER_EXPORT INTERP_KERNEL::NormalizedCellType getRemoteGeometryType() const { return _rem_geo_type; }
+  void setIsNodal(bool isNodal) { _is_nodal = isNodal; }
+  bool getIsNodal() const { return _is_nodal; }
+  void setLocalGeometryType(INTERP_KERNEL::NormalizedCellType type) { _loc_geo_type=type; }
+  INTERP_KERNEL::NormalizedCellType getLocalGeometryType() const { return _loc_geo_type; }
+  void setRemoteGeometryType(INTERP_KERNEL::NormalizedCellType type) { _rem_geo_type=type; }
+  INTERP_KERNEL::NormalizedCellType getRemoteGeometryType() const { return _rem_geo_type; }
   MEDLOADER_EXPORT void setCorrespondence(DataArrayIdType *corr);
-  MEDLOADER_EXPORT const DataArrayIdType *getCorrespondence() const { return _correspondence; }
+  const DataArrayIdType *getCorrespondence() const { return _correspondence; }
   MEDLOADER_EXPORT void write(const std::string& fileName, int mode, const std::string& localMeshName, const std::string& jointName, int order, int iteration) const;
 
   MEDLOADER_EXPORT std::string simpleRepr() const;
@@ -83,16 +83,16 @@ public:
   MEDLOADER_EXPORT static MEDFileJointOneStep *New(int dt=-1, int it=-1);
   MEDLOADER_EXPORT static MEDFileJointOneStep *New(const std::string& fileName, const std::string& mName, const std::string& jointName, int number=1);
   MEDLOADER_EXPORT static MEDFileJointOneStep *New(med_idt fid, const std::string& mName, const std::string& jointName, int number=1);
-  MEDLOADER_EXPORT std::string getClassName() const override { return std::string("MEDFileJointOneStep"); }
+  std::string getClassName() const override { return std::string("MEDFileJointOneStep"); }
   MEDLOADER_EXPORT std::size_t getHeapMemorySizeWithoutChildren() const;
   MEDLOADER_EXPORT std::vector<const BigMemoryObject *> getDirectChildrenWithNull() const;
   MEDLOADER_EXPORT MEDFileJointOneStep *deepCopy() const;
   MEDLOADER_EXPORT MEDFileJointOneStep *shallowCpy() const;
   MEDLOADER_EXPORT bool isEqual(const MEDFileJointOneStep *other) const;
-  MEDLOADER_EXPORT void setOrder(int order) { _order=order; }
-  MEDLOADER_EXPORT int getOrder() const { return _order; }
-  MEDLOADER_EXPORT void setIteration(int it) { _iteration=it; }
-  MEDLOADER_EXPORT int getIteration() const { return _iteration; }
+  void setOrder(int order) { _order=order; }
+  int getOrder() const { return _order; }
+  void setIteration(int it) { _iteration=it; }
+  int getIteration() const { return _iteration; }
   MEDLOADER_EXPORT void pushCorrespondence(MEDFileJointCorrespondence* correspondence);
   MEDLOADER_EXPORT void clearCorrespondences();
   MEDLOADER_EXPORT int getNumberOfCorrespondences() const;
@@ -124,23 +124,23 @@ public:
     MEDLOADER_EXPORT static MEDFileJoint *New(const std::string& fileName, const std::string& mName, int num);
     MEDLOADER_EXPORT static MEDFileJoint *New(med_idt fid, const std::string& mName, int num);
     MEDLOADER_EXPORT static MEDFileJoint *New(const std::string& jointName, const std::string& locMeshName, const std::string& remoteMeshName, int remoteMeshNum );
-    MEDLOADER_EXPORT std::string getClassName() const override { return std::string("MEDFileJoint"); }
+    std::string getClassName() const override { return std::string("MEDFileJoint"); }
     MEDLOADER_EXPORT std::size_t getHeapMemorySizeWithoutChildren() const;
     MEDLOADER_EXPORT std::vector<const BigMemoryObject *> getDirectChildrenWithNull() const;
     MEDLOADER_EXPORT MEDFileJoint *deepCopy() const;
     MEDLOADER_EXPORT MEDFileJoint *shallowCpy() const;
     MEDLOADER_EXPORT bool isEqual(const MEDFileJoint *other) const;
-    MEDLOADER_EXPORT void setLocalMeshName(const std::string& name) { _loc_mesh_name=name; }
-    MEDLOADER_EXPORT std::string getLocalMeshName() const { return _loc_mesh_name; }
-    MEDLOADER_EXPORT void setRemoteMeshName(const std::string& name) { _rem_mesh_name=name; }
-    MEDLOADER_EXPORT std::string getRemoteMeshName() const { return _rem_mesh_name; }
-    MEDLOADER_EXPORT void setDescription(const std::string& name) { _desc_name=name; }
-    MEDLOADER_EXPORT std::string getDescription() const { return _desc_name; }
-    MEDLOADER_EXPORT void setJointName(const std::string& name) { _joint_name=name; }
-    MEDLOADER_EXPORT std::string getJointName() const { return _joint_name; }
+    void setLocalMeshName(const std::string& name) { _loc_mesh_name=name; }
+    std::string getLocalMeshName() const { return _loc_mesh_name; }
+    void setRemoteMeshName(const std::string& name) { _rem_mesh_name=name; }
+    std::string getRemoteMeshName() const { return _rem_mesh_name; }
+    void setDescription(const std::string& name) { _desc_name=name; }
+    std::string getDescription() const { return _desc_name; }
+    void setJointName(const std::string& name) { _joint_name=name; }
+    std::string getJointName() const { return _joint_name; }
     MEDLOADER_EXPORT bool changeJointNames(const std::vector< std::pair<std::string,std::string> >& modifTab);
-    MEDLOADER_EXPORT void setDomainNumber(const int& number) { _domain_number=number; }
-    MEDLOADER_EXPORT int getDomainNumber() const { return _domain_number; }
+    void setDomainNumber(const int& number) { _domain_number=number; }
+    int getDomainNumber() const { return _domain_number; }
     MEDLOADER_EXPORT void pushStep(MEDFileJointOneStep* step);
     MEDLOADER_EXPORT int getNumberOfSteps() const;
     MEDLOADER_EXPORT MEDFileJointOneStep *getStepAtPos(int i) const;
@@ -169,7 +169,7 @@ public:
     MEDLOADER_EXPORT static MEDFileJoints *New();
     MEDLOADER_EXPORT static MEDFileJoints *New(const std::string& fileName, const std::string& meshName);
     MEDLOADER_EXPORT static MEDFileJoints *New(med_idt fid, const std::string& meshName);
-    MEDLOADER_EXPORT std::string getClassName() const override { return std::string("MEDFileJoints"); }
+    std::string getClassName() const override { return std::string("MEDFileJoints"); }
     MEDLOADER_EXPORT MEDFileJoints *deepCopy() const;
     MEDLOADER_EXPORT std::size_t getHeapMemorySizeWithoutChildren() const;
     MEDLOADER_EXPORT std::vector<const BigMemoryObject *> getDirectChildrenWithNull() const;

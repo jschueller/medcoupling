@@ -33,46 +33,46 @@ namespace MEDCoupling
   class MEDCouplingMesh;
   class MEDCouplingUMesh;
 
-  class MEDCouplingGaussLocalization
+  class MEDCOUPLING_EXPORT MEDCouplingGaussLocalization
   {
   public:
-    MEDCOUPLING_EXPORT MEDCouplingGaussLocalization(INTERP_KERNEL::NormalizedCellType type, const std::vector<double>& refCoo,
+    MEDCouplingGaussLocalization(INTERP_KERNEL::NormalizedCellType type, const std::vector<double>& refCoo,
                                                     const std::vector<double>& gsCoo, const std::vector<double>& w);
-    MEDCOUPLING_EXPORT MEDCouplingGaussLocalization(INTERP_KERNEL::NormalizedCellType typ);
-    MEDCOUPLING_EXPORT INTERP_KERNEL::NormalizedCellType getType() const { return _type; }
-    MEDCOUPLING_EXPORT void setType(INTERP_KERNEL::NormalizedCellType typ);
-    MEDCOUPLING_EXPORT int getNumberOfGaussPt() const { return (int)_weight.size(); }
-    MEDCOUPLING_EXPORT int getDimension() const;
-    MEDCOUPLING_EXPORT int getNumberOfPtsInRefCell() const;
-    MEDCOUPLING_EXPORT std::string getStringRepr() const;
-    MEDCOUPLING_EXPORT std::size_t getMemorySize() const;
-    MEDCOUPLING_EXPORT void checkConsistencyLight() const;
-    MEDCOUPLING_EXPORT bool isEqual(const MEDCouplingGaussLocalization& other, double eps) const;
-    MEDCOUPLING_EXPORT void pushTinySerializationIntInfo(std::vector<mcIdType>& tinyInfo) const;
-    MEDCOUPLING_EXPORT void pushTinySerializationDblInfo(std::vector<double>& tinyInfo) const;
-    MEDCOUPLING_EXPORT const double *fillWithValues(const double *vals);
+    MEDCouplingGaussLocalization(INTERP_KERNEL::NormalizedCellType typ);
+    INTERP_KERNEL::NormalizedCellType getType() const { return _type; }
+    void setType(INTERP_KERNEL::NormalizedCellType typ);
+    int getNumberOfGaussPt() const { return (int)_weight.size(); }
+    int getDimension() const;
+    int getNumberOfPtsInRefCell() const;
+    std::string getStringRepr() const;
+    std::size_t getMemorySize() const;
+    void checkConsistencyLight() const;
+    bool isEqual(const MEDCouplingGaussLocalization& other, double eps) const;
+    void pushTinySerializationIntInfo(std::vector<mcIdType>& tinyInfo) const;
+    void pushTinySerializationDblInfo(std::vector<double>& tinyInfo) const;
+    const double *fillWithValues(const double *vals);
     //
-    MEDCOUPLING_EXPORT MCAuto<DataArrayDouble> localizePtsInRefCooForEachCell(const DataArrayDouble *ptsInRefCoo, const MEDCouplingUMesh *mesh) const;
-    MEDCOUPLING_EXPORT MCAuto<MEDCouplingUMesh> buildRefCell() const;
-    MEDCOUPLING_EXPORT MCAuto<DataArrayDouble> getShapeFunctionValues() const;
-    MEDCOUPLING_EXPORT MCAuto<DataArrayDouble> getDerivativeOfShapeFunctionValues() const;
+    MCAuto<DataArrayDouble> localizePtsInRefCooForEachCell(const DataArrayDouble *ptsInRefCoo, const MEDCouplingUMesh *mesh) const;
+    MCAuto<MEDCouplingUMesh> buildRefCell() const;
+    MCAuto<DataArrayDouble> getShapeFunctionValues() const;
+    MCAuto<DataArrayDouble> getDerivativeOfShapeFunctionValues() const;
     //
-    MEDCOUPLING_EXPORT const std::vector<double>& getRefCoords() const { return _ref_coord; }
-    MEDCOUPLING_EXPORT double getRefCoord(int ptIdInCell, int comp) const;
-    MEDCOUPLING_EXPORT const std::vector<double>& getGaussCoords() const { return _gauss_coord; }
-    MEDCOUPLING_EXPORT double getGaussCoord(int gaussPtIdInCell, int comp) const;
-    MEDCOUPLING_EXPORT const std::vector<double>& getWeights() const { return _weight; }
-    MEDCOUPLING_EXPORT double getWeight(int gaussPtIdInCell) const;
-    MEDCOUPLING_EXPORT void setRefCoord(int ptIdInCell, int comp, double newVal);
-    MEDCOUPLING_EXPORT void setGaussCoord(int gaussPtIdInCell, int comp, double newVal);
-    MEDCOUPLING_EXPORT void setWeight(int gaussPtIdInCell, double newVal);
-    MEDCOUPLING_EXPORT void setRefCoords(const std::vector<double>& refCoo);
-    MEDCOUPLING_EXPORT void setGaussCoords(const std::vector<double>& gsCoo);
-    MEDCOUPLING_EXPORT void setWeights(const std::vector<double>& w);
+    const std::vector<double>& getRefCoords() const { return _ref_coord; }
+    double getRefCoord(int ptIdInCell, int comp) const;
+    const std::vector<double>& getGaussCoords() const { return _gauss_coord; }
+    double getGaussCoord(int gaussPtIdInCell, int comp) const;
+    const std::vector<double>& getWeights() const { return _weight; }
+    double getWeight(int gaussPtIdInCell) const;
+    void setRefCoord(int ptIdInCell, int comp, double newVal);
+    void setGaussCoord(int gaussPtIdInCell, int comp, double newVal);
+    void setWeight(int gaussPtIdInCell, double newVal);
+    void setRefCoords(const std::vector<double>& refCoo);
+    void setGaussCoords(const std::vector<double>& gsCoo);
+    void setWeights(const std::vector<double>& w);
     //
-    MEDCOUPLING_EXPORT static MEDCouplingGaussLocalization BuildNewInstanceFromTinyInfo(mcIdType dim, const std::vector<mcIdType>& tinyData);
-    MEDCOUPLING_EXPORT static bool AreAlmostEqual(const std::vector<double>& v1, const std::vector<double>& v2, double eps);
-    MEDCOUPLING_EXPORT static MCAuto<DataArrayDouble> GetDefaultReferenceCoordinatesOf(INTERP_KERNEL::NormalizedCellType type);
+    static MEDCouplingGaussLocalization BuildNewInstanceFromTinyInfo(mcIdType dim, const std::vector<mcIdType>& tinyData);
+    static bool AreAlmostEqual(const std::vector<double>& v1, const std::vector<double>& v2, double eps);
+    static MCAuto<DataArrayDouble> GetDefaultReferenceCoordinatesOf(INTERP_KERNEL::NormalizedCellType type);
   private:
     int checkCoherencyOfRequest(mcIdType gaussPtIdInCell, int comp) const;
   private:

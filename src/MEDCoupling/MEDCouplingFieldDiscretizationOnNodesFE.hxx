@@ -29,25 +29,25 @@ namespace MEDCoupling
   /*!
    * Class in charge to implement FE functions with shape functions
    */
-  class MEDCouplingFieldDiscretizationOnNodesFE : public MEDCouplingFieldDiscretizationOnNodes
+  class MEDCOUPLING_EXPORT MEDCouplingFieldDiscretizationOnNodesFE : public MEDCouplingFieldDiscretizationOnNodes
   {
     public:
-      MEDCOUPLING_EXPORT TypeOfField getEnum() const override { return TYPE; }
-      MEDCOUPLING_EXPORT std::string getClassName() const override { return std::string("MEDCouplingFieldDiscretizationOnNodesFE"); }
-      MEDCOUPLING_EXPORT const char *getRepr() const override { return REPR; }
-      MEDCOUPLING_EXPORT std::string getStringRepr() const override;
-      MEDCOUPLING_EXPORT void reprQuickOverview(std::ostream& stream) const override;
-      MEDCOUPLING_EXPORT MCAuto<MEDCouplingFieldDiscretization> aggregate(std::vector<const MEDCouplingFieldDiscretization *>& fds) const override;
-      MEDCOUPLING_EXPORT bool isEqualIfNotWhy(const MEDCouplingFieldDiscretization *other, double eps, std::string& reason) const override;
-      MEDCOUPLING_EXPORT MEDCouplingFieldDiscretization *clone() const override;
-      MEDCOUPLING_EXPORT void checkCompatibilityWithNature(NatureOfField nat) const override;
-      MEDCOUPLING_EXPORT MEDCouplingFieldDouble *getMeasureField(const MEDCouplingMesh *mesh, bool isAbs) const override;
-      MEDCOUPLING_EXPORT void getValueOn(const DataArrayDouble *arr, const MEDCouplingMesh *mesh, const double *loc, double *res) const override;
-      MEDCOUPLING_EXPORT DataArrayDouble *getValueOnMulti(const DataArrayDouble *arr, const MEDCouplingMesh *mesh, const double *loc, mcIdType nbOfPoints) const override;
+      TypeOfField getEnum() const override { return TYPE; }
+      std::string getClassName() const override { return std::string("MEDCouplingFieldDiscretizationOnNodesFE"); }
+      const char *getRepr() const override { return REPR; }
+      std::string getStringRepr() const override;
+      void reprQuickOverview(std::ostream& stream) const override;
+      MCAuto<MEDCouplingFieldDiscretization> aggregate(std::vector<const MEDCouplingFieldDiscretization *>& fds) const override;
+      bool isEqualIfNotWhy(const MEDCouplingFieldDiscretization *other, double eps, std::string& reason) const override;
+      MEDCouplingFieldDiscretization *clone() const override;
+      void checkCompatibilityWithNature(NatureOfField nat) const override;
+      MEDCouplingFieldDouble *getMeasureField(const MEDCouplingMesh *mesh, bool isAbs) const override;
+      void getValueOn(const DataArrayDouble *arr, const MEDCouplingMesh *mesh, const double *loc, double *res) const override;
+      DataArrayDouble *getValueOnMulti(const DataArrayDouble *arr, const MEDCouplingMesh *mesh, const double *loc, mcIdType nbOfPoints) const override;
     public:
-      MEDCOUPLING_EXPORT MCAuto<DataArrayDouble> getCooInRefElement(const MEDCouplingMesh *mesh, const double *loc, mcIdType nbOfPoints) const;
+      MCAuto<DataArrayDouble> getCooInRefElement(const MEDCouplingMesh *mesh, const double *loc, mcIdType nbOfPoints) const;
     public:
-      MEDCOUPLING_EXPORT static void GetRefCoordOfListOf3DPtsIn3D(const MEDCouplingUMesh *umesh, const double *ptsCoo, mcIdType nbOfPts,
+      static void GetRefCoordOfListOf3DPtsIn3D(const MEDCouplingUMesh *umesh, const double *ptsCoo, mcIdType nbOfPts,
   std::function<void(const MEDCouplingGaussLocalization&, const std::vector<mcIdType>&)> customFunc);
     private:
       const MEDCouplingUMesh *checkConfig3D(const MEDCouplingMesh *mesh) const;

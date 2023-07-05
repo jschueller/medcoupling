@@ -40,78 +40,78 @@ namespace MEDCoupling
   class DataArrayDouble;
   class MEDCouplingFieldDouble;
 
-  class MEDCouplingFieldDiscretization : public RefCountObject, public TimeLabel
+  class MEDCOUPLING_EXPORT MEDCouplingFieldDiscretization : public RefCountObject, public TimeLabel
   {
   public:
-    MEDCOUPLING_EXPORT static MEDCouplingFieldDiscretization *New(TypeOfField type);
-    MEDCOUPLING_EXPORT double getPrecision() const { return _precision; }
-    MEDCOUPLING_EXPORT void setPrecision(double val) { _precision=val; }
-    MEDCOUPLING_EXPORT void updateTime() const;
-    MEDCOUPLING_EXPORT std::size_t getHeapMemorySizeWithoutChildren() const;
-    MEDCOUPLING_EXPORT std::vector<const BigMemoryObject *> getDirectChildrenWithNull() const;
-    MEDCOUPLING_EXPORT static TypeOfField GetTypeOfFieldFromStringRepr(const std::string& repr);
-    MEDCOUPLING_EXPORT static std::string GetTypeOfFieldRepr(TypeOfField type);
-    MEDCOUPLING_EXPORT virtual TypeOfField getEnum() const = 0;
-    MEDCOUPLING_EXPORT virtual bool isEqual(const MEDCouplingFieldDiscretization *other, double eps) const;
-    MEDCOUPLING_EXPORT virtual bool isEqualIfNotWhy(const MEDCouplingFieldDiscretization *other, double eps, std::string& reason) const = 0;
-    MEDCOUPLING_EXPORT virtual bool isEqualWithoutConsideringStr(const MEDCouplingFieldDiscretization *other, double eps) const;
-    MEDCOUPLING_EXPORT virtual MEDCouplingFieldDiscretization *deepCopy() const;
-    MEDCOUPLING_EXPORT virtual MEDCouplingFieldDiscretization *clone() const = 0;
-    MEDCOUPLING_EXPORT virtual MEDCouplingFieldDiscretization *clonePart(const mcIdType *startCellIds, const mcIdType *endCellIds) const;
-    MEDCOUPLING_EXPORT virtual MEDCouplingFieldDiscretization *clonePartRange(mcIdType beginCellIds, mcIdType endCellIds, mcIdType stepCellIds) const;
-    MEDCOUPLING_EXPORT virtual std::string getStringRepr() const = 0;
-    MEDCOUPLING_EXPORT virtual const char *getRepr() const = 0;
-    MEDCOUPLING_EXPORT virtual mcIdType getNumberOfTuplesExpectedRegardingCode(const std::vector<mcIdType>& code, const std::vector<const DataArrayIdType *>& idsPerType) const = 0;
-    MEDCOUPLING_EXPORT virtual mcIdType getNumberOfTuples(const MEDCouplingMesh *mesh) const = 0;
-    MEDCOUPLING_EXPORT virtual mcIdType getNumberOfMeshPlaces(const MEDCouplingMesh *mesh) const = 0;
-    MEDCOUPLING_EXPORT virtual DataArrayIdType *getOffsetArr(const MEDCouplingMesh *mesh) const = 0;
-    MEDCOUPLING_EXPORT virtual void normL1(const MEDCouplingMesh *mesh, const DataArrayDouble *arr, double *res) const;
-    MEDCOUPLING_EXPORT virtual void normL2(const MEDCouplingMesh *mesh, const DataArrayDouble *arr, double *res) const;
-    MEDCOUPLING_EXPORT virtual void integral(const MEDCouplingMesh *mesh, const DataArrayDouble *arr, bool isWAbs, double *res) const;
-    MEDCOUPLING_EXPORT virtual DataArrayDouble *getLocalizationOfDiscValues(const MEDCouplingMesh *mesh) const = 0;
-    MEDCOUPLING_EXPORT virtual void computeMeshRestrictionFromTupleIds(const MEDCouplingMesh *mesh, const mcIdType *tupleIdsBg, const mcIdType *tupleIdsEnd,
+    static MEDCouplingFieldDiscretization *New(TypeOfField type);
+    double getPrecision() const { return _precision; }
+    void setPrecision(double val) { _precision=val; }
+    void updateTime() const;
+    std::size_t getHeapMemorySizeWithoutChildren() const;
+    std::vector<const BigMemoryObject *> getDirectChildrenWithNull() const;
+    static TypeOfField GetTypeOfFieldFromStringRepr(const std::string& repr);
+    static std::string GetTypeOfFieldRepr(TypeOfField type);
+    virtual TypeOfField getEnum() const = 0;
+    virtual bool isEqual(const MEDCouplingFieldDiscretization *other, double eps) const;
+    virtual bool isEqualIfNotWhy(const MEDCouplingFieldDiscretization *other, double eps, std::string& reason) const = 0;
+    virtual bool isEqualWithoutConsideringStr(const MEDCouplingFieldDiscretization *other, double eps) const;
+    virtual MEDCouplingFieldDiscretization *deepCopy() const;
+    virtual MEDCouplingFieldDiscretization *clone() const = 0;
+    virtual MEDCouplingFieldDiscretization *clonePart(const mcIdType *startCellIds, const mcIdType *endCellIds) const;
+    virtual MEDCouplingFieldDiscretization *clonePartRange(mcIdType beginCellIds, mcIdType endCellIds, mcIdType stepCellIds) const;
+    virtual std::string getStringRepr() const = 0;
+    virtual const char *getRepr() const = 0;
+    virtual mcIdType getNumberOfTuplesExpectedRegardingCode(const std::vector<mcIdType>& code, const std::vector<const DataArrayIdType *>& idsPerType) const = 0;
+    virtual mcIdType getNumberOfTuples(const MEDCouplingMesh *mesh) const = 0;
+    virtual mcIdType getNumberOfMeshPlaces(const MEDCouplingMesh *mesh) const = 0;
+    virtual DataArrayIdType *getOffsetArr(const MEDCouplingMesh *mesh) const = 0;
+    virtual void normL1(const MEDCouplingMesh *mesh, const DataArrayDouble *arr, double *res) const;
+    virtual void normL2(const MEDCouplingMesh *mesh, const DataArrayDouble *arr, double *res) const;
+    virtual void integral(const MEDCouplingMesh *mesh, const DataArrayDouble *arr, bool isWAbs, double *res) const;
+    virtual DataArrayDouble *getLocalizationOfDiscValues(const MEDCouplingMesh *mesh) const = 0;
+    virtual void computeMeshRestrictionFromTupleIds(const MEDCouplingMesh *mesh, const mcIdType *tupleIdsBg, const mcIdType *tupleIdsEnd,
                                                                        DataArrayIdType *&cellRestriction, DataArrayIdType *&trueTupleRestriction) const = 0;
-    MEDCOUPLING_EXPORT virtual void checkCompatibilityWithNature(NatureOfField nat) const = 0;
-    MEDCOUPLING_EXPORT virtual void renumberCells(const mcIdType *old2NewBg, bool check=true);
-    MEDCOUPLING_EXPORT virtual void renumberArraysForCell(const MEDCouplingMesh *mesh, const std::vector<DataArray *>& arrays,
+    virtual void checkCompatibilityWithNature(NatureOfField nat) const = 0;
+    virtual void renumberCells(const mcIdType *old2NewBg, bool check=true);
+    virtual void renumberArraysForCell(const MEDCouplingMesh *mesh, const std::vector<DataArray *>& arrays,
                                                           const mcIdType *old2NewBg, bool check) = 0;
-    MEDCOUPLING_EXPORT virtual double getIJK(const MEDCouplingMesh *mesh, const DataArrayDouble *da, mcIdType cellId, mcIdType nodeIdInCell, int compoId) const;
-    MEDCOUPLING_EXPORT virtual void checkCoherencyBetween(const MEDCouplingMesh *mesh, const DataArray *da) const = 0;
-    MEDCOUPLING_EXPORT virtual MEDCouplingFieldDouble *getMeasureField(const MEDCouplingMesh *mesh, bool isAbs) const = 0;
-    MEDCOUPLING_EXPORT virtual void getValueOn(const DataArrayDouble *arr, const MEDCouplingMesh *mesh, const double *loc, double *res) const = 0;
-    MEDCOUPLING_EXPORT virtual void getValueOnPos(const DataArrayDouble *arr, const MEDCouplingMesh *mesh, mcIdType i, mcIdType j, mcIdType k, double *res) const = 0;
-    MEDCOUPLING_EXPORT virtual DataArrayDouble *getValueOnMulti(const DataArrayDouble *arr, const MEDCouplingMesh *mesh, const double *loc, mcIdType nbOfPoints) const = 0;
-    MEDCOUPLING_EXPORT virtual DataArrayIdType *computeTupleIdsToSelectFromCellIds(const MEDCouplingMesh *mesh, const mcIdType *startCellIds, const mcIdType *endCellIds) const = 0;
-    MEDCOUPLING_EXPORT virtual MEDCouplingMesh *buildSubMeshData(const MEDCouplingMesh *mesh, const mcIdType *start, const mcIdType *end, DataArrayIdType *&di) const = 0;
-    MEDCOUPLING_EXPORT virtual MEDCouplingMesh *buildSubMeshDataRange(const MEDCouplingMesh *mesh, mcIdType beginCellIds, mcIdType endCellIds, mcIdType stepCellIds, mcIdType& beginOut, mcIdType& endOut, mcIdType& stepOut, DataArrayIdType *&di) const;
-    MEDCOUPLING_EXPORT virtual void renumberValuesOnNodes(double epsOnVals, const mcIdType *old2New, mcIdType newNbOfNodes, DataArrayDouble *arr) const = 0;
-    MEDCOUPLING_EXPORT virtual void renumberValuesOnCells(double epsOnVals, const MEDCouplingMesh *mesh, const mcIdType *old2New, mcIdType newSz, DataArrayDouble *arr) const = 0;
-    MEDCOUPLING_EXPORT virtual void renumberValuesOnCellsR(const MEDCouplingMesh *mesh, const mcIdType *new2old, mcIdType newSz, DataArrayDouble *arr) const = 0;
-    MEDCOUPLING_EXPORT virtual MCAuto<MEDCouplingFieldDiscretization> aggregate(std::vector<const MEDCouplingFieldDiscretization *>& fds) const = 0;
-    MEDCOUPLING_EXPORT virtual void getSerializationIntArray(DataArrayIdType *& arr) const;
-    MEDCOUPLING_EXPORT virtual void getTinySerializationIntInformation(std::vector<mcIdType>& tinyInfo) const;
-    MEDCOUPLING_EXPORT virtual void getTinySerializationDbleInformation(std::vector<double>& tinyInfo) const;
-    MEDCOUPLING_EXPORT virtual void finishUnserialization(const std::vector<double>& tinyInfo);
-    MEDCOUPLING_EXPORT virtual void resizeForUnserialization(const std::vector<mcIdType>& tinyInfo, DataArrayIdType *& arr);
-    MEDCOUPLING_EXPORT virtual void checkForUnserialization(const std::vector<mcIdType>& tinyInfo, const DataArrayIdType *arr);
-    MEDCOUPLING_EXPORT virtual void setGaussLocalizationOnType(const MEDCouplingMesh *m, INTERP_KERNEL::NormalizedCellType type, const std::vector<double>& refCoo,
+    virtual double getIJK(const MEDCouplingMesh *mesh, const DataArrayDouble *da, mcIdType cellId, mcIdType nodeIdInCell, int compoId) const;
+    virtual void checkCoherencyBetween(const MEDCouplingMesh *mesh, const DataArray *da) const = 0;
+    virtual MEDCouplingFieldDouble *getMeasureField(const MEDCouplingMesh *mesh, bool isAbs) const = 0;
+    virtual void getValueOn(const DataArrayDouble *arr, const MEDCouplingMesh *mesh, const double *loc, double *res) const = 0;
+    virtual void getValueOnPos(const DataArrayDouble *arr, const MEDCouplingMesh *mesh, mcIdType i, mcIdType j, mcIdType k, double *res) const = 0;
+    virtual DataArrayDouble *getValueOnMulti(const DataArrayDouble *arr, const MEDCouplingMesh *mesh, const double *loc, mcIdType nbOfPoints) const = 0;
+    virtual DataArrayIdType *computeTupleIdsToSelectFromCellIds(const MEDCouplingMesh *mesh, const mcIdType *startCellIds, const mcIdType *endCellIds) const = 0;
+    virtual MEDCouplingMesh *buildSubMeshData(const MEDCouplingMesh *mesh, const mcIdType *start, const mcIdType *end, DataArrayIdType *&di) const = 0;
+    virtual MEDCouplingMesh *buildSubMeshDataRange(const MEDCouplingMesh *mesh, mcIdType beginCellIds, mcIdType endCellIds, mcIdType stepCellIds, mcIdType& beginOut, mcIdType& endOut, mcIdType& stepOut, DataArrayIdType *&di) const;
+    virtual void renumberValuesOnNodes(double epsOnVals, const mcIdType *old2New, mcIdType newNbOfNodes, DataArrayDouble *arr) const = 0;
+    virtual void renumberValuesOnCells(double epsOnVals, const MEDCouplingMesh *mesh, const mcIdType *old2New, mcIdType newSz, DataArrayDouble *arr) const = 0;
+    virtual void renumberValuesOnCellsR(const MEDCouplingMesh *mesh, const mcIdType *new2old, mcIdType newSz, DataArrayDouble *arr) const = 0;
+    virtual MCAuto<MEDCouplingFieldDiscretization> aggregate(std::vector<const MEDCouplingFieldDiscretization *>& fds) const = 0;
+    virtual void getSerializationIntArray(DataArrayIdType *& arr) const;
+    virtual void getTinySerializationIntInformation(std::vector<mcIdType>& tinyInfo) const;
+    virtual void getTinySerializationDbleInformation(std::vector<double>& tinyInfo) const;
+    virtual void finishUnserialization(const std::vector<double>& tinyInfo);
+    virtual void resizeForUnserialization(const std::vector<mcIdType>& tinyInfo, DataArrayIdType *& arr);
+    virtual void checkForUnserialization(const std::vector<mcIdType>& tinyInfo, const DataArrayIdType *arr);
+    virtual void setGaussLocalizationOnType(const MEDCouplingMesh *m, INTERP_KERNEL::NormalizedCellType type, const std::vector<double>& refCoo,
                                                                const std::vector<double>& gsCoo, const std::vector<double>& wg);
-    MEDCOUPLING_EXPORT virtual void setGaussLocalizationOnCells(const MEDCouplingMesh *m, const mcIdType *begin, const mcIdType *end, const std::vector<double>& refCoo,
+    virtual void setGaussLocalizationOnCells(const MEDCouplingMesh *m, const mcIdType *begin, const mcIdType *end, const std::vector<double>& refCoo,
                                                                 const std::vector<double>& gsCoo, const std::vector<double>& wg);
-    MEDCOUPLING_EXPORT virtual void clearGaussLocalizations();
-    MEDCOUPLING_EXPORT virtual MEDCouplingGaussLocalization& getGaussLocalization(mcIdType locId);
-    MEDCOUPLING_EXPORT virtual mcIdType getNbOfGaussLocalization() const;
-    MEDCOUPLING_EXPORT virtual mcIdType getGaussLocalizationIdOfOneCell(mcIdType cellId) const;
-    MEDCOUPLING_EXPORT virtual mcIdType getGaussLocalizationIdOfOneType(INTERP_KERNEL::NormalizedCellType type) const;
-    MEDCOUPLING_EXPORT virtual std::set<mcIdType> getGaussLocalizationIdsOfOneType(INTERP_KERNEL::NormalizedCellType type) const;
-    MEDCOUPLING_EXPORT virtual void getCellIdsHavingGaussLocalization(mcIdType locId, std::vector<mcIdType>& cellIds) const;
-    MEDCOUPLING_EXPORT virtual const MEDCouplingGaussLocalization& getGaussLocalization(mcIdType locId) const;
-    MEDCOUPLING_EXPORT virtual void reprQuickOverview(std::ostream& stream) const = 0;
-    MEDCOUPLING_EXPORT virtual ~MEDCouplingFieldDiscretization();
+    virtual void clearGaussLocalizations();
+    virtual MEDCouplingGaussLocalization& getGaussLocalization(mcIdType locId);
+    virtual mcIdType getNbOfGaussLocalization() const;
+    virtual mcIdType getGaussLocalizationIdOfOneCell(mcIdType cellId) const;
+    virtual mcIdType getGaussLocalizationIdOfOneType(INTERP_KERNEL::NormalizedCellType type) const;
+    virtual std::set<mcIdType> getGaussLocalizationIdsOfOneType(INTERP_KERNEL::NormalizedCellType type) const;
+    virtual void getCellIdsHavingGaussLocalization(mcIdType locId, std::vector<mcIdType>& cellIds) const;
+    virtual const MEDCouplingGaussLocalization& getGaussLocalization(mcIdType locId) const;
+    virtual void reprQuickOverview(std::ostream& stream) const = 0;
+    virtual ~MEDCouplingFieldDiscretization();
   protected:
-    MEDCOUPLING_EXPORT MEDCouplingFieldDiscretization();
-    MEDCOUPLING_EXPORT static void RenumberEntitiesFromO2NArr(double epsOnVals, const mcIdType *old2NewPtr, mcIdType newNbOfEntity, DataArrayDouble *arr, const std::string& msg);
-    MEDCOUPLING_EXPORT static void RenumberEntitiesFromN2OArr(const mcIdType *new2OldPtr, mcIdType new2OldSz, DataArrayDouble *arr, const std::string& msg);
+    MEDCouplingFieldDiscretization();
+    static void RenumberEntitiesFromO2NArr(double epsOnVals, const mcIdType *old2NewPtr, mcIdType newNbOfEntity, DataArrayDouble *arr, const std::string& msg);
+    static void RenumberEntitiesFromN2OArr(const mcIdType *new2OldPtr, mcIdType new2OldSz, DataArrayDouble *arr, const std::string& msg);
     template<class FIELD_DISC>
     static MCAuto<MEDCouplingFieldDiscretization> EasyAggregate(std::vector<const MEDCouplingFieldDiscretization *>& fds);
   protected:
@@ -119,99 +119,99 @@ namespace MEDCoupling
     static const double DFLT_PRECISION;
   };
 
-  class MEDCouplingFieldDiscretizationP0 : public MEDCouplingFieldDiscretization
+  class MEDCOUPLING_EXPORT MEDCouplingFieldDiscretizationP0 : public MEDCouplingFieldDiscretization
   {
   public:
-    MEDCOUPLING_EXPORT TypeOfField getEnum() const;
-    MEDCOUPLING_EXPORT std::string getClassName() const override { return std::string("MEDCouplingFieldDiscretizationP0"); }
-    MEDCOUPLING_EXPORT MEDCouplingFieldDiscretization *clone() const override;
-    MEDCOUPLING_EXPORT std::string getStringRepr() const;
-    MEDCOUPLING_EXPORT const char *getRepr() const;
-    MEDCOUPLING_EXPORT bool isEqualIfNotWhy(const MEDCouplingFieldDiscretization *other, double eps, std::string& reason) const override;
-    MEDCOUPLING_EXPORT mcIdType getNumberOfTuplesExpectedRegardingCode(const std::vector<mcIdType>& code, const std::vector<const DataArrayIdType *>& idsPerType) const;
-    MEDCOUPLING_EXPORT mcIdType getNumberOfTuples(const MEDCouplingMesh *mesh) const;
-    MEDCOUPLING_EXPORT mcIdType getNumberOfMeshPlaces(const MEDCouplingMesh *mesh) const;
-    MEDCOUPLING_EXPORT DataArrayIdType *getOffsetArr(const MEDCouplingMesh *mesh) const;
-    MEDCOUPLING_EXPORT void renumberArraysForCell(const MEDCouplingMesh *mesh, const std::vector<DataArray *>& arrays,
+    TypeOfField getEnum() const;
+    std::string getClassName() const override { return std::string("MEDCouplingFieldDiscretizationP0"); }
+    MEDCouplingFieldDiscretization *clone() const override;
+    std::string getStringRepr() const;
+    const char *getRepr() const;
+    bool isEqualIfNotWhy(const MEDCouplingFieldDiscretization *other, double eps, std::string& reason) const override;
+    mcIdType getNumberOfTuplesExpectedRegardingCode(const std::vector<mcIdType>& code, const std::vector<const DataArrayIdType *>& idsPerType) const;
+    mcIdType getNumberOfTuples(const MEDCouplingMesh *mesh) const;
+    mcIdType getNumberOfMeshPlaces(const MEDCouplingMesh *mesh) const;
+    DataArrayIdType *getOffsetArr(const MEDCouplingMesh *mesh) const;
+    void renumberArraysForCell(const MEDCouplingMesh *mesh, const std::vector<DataArray *>& arrays,
                                                   const mcIdType *old2NewBg, bool check);
-    MEDCOUPLING_EXPORT DataArrayDouble *getLocalizationOfDiscValues(const MEDCouplingMesh *mesh) const;
-    MEDCOUPLING_EXPORT void checkCompatibilityWithNature(NatureOfField nat) const override;
-    MEDCOUPLING_EXPORT void computeMeshRestrictionFromTupleIds(const MEDCouplingMesh *mesh, const mcIdType *tupleIdsBg, const mcIdType *tupleIdsEnd,
+    DataArrayDouble *getLocalizationOfDiscValues(const MEDCouplingMesh *mesh) const;
+    void checkCompatibilityWithNature(NatureOfField nat) const override;
+    void computeMeshRestrictionFromTupleIds(const MEDCouplingMesh *mesh, const mcIdType *tupleIdsBg, const mcIdType *tupleIdsEnd,
                                                                DataArrayIdType *&cellRestriction, DataArrayIdType *&trueTupleRestriction) const;
-    MEDCOUPLING_EXPORT void checkCoherencyBetween(const MEDCouplingMesh *mesh, const DataArray *da) const;
-    MEDCOUPLING_EXPORT MEDCouplingFieldDouble *getMeasureField(const MEDCouplingMesh *mesh, bool isAbs) const override;
-    MEDCOUPLING_EXPORT void getValueOn(const DataArrayDouble *arr, const MEDCouplingMesh *mesh, const double *loc, double *res) const override;
-    MEDCOUPLING_EXPORT void getValueOnPos(const DataArrayDouble *arr, const MEDCouplingMesh *mesh, mcIdType i, mcIdType j, mcIdType k, double *res) const;
-    MEDCOUPLING_EXPORT DataArrayDouble *getValueOnMulti(const DataArrayDouble *arr, const MEDCouplingMesh *mesh, const double *loc, mcIdType nbOfPoints) const override;
-    MEDCOUPLING_EXPORT void renumberValuesOnNodes(double epsOnVals, const mcIdType *old2New, mcIdType newNbOfNodes, DataArrayDouble *arr) const;
-    MEDCOUPLING_EXPORT void renumberValuesOnCells(double epsOnVals, const MEDCouplingMesh *mesh, const mcIdType *old2New, mcIdType newSz, DataArrayDouble *arr) const;
-    MEDCOUPLING_EXPORT void renumberValuesOnCellsR(const MEDCouplingMesh *mesh, const mcIdType *new2old, mcIdType newSz, DataArrayDouble *arr) const;
-    MEDCOUPLING_EXPORT MCAuto<MEDCouplingFieldDiscretization> aggregate(std::vector<const MEDCouplingFieldDiscretization *>& fds) const override;
-    MEDCOUPLING_EXPORT MEDCouplingMesh *buildSubMeshData(const MEDCouplingMesh *mesh, const mcIdType *start, const mcIdType *end, DataArrayIdType *&di) const;
-    MEDCOUPLING_EXPORT MEDCouplingMesh *buildSubMeshDataRange(const MEDCouplingMesh *mesh, mcIdType beginCellIds, mcIdType endCellIds, mcIdType stepCellIds, mcIdType& beginOut, mcIdType& endOut, mcIdType& stepOut, DataArrayIdType *&di) const;
-    MEDCOUPLING_EXPORT DataArrayIdType *computeTupleIdsToSelectFromCellIds(const MEDCouplingMesh *mesh, const mcIdType *startCellIds, const mcIdType *endCellIds) const;
-    MEDCOUPLING_EXPORT void reprQuickOverview(std::ostream& stream) const;
+    void checkCoherencyBetween(const MEDCouplingMesh *mesh, const DataArray *da) const;
+    MEDCouplingFieldDouble *getMeasureField(const MEDCouplingMesh *mesh, bool isAbs) const override;
+    void getValueOn(const DataArrayDouble *arr, const MEDCouplingMesh *mesh, const double *loc, double *res) const override;
+    void getValueOnPos(const DataArrayDouble *arr, const MEDCouplingMesh *mesh, mcIdType i, mcIdType j, mcIdType k, double *res) const;
+    DataArrayDouble *getValueOnMulti(const DataArrayDouble *arr, const MEDCouplingMesh *mesh, const double *loc, mcIdType nbOfPoints) const override;
+    void renumberValuesOnNodes(double epsOnVals, const mcIdType *old2New, mcIdType newNbOfNodes, DataArrayDouble *arr) const;
+    void renumberValuesOnCells(double epsOnVals, const MEDCouplingMesh *mesh, const mcIdType *old2New, mcIdType newSz, DataArrayDouble *arr) const;
+    void renumberValuesOnCellsR(const MEDCouplingMesh *mesh, const mcIdType *new2old, mcIdType newSz, DataArrayDouble *arr) const;
+    MCAuto<MEDCouplingFieldDiscretization> aggregate(std::vector<const MEDCouplingFieldDiscretization *>& fds) const override;
+    MEDCouplingMesh *buildSubMeshData(const MEDCouplingMesh *mesh, const mcIdType *start, const mcIdType *end, DataArrayIdType *&di) const;
+    MEDCouplingMesh *buildSubMeshDataRange(const MEDCouplingMesh *mesh, mcIdType beginCellIds, mcIdType endCellIds, mcIdType stepCellIds, mcIdType& beginOut, mcIdType& endOut, mcIdType& stepOut, DataArrayIdType *&di) const;
+    DataArrayIdType *computeTupleIdsToSelectFromCellIds(const MEDCouplingMesh *mesh, const mcIdType *startCellIds, const mcIdType *endCellIds) const;
+    void reprQuickOverview(std::ostream& stream) const;
   public:
     static const char REPR[];
     static constexpr TypeOfField TYPE = ON_CELLS;
   };
 
-  class MEDCouplingFieldDiscretizationOnNodes : public MEDCouplingFieldDiscretization
+  class MEDCOUPLING_EXPORT MEDCouplingFieldDiscretizationOnNodes : public MEDCouplingFieldDiscretization
   {
   public:
-    MEDCOUPLING_EXPORT mcIdType getNumberOfTuples(const MEDCouplingMesh *mesh) const;
-    MEDCOUPLING_EXPORT mcIdType getNumberOfTuplesExpectedRegardingCode(const std::vector<mcIdType>& code, const std::vector<const DataArrayIdType *>& idsPerType) const;
-    MEDCOUPLING_EXPORT mcIdType getNumberOfMeshPlaces(const MEDCouplingMesh *mesh) const;
-    MEDCOUPLING_EXPORT DataArrayIdType *getOffsetArr(const MEDCouplingMesh *mesh) const;
-    MEDCOUPLING_EXPORT void renumberArraysForCell(const MEDCouplingMesh *mesh, const std::vector<DataArray *>& arrays,
+    mcIdType getNumberOfTuples(const MEDCouplingMesh *mesh) const;
+    mcIdType getNumberOfTuplesExpectedRegardingCode(const std::vector<mcIdType>& code, const std::vector<const DataArrayIdType *>& idsPerType) const;
+    mcIdType getNumberOfMeshPlaces(const MEDCouplingMesh *mesh) const;
+    DataArrayIdType *getOffsetArr(const MEDCouplingMesh *mesh) const;
+    void renumberArraysForCell(const MEDCouplingMesh *mesh, const std::vector<DataArray *>& arrays,
                                                   const mcIdType *old2NewBg, bool check);
-    MEDCOUPLING_EXPORT DataArrayDouble *getLocalizationOfDiscValues(const MEDCouplingMesh *mesh) const;
-    MEDCOUPLING_EXPORT void computeMeshRestrictionFromTupleIds(const MEDCouplingMesh *mesh, const mcIdType *tupleIdsBg, const mcIdType *tupleIdsEnd,
+    DataArrayDouble *getLocalizationOfDiscValues(const MEDCouplingMesh *mesh) const;
+    void computeMeshRestrictionFromTupleIds(const MEDCouplingMesh *mesh, const mcIdType *tupleIdsBg, const mcIdType *tupleIdsEnd,
                                                                DataArrayIdType *&cellRestriction, DataArrayIdType *&trueTupleRestriction) const;
-    MEDCOUPLING_EXPORT void checkCoherencyBetween(const MEDCouplingMesh *mesh, const DataArray *da) const;
-    MEDCOUPLING_EXPORT MEDCouplingMesh *buildSubMeshData(const MEDCouplingMesh *mesh, const mcIdType *start, const mcIdType *end, DataArrayIdType *&di) const;
-    MEDCOUPLING_EXPORT MEDCouplingMesh *buildSubMeshDataRange(const MEDCouplingMesh *mesh, mcIdType beginCellIds, mcIdType endCellIds, mcIdType stepCellIds, mcIdType& beginOut, mcIdType& endOut, mcIdType& stepOut, DataArrayIdType *&di) const;
-    MEDCOUPLING_EXPORT DataArrayIdType *computeTupleIdsToSelectFromCellIds(const MEDCouplingMesh *mesh, const mcIdType *startCellIds, const mcIdType *endCellIds) const;
-    MEDCOUPLING_EXPORT void renumberValuesOnNodes(double epsOnVals, const mcIdType *old2New, mcIdType newNbOfNodes, DataArrayDouble *arr) const;
-    MEDCOUPLING_EXPORT void renumberValuesOnCells(double epsOnVals, const MEDCouplingMesh *mesh, const mcIdType *old2New, mcIdType newSz, DataArrayDouble *arr) const;
-    MEDCOUPLING_EXPORT void renumberValuesOnCellsR(const MEDCouplingMesh *mesh, const mcIdType *new2old, mcIdType newSz, DataArrayDouble *arr) const;
+    void checkCoherencyBetween(const MEDCouplingMesh *mesh, const DataArray *da) const;
+    MEDCouplingMesh *buildSubMeshData(const MEDCouplingMesh *mesh, const mcIdType *start, const mcIdType *end, DataArrayIdType *&di) const;
+    MEDCouplingMesh *buildSubMeshDataRange(const MEDCouplingMesh *mesh, mcIdType beginCellIds, mcIdType endCellIds, mcIdType stepCellIds, mcIdType& beginOut, mcIdType& endOut, mcIdType& stepOut, DataArrayIdType *&di) const;
+    DataArrayIdType *computeTupleIdsToSelectFromCellIds(const MEDCouplingMesh *mesh, const mcIdType *startCellIds, const mcIdType *endCellIds) const;
+    void renumberValuesOnNodes(double epsOnVals, const mcIdType *old2New, mcIdType newNbOfNodes, DataArrayDouble *arr) const;
+    void renumberValuesOnCells(double epsOnVals, const MEDCouplingMesh *mesh, const mcIdType *old2New, mcIdType newSz, DataArrayDouble *arr) const;
+    void renumberValuesOnCellsR(const MEDCouplingMesh *mesh, const mcIdType *new2old, mcIdType newSz, DataArrayDouble *arr) const;
   public:
-    MEDCOUPLING_EXPORT void getValueOnPos(const DataArrayDouble *arr, const MEDCouplingMesh *mesh, mcIdType i, mcIdType j, mcIdType k, double *res) const;
+    void getValueOnPos(const DataArrayDouble *arr, const MEDCouplingMesh *mesh, mcIdType i, mcIdType j, mcIdType k, double *res) const;
   };
 
-  class MEDCouplingFieldDiscretizationP1 : public MEDCouplingFieldDiscretizationOnNodes
+  class MEDCOUPLING_EXPORT MEDCouplingFieldDiscretizationP1 : public MEDCouplingFieldDiscretizationOnNodes
   {
   public:
-    MEDCOUPLING_EXPORT TypeOfField getEnum() const;
-    MEDCOUPLING_EXPORT std::string getClassName() const override { return std::string("MEDCouplingFieldDiscretizationP1"); }
-    MEDCOUPLING_EXPORT MEDCouplingFieldDiscretization *clone() const override;
-    MEDCOUPLING_EXPORT std::string getStringRepr() const;
-    MEDCOUPLING_EXPORT const char *getRepr() const;
-    MEDCOUPLING_EXPORT void checkCompatibilityWithNature(NatureOfField nat) const override;
-    MEDCOUPLING_EXPORT bool isEqualIfNotWhy(const MEDCouplingFieldDiscretization *other, double eps, std::string& reason) const override;
-    MEDCOUPLING_EXPORT MEDCouplingFieldDouble *getMeasureField(const MEDCouplingMesh *mesh, bool isAbs) const override;
-    MEDCOUPLING_EXPORT void getValueOn(const DataArrayDouble *arr, const MEDCouplingMesh *mesh, const double *loc, double *res) const override;
-    MEDCOUPLING_EXPORT DataArrayDouble *getValueOnMulti(const DataArrayDouble *arr, const MEDCouplingMesh *mesh, const double *loc, mcIdType nbOfPoints) const override;
-    MEDCOUPLING_EXPORT void reprQuickOverview(std::ostream& stream) const;
-    MEDCOUPLING_EXPORT MCAuto<MEDCouplingFieldDiscretization> aggregate(std::vector<const MEDCouplingFieldDiscretization *>& fds) const override;
+    TypeOfField getEnum() const;
+    std::string getClassName() const override { return std::string("MEDCouplingFieldDiscretizationP1"); }
+    MEDCouplingFieldDiscretization *clone() const override;
+    std::string getStringRepr() const;
+    const char *getRepr() const;
+    void checkCompatibilityWithNature(NatureOfField nat) const override;
+    bool isEqualIfNotWhy(const MEDCouplingFieldDiscretization *other, double eps, std::string& reason) const override;
+    MEDCouplingFieldDouble *getMeasureField(const MEDCouplingMesh *mesh, bool isAbs) const override;
+    void getValueOn(const DataArrayDouble *arr, const MEDCouplingMesh *mesh, const double *loc, double *res) const override;
+    DataArrayDouble *getValueOnMulti(const DataArrayDouble *arr, const MEDCouplingMesh *mesh, const double *loc, mcIdType nbOfPoints) const override;
+    void reprQuickOverview(std::ostream& stream) const;
+    MCAuto<MEDCouplingFieldDiscretization> aggregate(std::vector<const MEDCouplingFieldDiscretization *>& fds) const override;
   public:
     static const char REPR[];
     static constexpr TypeOfField TYPE = ON_NODES;
   protected:
-    MEDCOUPLING_EXPORT void getValueInCell(const MEDCouplingMesh *mesh, mcIdType cellId, const DataArrayDouble *arr, const double *loc, double *res) const;
+    void getValueInCell(const MEDCouplingMesh *mesh, mcIdType cellId, const DataArrayDouble *arr, const double *loc, double *res) const;
   };
 
   /*!
    * This class abstracts MEDCouplingFieldDiscretization that needs an information on each cell to perform their job.
    * All classes that inherits from this are more linked to mesh.
    */
-  class MEDCouplingFieldDiscretizationPerCell : public MEDCouplingFieldDiscretization
+  class MEDCOUPLING_EXPORT MEDCouplingFieldDiscretizationPerCell : public MEDCouplingFieldDiscretization
   {
   public:
-    MEDCOUPLING_EXPORT const DataArrayIdType *getArrayOfDiscIds() const;
-    MEDCOUPLING_EXPORT void setArrayOfDiscIds(const DataArrayIdType *adids);
-    MEDCOUPLING_EXPORT void checkNoOrphanCells() const;
-    MEDCOUPLING_EXPORT std::vector<DataArrayIdType *> splitIntoSingleGaussDicrPerCellType(std::vector< mcIdType >& locIds) const;
+    const DataArrayIdType *getArrayOfDiscIds() const;
+    void setArrayOfDiscIds(const DataArrayIdType *adids);
+    void checkNoOrphanCells() const;
+    std::vector<DataArrayIdType *> splitIntoSingleGaussDicrPerCellType(std::vector< mcIdType >& locIds) const;
   protected:
     MEDCouplingFieldDiscretizationPerCell();
     MEDCouplingFieldDiscretizationPerCell(const MEDCouplingFieldDiscretizationPerCell& other, const mcIdType *startCellIds, const mcIdType *endCellIds);
@@ -232,65 +232,65 @@ namespace MEDCoupling
     static const mcIdType DFT_INVALID_LOCID_VALUE;
   };
 
-  class MEDCouplingFieldDiscretizationGauss : public MEDCouplingFieldDiscretizationPerCell
+  class MEDCOUPLING_EXPORT MEDCouplingFieldDiscretizationGauss : public MEDCouplingFieldDiscretizationPerCell
   {
   public:
-    MEDCOUPLING_EXPORT MEDCouplingFieldDiscretizationGauss();
-    MEDCOUPLING_EXPORT TypeOfField getEnum() const;
-    MEDCOUPLING_EXPORT std::string getClassName() const override { return std::string("MEDCouplingFieldDiscretizationGauss"); }
-    MEDCOUPLING_EXPORT bool isEqualIfNotWhy(const MEDCouplingFieldDiscretization *other, double eps, std::string& reason) const override;
-    MEDCOUPLING_EXPORT bool isEqualWithoutConsideringStr(const MEDCouplingFieldDiscretization *other, double eps) const;
-    MEDCOUPLING_EXPORT MEDCouplingFieldDiscretization *clone() const override;
-    MEDCOUPLING_EXPORT MEDCouplingFieldDiscretization *clonePart(const mcIdType *startCellIds, const mcIdType *endCellIds) const;
-    MEDCOUPLING_EXPORT MEDCouplingFieldDiscretization *clonePartRange(mcIdType beginCellIds, mcIdType endCellIds, mcIdType stepCellIds) const;
-    MEDCOUPLING_EXPORT std::string getStringRepr() const;
-    MEDCOUPLING_EXPORT const char *getRepr() const;
-    MEDCOUPLING_EXPORT std::size_t getHeapMemorySizeWithoutChildren() const;
-    MEDCOUPLING_EXPORT mcIdType getNumberOfTuplesExpectedRegardingCode(const std::vector<mcIdType>& code, const std::vector<const DataArrayIdType *>& idsPerType) const;
-    MEDCOUPLING_EXPORT mcIdType getNumberOfTuples(const MEDCouplingMesh *mesh) const;
-    MEDCOUPLING_EXPORT mcIdType getNumberOfMeshPlaces(const MEDCouplingMesh *mesh) const;
-    MEDCOUPLING_EXPORT DataArrayIdType *getOffsetArr(const MEDCouplingMesh *mesh) const;
-    MEDCOUPLING_EXPORT void renumberArraysForCell(const MEDCouplingMesh *mesh, const std::vector<DataArray *>& arrays,
+    MEDCouplingFieldDiscretizationGauss();
+    TypeOfField getEnum() const;
+    std::string getClassName() const override { return std::string("MEDCouplingFieldDiscretizationGauss"); }
+    bool isEqualIfNotWhy(const MEDCouplingFieldDiscretization *other, double eps, std::string& reason) const override;
+    bool isEqualWithoutConsideringStr(const MEDCouplingFieldDiscretization *other, double eps) const;
+    MEDCouplingFieldDiscretization *clone() const override;
+    MEDCouplingFieldDiscretization *clonePart(const mcIdType *startCellIds, const mcIdType *endCellIds) const;
+    MEDCouplingFieldDiscretization *clonePartRange(mcIdType beginCellIds, mcIdType endCellIds, mcIdType stepCellIds) const;
+    std::string getStringRepr() const;
+    const char *getRepr() const;
+    std::size_t getHeapMemorySizeWithoutChildren() const;
+    mcIdType getNumberOfTuplesExpectedRegardingCode(const std::vector<mcIdType>& code, const std::vector<const DataArrayIdType *>& idsPerType) const;
+    mcIdType getNumberOfTuples(const MEDCouplingMesh *mesh) const;
+    mcIdType getNumberOfMeshPlaces(const MEDCouplingMesh *mesh) const;
+    DataArrayIdType *getOffsetArr(const MEDCouplingMesh *mesh) const;
+    void renumberArraysForCell(const MEDCouplingMesh *mesh, const std::vector<DataArray *>& arrays,
                                                   const mcIdType *old2NewBg, bool check);
-    MEDCOUPLING_EXPORT DataArrayDouble *getLocalizationOfDiscValues(const MEDCouplingMesh *mesh) const;
-    MEDCOUPLING_EXPORT void computeMeshRestrictionFromTupleIds(const MEDCouplingMesh *mesh, const mcIdType *tupleIdsBg, const mcIdType *tupleIdsEnd,
+    DataArrayDouble *getLocalizationOfDiscValues(const MEDCouplingMesh *mesh) const;
+    void computeMeshRestrictionFromTupleIds(const MEDCouplingMesh *mesh, const mcIdType *tupleIdsBg, const mcIdType *tupleIdsEnd,
                                                                DataArrayIdType *&cellRestriction, DataArrayIdType *&trueTupleRestriction) const;
-    MEDCOUPLING_EXPORT void checkCompatibilityWithNature(NatureOfField nat) const override;
-    MEDCOUPLING_EXPORT void getTinySerializationIntInformation(std::vector<mcIdType>& tinyInfo) const;
-    MEDCOUPLING_EXPORT void getTinySerializationDbleInformation(std::vector<double>& tinyInfo) const;
-    MEDCOUPLING_EXPORT void finishUnserialization(const std::vector<double>& tinyInfo);
-    MEDCOUPLING_EXPORT void getSerializationIntArray(DataArrayIdType *& arr) const;
-    MEDCOUPLING_EXPORT void resizeForUnserialization(const std::vector<mcIdType>& tinyInfo, DataArrayIdType *& arr);
-    MEDCOUPLING_EXPORT void checkForUnserialization(const std::vector<mcIdType>& tinyInfo, const DataArrayIdType *arr);
-    MEDCOUPLING_EXPORT double getIJK(const MEDCouplingMesh *mesh, const DataArrayDouble *da, mcIdType cellId, mcIdType nodeIdInCell, int compoId) const;
-    MEDCOUPLING_EXPORT void checkCoherencyBetween(const MEDCouplingMesh *mesh, const DataArray *da) const;
-    MEDCOUPLING_EXPORT MEDCouplingFieldDouble *getMeasureField(const MEDCouplingMesh *mesh, bool isAbs) const override;
-    MEDCOUPLING_EXPORT void getValueOn(const DataArrayDouble *arr, const MEDCouplingMesh *mesh, const double *loc, double *res) const override;
-    MEDCOUPLING_EXPORT void getValueOnPos(const DataArrayDouble *arr, const MEDCouplingMesh *mesh, mcIdType i, mcIdType j, mcIdType k, double *res) const;
-    MEDCOUPLING_EXPORT DataArrayDouble *getValueOnMulti(const DataArrayDouble *arr, const MEDCouplingMesh *mesh, const double *loc, mcIdType nbOfPoints) const override;
-    MEDCOUPLING_EXPORT MEDCouplingMesh *buildSubMeshData(const MEDCouplingMesh *mesh, const mcIdType *start, const mcIdType *end, DataArrayIdType *&di) const;
-    MEDCOUPLING_EXPORT MEDCouplingMesh *buildSubMeshDataRange(const MEDCouplingMesh *mesh, mcIdType beginCellIds, mcIdType endCellIds, mcIdType stepCellIds, mcIdType& beginOut, mcIdType& endOut, mcIdType& stepOut, DataArrayIdType *&di) const;
-    MEDCOUPLING_EXPORT DataArrayIdType *computeTupleIdsToSelectFromCellIds(const MEDCouplingMesh *mesh, const mcIdType *startCellIds, const mcIdType *endCellIds) const;
-    MEDCOUPLING_EXPORT void renumberValuesOnNodes(double epsOnVals, const mcIdType *old2New, mcIdType newNbOfNodes, DataArrayDouble *arr) const;
-    MEDCOUPLING_EXPORT void renumberValuesOnCells(double epsOnVals, const MEDCouplingMesh *mesh, const mcIdType *old2New, mcIdType newSz, DataArrayDouble *arr) const;
-    MEDCOUPLING_EXPORT void renumberValuesOnCellsR(const MEDCouplingMesh *mesh, const mcIdType *new2old, mcIdType newSz, DataArrayDouble *arr) const;
-    MEDCOUPLING_EXPORT MCAuto<MEDCouplingFieldDiscretization> aggregate(std::vector<const MEDCouplingFieldDiscretization *>& fds) const override;
-    MEDCOUPLING_EXPORT void setGaussLocalizationOnType(const MEDCouplingMesh *mesh, INTERP_KERNEL::NormalizedCellType type, const std::vector<double>& refCoo,
+    void checkCompatibilityWithNature(NatureOfField nat) const override;
+    void getTinySerializationIntInformation(std::vector<mcIdType>& tinyInfo) const;
+    void getTinySerializationDbleInformation(std::vector<double>& tinyInfo) const;
+    void finishUnserialization(const std::vector<double>& tinyInfo);
+    void getSerializationIntArray(DataArrayIdType *& arr) const;
+    void resizeForUnserialization(const std::vector<mcIdType>& tinyInfo, DataArrayIdType *& arr);
+    void checkForUnserialization(const std::vector<mcIdType>& tinyInfo, const DataArrayIdType *arr);
+    double getIJK(const MEDCouplingMesh *mesh, const DataArrayDouble *da, mcIdType cellId, mcIdType nodeIdInCell, int compoId) const;
+    void checkCoherencyBetween(const MEDCouplingMesh *mesh, const DataArray *da) const;
+    MEDCouplingFieldDouble *getMeasureField(const MEDCouplingMesh *mesh, bool isAbs) const override;
+    void getValueOn(const DataArrayDouble *arr, const MEDCouplingMesh *mesh, const double *loc, double *res) const override;
+    void getValueOnPos(const DataArrayDouble *arr, const MEDCouplingMesh *mesh, mcIdType i, mcIdType j, mcIdType k, double *res) const;
+    DataArrayDouble *getValueOnMulti(const DataArrayDouble *arr, const MEDCouplingMesh *mesh, const double *loc, mcIdType nbOfPoints) const override;
+    MEDCouplingMesh *buildSubMeshData(const MEDCouplingMesh *mesh, const mcIdType *start, const mcIdType *end, DataArrayIdType *&di) const;
+    MEDCouplingMesh *buildSubMeshDataRange(const MEDCouplingMesh *mesh, mcIdType beginCellIds, mcIdType endCellIds, mcIdType stepCellIds, mcIdType& beginOut, mcIdType& endOut, mcIdType& stepOut, DataArrayIdType *&di) const;
+    DataArrayIdType *computeTupleIdsToSelectFromCellIds(const MEDCouplingMesh *mesh, const mcIdType *startCellIds, const mcIdType *endCellIds) const;
+    void renumberValuesOnNodes(double epsOnVals, const mcIdType *old2New, mcIdType newNbOfNodes, DataArrayDouble *arr) const;
+    void renumberValuesOnCells(double epsOnVals, const MEDCouplingMesh *mesh, const mcIdType *old2New, mcIdType newSz, DataArrayDouble *arr) const;
+    void renumberValuesOnCellsR(const MEDCouplingMesh *mesh, const mcIdType *new2old, mcIdType newSz, DataArrayDouble *arr) const;
+    MCAuto<MEDCouplingFieldDiscretization> aggregate(std::vector<const MEDCouplingFieldDiscretization *>& fds) const override;
+    void setGaussLocalizationOnType(const MEDCouplingMesh *mesh, INTERP_KERNEL::NormalizedCellType type, const std::vector<double>& refCoo,
                                                        const std::vector<double>& gsCoo, const std::vector<double>& wg);
-    MEDCOUPLING_EXPORT void setGaussLocalizationOnCells(const MEDCouplingMesh *mesh, const mcIdType *begin, const mcIdType *end, const std::vector<double>& refCoo,
+    void setGaussLocalizationOnCells(const MEDCouplingMesh *mesh, const mcIdType *begin, const mcIdType *end, const std::vector<double>& refCoo,
                                                         const std::vector<double>& gsCoo, const std::vector<double>& wg);
-    MEDCOUPLING_EXPORT void clearGaussLocalizations();
-    MEDCOUPLING_EXPORT void setGaussLocalization(mcIdType locId, const MEDCouplingGaussLocalization& loc);
-    MEDCOUPLING_EXPORT void resizeLocalizationVector(mcIdType newSz);
-    MEDCOUPLING_EXPORT MEDCouplingGaussLocalization& getGaussLocalization(mcIdType locId);
-    MEDCOUPLING_EXPORT mcIdType getNbOfGaussLocalization() const;
-    MEDCOUPLING_EXPORT mcIdType getGaussLocalizationIdOfOneCell(mcIdType cellId) const;
-    MEDCOUPLING_EXPORT mcIdType getGaussLocalizationIdOfOneType(INTERP_KERNEL::NormalizedCellType type) const;
-    MEDCOUPLING_EXPORT std::set<mcIdType> getGaussLocalizationIdsOfOneType(INTERP_KERNEL::NormalizedCellType type) const;
-    MEDCOUPLING_EXPORT void getCellIdsHavingGaussLocalization(mcIdType locId, std::vector<mcIdType>& cellIds) const;
-    MEDCOUPLING_EXPORT const MEDCouplingGaussLocalization& getGaussLocalization(mcIdType locId) const;
-    MEDCOUPLING_EXPORT DataArrayIdType *buildNbOfGaussPointPerCellField() const;
-    MEDCOUPLING_EXPORT void reprQuickOverview(std::ostream& stream) const;
+    void clearGaussLocalizations();
+    void setGaussLocalization(mcIdType locId, const MEDCouplingGaussLocalization& loc);
+    void resizeLocalizationVector(mcIdType newSz);
+    MEDCouplingGaussLocalization& getGaussLocalization(mcIdType locId);
+    mcIdType getNbOfGaussLocalization() const;
+    mcIdType getGaussLocalizationIdOfOneCell(mcIdType cellId) const;
+    mcIdType getGaussLocalizationIdOfOneType(INTERP_KERNEL::NormalizedCellType type) const;
+    std::set<mcIdType> getGaussLocalizationIdsOfOneType(INTERP_KERNEL::NormalizedCellType type) const;
+    void getCellIdsHavingGaussLocalization(mcIdType locId, std::vector<mcIdType>& cellIds) const;
+    const MEDCouplingGaussLocalization& getGaussLocalization(mcIdType locId) const;
+    DataArrayIdType *buildNbOfGaussPointPerCellField() const;
+    void reprQuickOverview(std::ostream& stream) const;
   protected:
     MEDCouplingFieldDiscretizationGauss(const MEDCouplingFieldDiscretizationGauss& other, const mcIdType *startCellIds=0, const mcIdType *endCellIds=0);
     MEDCouplingFieldDiscretizationGauss(const MEDCouplingFieldDiscretizationGauss& other, mcIdType beginCellIds, mcIdType endCellIds, mcIdType stepCellIds);
@@ -309,46 +309,46 @@ namespace MEDCoupling
   /*!
    * Gauss with points of values located on nodes of element. This is a specialization of MEDCouplingFieldDiscretizationGauss.
    */
-  class MEDCouplingFieldDiscretizationGaussNE : public MEDCouplingFieldDiscretization
+  class MEDCOUPLING_EXPORT MEDCouplingFieldDiscretizationGaussNE : public MEDCouplingFieldDiscretization
   {
   public:
-    MEDCOUPLING_EXPORT MEDCouplingFieldDiscretizationGaussNE();
-    MEDCOUPLING_EXPORT TypeOfField getEnum() const;
-    MEDCOUPLING_EXPORT std::string getClassName() const override { return std::string("MEDCouplingFieldDiscretizationGaussNE"); }
-    MEDCOUPLING_EXPORT MEDCouplingFieldDiscretization *clone() const override;
-    MEDCOUPLING_EXPORT std::string getStringRepr() const;
-    MEDCOUPLING_EXPORT const char *getRepr() const;
-    MEDCOUPLING_EXPORT bool isEqualIfNotWhy(const MEDCouplingFieldDiscretization *other, double eps, std::string& reason) const override;
-    MEDCOUPLING_EXPORT mcIdType getNumberOfTuplesExpectedRegardingCode(const std::vector<mcIdType>& code, const std::vector<const DataArrayIdType *>& idsPerType) const;
-    MEDCOUPLING_EXPORT mcIdType getNumberOfTuples(const MEDCouplingMesh *mesh) const;
-    MEDCOUPLING_EXPORT mcIdType getNumberOfMeshPlaces(const MEDCouplingMesh *mesh) const;
-    MEDCOUPLING_EXPORT DataArrayIdType *getOffsetArr(const MEDCouplingMesh *mesh) const;
-    MEDCOUPLING_EXPORT void renumberArraysForCell(const MEDCouplingMesh *mesh, const std::vector<DataArray *>& arrays,
+    MEDCouplingFieldDiscretizationGaussNE();
+    TypeOfField getEnum() const;
+    std::string getClassName() const override { return std::string("MEDCouplingFieldDiscretizationGaussNE"); }
+    MEDCouplingFieldDiscretization *clone() const override;
+    std::string getStringRepr() const;
+    const char *getRepr() const;
+    bool isEqualIfNotWhy(const MEDCouplingFieldDiscretization *other, double eps, std::string& reason) const override;
+    mcIdType getNumberOfTuplesExpectedRegardingCode(const std::vector<mcIdType>& code, const std::vector<const DataArrayIdType *>& idsPerType) const;
+    mcIdType getNumberOfTuples(const MEDCouplingMesh *mesh) const;
+    mcIdType getNumberOfMeshPlaces(const MEDCouplingMesh *mesh) const;
+    DataArrayIdType *getOffsetArr(const MEDCouplingMesh *mesh) const;
+    void renumberArraysForCell(const MEDCouplingMesh *mesh, const std::vector<DataArray *>& arrays,
                                                   const mcIdType *old2NewBg, bool check);
-    MEDCOUPLING_EXPORT DataArrayDouble *getLocalizationOfDiscValues(const MEDCouplingMesh *mesh) const;
-    MEDCOUPLING_EXPORT void integral(const MEDCouplingMesh *mesh, const DataArrayDouble *arr, bool isWAbs, double *res) const;
-    MEDCOUPLING_EXPORT void computeMeshRestrictionFromTupleIds(const MEDCouplingMesh *mesh, const mcIdType *tupleIdsBg, const mcIdType *tupleIdsEnd,
+    DataArrayDouble *getLocalizationOfDiscValues(const MEDCouplingMesh *mesh) const;
+    void integral(const MEDCouplingMesh *mesh, const DataArrayDouble *arr, bool isWAbs, double *res) const;
+    void computeMeshRestrictionFromTupleIds(const MEDCouplingMesh *mesh, const mcIdType *tupleIdsBg, const mcIdType *tupleIdsEnd,
                                                                DataArrayIdType *&cellRestriction, DataArrayIdType *&trueTupleRestriction) const;
-    MEDCOUPLING_EXPORT void checkCompatibilityWithNature(NatureOfField nat) const override;
-    MEDCOUPLING_EXPORT double getIJK(const MEDCouplingMesh *mesh, const DataArrayDouble *da, mcIdType cellId, mcIdType nodeIdInCell, int compoId) const;
-    MEDCOUPLING_EXPORT void checkCoherencyBetween(const MEDCouplingMesh *mesh, const DataArray *da) const;
-    MEDCOUPLING_EXPORT MEDCouplingFieldDouble *getMeasureField(const MEDCouplingMesh *mesh, bool isAbs) const override;
-    MEDCOUPLING_EXPORT void getValueOn(const DataArrayDouble *arr, const MEDCouplingMesh *mesh, const double *loc, double *res) const override;
-    MEDCOUPLING_EXPORT void getValueOnPos(const DataArrayDouble *arr, const MEDCouplingMesh *mesh, mcIdType i, mcIdType j, mcIdType k, double *res) const;
-    MEDCOUPLING_EXPORT DataArrayDouble *getValueOnMulti(const DataArrayDouble *arr, const MEDCouplingMesh *mesh, const double *loc, mcIdType nbOfPoints) const override;
-    MEDCOUPLING_EXPORT MEDCouplingMesh *buildSubMeshData(const MEDCouplingMesh *mesh, const mcIdType *start, const mcIdType *end, DataArrayIdType *&di) const;
-    MEDCOUPLING_EXPORT MEDCouplingMesh *buildSubMeshDataRange(const MEDCouplingMesh *mesh, mcIdType beginCellIds, mcIdType endCellIds, mcIdType stepCellIds, mcIdType& beginOut, mcIdType& endOut, mcIdType& stepOut, DataArrayIdType *&di) const;
-    MEDCOUPLING_EXPORT DataArrayIdType *computeTupleIdsToSelectFromCellIds(const MEDCouplingMesh *mesh, const mcIdType *startCellIds, const mcIdType *endCellIds) const;
-    MEDCOUPLING_EXPORT void renumberValuesOnNodes(double epsOnVals, const mcIdType *old2New, mcIdType newNbOfNodes, DataArrayDouble *arr) const;
-    MEDCOUPLING_EXPORT void renumberValuesOnCells(double epsOnVals, const MEDCouplingMesh *mesh, const mcIdType *old2New, mcIdType newSz, DataArrayDouble *arr) const;
-    MEDCOUPLING_EXPORT void renumberValuesOnCellsR(const MEDCouplingMesh *mesh, const mcIdType *new2old, mcIdType newSz, DataArrayDouble *arr) const;
-    MEDCOUPLING_EXPORT MCAuto<MEDCouplingFieldDiscretization> aggregate(std::vector<const MEDCouplingFieldDiscretization *>& fds) const override;
-    MEDCOUPLING_EXPORT void reprQuickOverview(std::ostream& stream) const;
-    MEDCOUPLING_EXPORT static const double *GetWeightArrayFromGeometricType(INTERP_KERNEL::NormalizedCellType geoType, std::size_t& lgth);
-    MEDCOUPLING_EXPORT static const double *GetRefCoordsFromGeometricType(INTERP_KERNEL::NormalizedCellType geoType, std::size_t& lgth);
-    MEDCOUPLING_EXPORT static const double *GetLocsFromGeometricType(INTERP_KERNEL::NormalizedCellType geoType, std::size_t& lgth);
+    void checkCompatibilityWithNature(NatureOfField nat) const override;
+    double getIJK(const MEDCouplingMesh *mesh, const DataArrayDouble *da, mcIdType cellId, mcIdType nodeIdInCell, int compoId) const;
+    void checkCoherencyBetween(const MEDCouplingMesh *mesh, const DataArray *da) const;
+    MEDCouplingFieldDouble *getMeasureField(const MEDCouplingMesh *mesh, bool isAbs) const override;
+    void getValueOn(const DataArrayDouble *arr, const MEDCouplingMesh *mesh, const double *loc, double *res) const override;
+    void getValueOnPos(const DataArrayDouble *arr, const MEDCouplingMesh *mesh, mcIdType i, mcIdType j, mcIdType k, double *res) const;
+    DataArrayDouble *getValueOnMulti(const DataArrayDouble *arr, const MEDCouplingMesh *mesh, const double *loc, mcIdType nbOfPoints) const override;
+    MEDCouplingMesh *buildSubMeshData(const MEDCouplingMesh *mesh, const mcIdType *start, const mcIdType *end, DataArrayIdType *&di) const;
+    MEDCouplingMesh *buildSubMeshDataRange(const MEDCouplingMesh *mesh, mcIdType beginCellIds, mcIdType endCellIds, mcIdType stepCellIds, mcIdType& beginOut, mcIdType& endOut, mcIdType& stepOut, DataArrayIdType *&di) const;
+    DataArrayIdType *computeTupleIdsToSelectFromCellIds(const MEDCouplingMesh *mesh, const mcIdType *startCellIds, const mcIdType *endCellIds) const;
+    void renumberValuesOnNodes(double epsOnVals, const mcIdType *old2New, mcIdType newNbOfNodes, DataArrayDouble *arr) const;
+    void renumberValuesOnCells(double epsOnVals, const MEDCouplingMesh *mesh, const mcIdType *old2New, mcIdType newSz, DataArrayDouble *arr) const;
+    void renumberValuesOnCellsR(const MEDCouplingMesh *mesh, const mcIdType *new2old, mcIdType newSz, DataArrayDouble *arr) const;
+    MCAuto<MEDCouplingFieldDiscretization> aggregate(std::vector<const MEDCouplingFieldDiscretization *>& fds) const override;
+    void reprQuickOverview(std::ostream& stream) const;
+    static const double *GetWeightArrayFromGeometricType(INTERP_KERNEL::NormalizedCellType geoType, std::size_t& lgth);
+    static const double *GetRefCoordsFromGeometricType(INTERP_KERNEL::NormalizedCellType geoType, std::size_t& lgth);
+    static const double *GetLocsFromGeometricType(INTERP_KERNEL::NormalizedCellType geoType, std::size_t& lgth);
   protected:
-    MEDCOUPLING_EXPORT MEDCouplingFieldDiscretizationGaussNE(const MEDCouplingFieldDiscretizationGaussNE& other);
+    MEDCouplingFieldDiscretizationGaussNE(const MEDCouplingFieldDiscretizationGaussNE& other);
   public:
     static const char REPR[];
     static constexpr TypeOfField TYPE = ON_GAUSS_NE;
@@ -412,32 +412,32 @@ namespace MEDCoupling
     static const double LOC_PYRA13[39];//to check
   };
 
-  class MEDCouplingFieldDiscretizationKriging : public MEDCouplingFieldDiscretizationOnNodes
+  class MEDCOUPLING_EXPORT MEDCouplingFieldDiscretizationKriging : public MEDCouplingFieldDiscretizationOnNodes
   {
   public:
-    MEDCOUPLING_EXPORT TypeOfField getEnum() const;
-    MEDCOUPLING_EXPORT std::string getClassName() const override { return std::string("MEDCouplingFieldDiscretizationKriging"); }
-    MEDCOUPLING_EXPORT const char *getRepr() const;
-    MEDCOUPLING_EXPORT MEDCouplingFieldDiscretization *clone() const override;
-    MEDCOUPLING_EXPORT std::string getStringRepr() const;
-    MEDCOUPLING_EXPORT void checkCompatibilityWithNature(NatureOfField nat) const override;
-    MEDCOUPLING_EXPORT bool isEqualIfNotWhy(const MEDCouplingFieldDiscretization *other, double eps, std::string& reason) const override;
-    MEDCOUPLING_EXPORT MEDCouplingFieldDouble *getMeasureField(const MEDCouplingMesh *mesh, bool isAbs) const override;
-    MEDCOUPLING_EXPORT void getValueOn(const DataArrayDouble *arr, const MEDCouplingMesh *mesh, const double *loc, double *res) const override;
-    MEDCOUPLING_EXPORT DataArrayDouble *getValueOnMulti(const DataArrayDouble *arr, const MEDCouplingMesh *mesh, const double *loc, mcIdType nbOfPoints) const override;
-    MEDCOUPLING_EXPORT void reprQuickOverview(std::ostream& stream) const;
-    MEDCOUPLING_EXPORT MCAuto<MEDCouplingFieldDiscretization> aggregate(std::vector<const MEDCouplingFieldDiscretization *>& fds) const override;
+    TypeOfField getEnum() const;
+    std::string getClassName() const override { return std::string("MEDCouplingFieldDiscretizationKriging"); }
+    const char *getRepr() const;
+    MEDCouplingFieldDiscretization *clone() const override;
+    std::string getStringRepr() const;
+    void checkCompatibilityWithNature(NatureOfField nat) const override;
+    bool isEqualIfNotWhy(const MEDCouplingFieldDiscretization *other, double eps, std::string& reason) const override;
+    MEDCouplingFieldDouble *getMeasureField(const MEDCouplingMesh *mesh, bool isAbs) const override;
+    void getValueOn(const DataArrayDouble *arr, const MEDCouplingMesh *mesh, const double *loc, double *res) const override;
+    DataArrayDouble *getValueOnMulti(const DataArrayDouble *arr, const MEDCouplingMesh *mesh, const double *loc, mcIdType nbOfPoints) const override;
+    void reprQuickOverview(std::ostream& stream) const;
+    MCAuto<MEDCouplingFieldDiscretization> aggregate(std::vector<const MEDCouplingFieldDiscretization *>& fds) const override;
   public://specific part
-    MEDCOUPLING_EXPORT DataArrayDouble *computeEvaluationMatrixOnGivenPts(const MEDCouplingMesh *mesh, const double *loc, mcIdType nbOfTargetPoints, mcIdType& nbCols) const;
-    MEDCOUPLING_EXPORT DataArrayDouble *computeInverseMatrix(const MEDCouplingMesh *mesh, mcIdType& isDrift, mcIdType& matSz) const;
-    MEDCOUPLING_EXPORT DataArrayDouble *computeMatrix(const MEDCouplingMesh *mesh, mcIdType& isDrift, mcIdType& matSz) const;
-    MEDCOUPLING_EXPORT DataArrayDouble *computeVectorOfCoefficients(const MEDCouplingMesh *mesh, const DataArrayDouble *arr, mcIdType& isDrift) const;
-    MEDCOUPLING_EXPORT void operateOnDenseMatrix(int spaceDimension, mcIdType nbOfElems, double *matrixPtr) const;
-    MEDCOUPLING_EXPORT DataArrayDouble *performDrift(const DataArrayDouble *matr, const DataArrayDouble *arr, mcIdType& delta) const;
-    MEDCOUPLING_EXPORT static void OperateOnDenseMatrixH3(mcIdType nbOfElems, double *matrixPtr);
-    MEDCOUPLING_EXPORT static void OperateOnDenseMatrixH2Ln(mcIdType nbOfElems, double *matrixPtr);
-    MEDCOUPLING_EXPORT static DataArrayDouble *PerformDriftRect(const DataArrayDouble *matr, const DataArrayDouble *arr, mcIdType& delta);
-    MEDCOUPLING_EXPORT static DataArrayDouble *PerformDriftOfVec(const DataArrayDouble *arr, mcIdType isDrift);
+    DataArrayDouble *computeEvaluationMatrixOnGivenPts(const MEDCouplingMesh *mesh, const double *loc, mcIdType nbOfTargetPoints, mcIdType& nbCols) const;
+    DataArrayDouble *computeInverseMatrix(const MEDCouplingMesh *mesh, mcIdType& isDrift, mcIdType& matSz) const;
+    DataArrayDouble *computeMatrix(const MEDCouplingMesh *mesh, mcIdType& isDrift, mcIdType& matSz) const;
+    DataArrayDouble *computeVectorOfCoefficients(const MEDCouplingMesh *mesh, const DataArrayDouble *arr, mcIdType& isDrift) const;
+    void operateOnDenseMatrix(int spaceDimension, mcIdType nbOfElems, double *matrixPtr) const;
+    DataArrayDouble *performDrift(const DataArrayDouble *matr, const DataArrayDouble *arr, mcIdType& delta) const;
+    static void OperateOnDenseMatrixH3(mcIdType nbOfElems, double *matrixPtr);
+    static void OperateOnDenseMatrixH2Ln(mcIdType nbOfElems, double *matrixPtr);
+    static DataArrayDouble *PerformDriftRect(const DataArrayDouble *matr, const DataArrayDouble *arr, mcIdType& delta);
+    static DataArrayDouble *PerformDriftOfVec(const DataArrayDouble *arr, mcIdType isDrift);
   public:
     static const char REPR[];
     static constexpr TypeOfField TYPE = ON_NODES_KR;

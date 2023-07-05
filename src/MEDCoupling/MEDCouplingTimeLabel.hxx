@@ -32,33 +32,33 @@ namespace MEDCoupling
    * Class representing a label of time of the lastely modified part of this.
    * More _time is high more the object has been modified recently.
    */
-  class TimeLabel
+  class MEDCOUPLING_EXPORT TimeLabel
   {
   public:
-    MEDCOUPLING_EXPORT TimeLabel(const TimeLabel& other) = default;
-    MEDCOUPLING_EXPORT TimeLabel& operator=(const TimeLabel& other);
+    TimeLabel(const TimeLabel& other) = default;
+    TimeLabel& operator=(const TimeLabel& other);
     //! This method should be called when write access has been done on this.
-    MEDCOUPLING_EXPORT void declareAsNew() const;
+    void declareAsNew() const;
     //! This method should be called on high level classes as Field or Mesh to take into account modifications done in aggregates objects.
-    MEDCOUPLING_EXPORT virtual void updateTime() const = 0;
-    MEDCOUPLING_EXPORT std::size_t getTimeOfThis() const { return _time; }
+    virtual void updateTime() const = 0;
+    std::size_t getTimeOfThis() const { return _time; }
   protected:
-    MEDCOUPLING_EXPORT TimeLabel();
-    MEDCOUPLING_EXPORT virtual ~TimeLabel();
-    MEDCOUPLING_EXPORT void updateTimeWith(const TimeLabel& other) const;
-    MEDCOUPLING_EXPORT void forceTimeOfThis(const TimeLabel& other) const;
+    TimeLabel();
+    virtual ~TimeLabel();
+    void updateTimeWith(const TimeLabel& other) const;
+    void forceTimeOfThis(const TimeLabel& other) const;
   private:
     static std::atomic<std::size_t> GLOBAL_TIME;
     mutable std::size_t _time;
   };
 
-  class TimeLabelConstOverseer
+  class MEDCOUPLING_EXPORT TimeLabelConstOverseer
   {
   public:
-    MEDCOUPLING_EXPORT TimeLabelConstOverseer(const TimeLabel *tl);
-    MEDCOUPLING_EXPORT void checkConst() const;
-    MEDCOUPLING_EXPORT bool resetState();
-    MEDCOUPLING_EXPORT bool keepTrackOfNewTL(const TimeLabel *tl);
+    TimeLabelConstOverseer(const TimeLabel *tl);
+    void checkConst() const;
+    bool resetState();
+    bool keepTrackOfNewTL(const TimeLabel *tl);
   private:
     const TimeLabel *_tl;
     std::size_t _ref_time;

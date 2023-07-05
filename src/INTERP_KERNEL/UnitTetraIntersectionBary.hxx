@@ -54,7 +54,7 @@ namespace INTERP_KERNEL
      * \brief Returns volume of intersection
      *  \retval double - 
      */
-    INTERPKERNEL_EXPORT inline double getVolume() const { return _int_volume; }
+    inline double getVolume() const { return _int_volume; }
 
     INTERPKERNEL_EXPORT virtual ~UnitTetraIntersectionBary();
 

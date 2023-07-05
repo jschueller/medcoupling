@@ -94,8 +94,8 @@ class MEDFileSEConstAtt : public RefCountObject, public MEDFileWritableStandAlon
     MEDLOADER_EXPORT std::string getMeshName() const;
     MEDLOADER_EXPORT std::vector<std::string> getVarAtts() const;
     MEDLOADER_EXPORT const MEDFileSEVarAtt *getVarAtt(const std::string& varName) const;
-    MEDLOADER_EXPORT std::string getClassName() const override { return std::string("MEDFileStructureElement"); }
-    MEDLOADER_EXPORT INTERP_KERNEL::NormalizedCellType getGeoType() const { return _geo_type; }
+    std::string getClassName() const override { return std::string("MEDFileStructureElement"); }
+    INTERP_KERNEL::NormalizedCellType getGeoType() const { return _geo_type; }
   public:
     std::vector<const BigMemoryObject *> getDirectChildrenWithNull() const;
     std::size_t getHeapMemorySizeWithoutChildren() const;
@@ -122,7 +122,7 @@ class MEDFileSEConstAtt : public RefCountObject, public MEDFileWritableStandAlon
     MEDLOADER_EXPORT static MEDFileStructureElements *New(const std::string& fileName, const MEDFileMeshSupports *ms);
     MEDLOADER_EXPORT static MEDFileStructureElements *New(med_idt fid, const MEDFileMeshSupports *ms);
     MEDLOADER_EXPORT static MEDFileStructureElements *New();
-    MEDLOADER_EXPORT std::string getClassName() const override { return std::string("MEDFileStructureElements"); }
+    std::string getClassName() const override { return std::string("MEDFileStructureElements"); }
     MEDLOADER_EXPORT int getNumberOf() const;
     MEDLOADER_EXPORT std::vector<int> getDynGTAvail() const;
     MEDLOADER_EXPORT const MEDFileStructureElement *getWithGT(int idGT) const;

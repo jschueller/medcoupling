@@ -42,7 +42,7 @@ namespace INTERP_KERNEL
   /*!
    * This class describes all static elements (different from polygons and polyhedron) 3D, 2D and 1D.
    */
-  class CellModel
+  class INTERPKERNEL_EXPORT CellModel
   {
   public:
     static const unsigned MAX_NB_OF_SONS=8;
@@ -52,44 +52,44 @@ namespace INTERP_KERNEL
     CellModel(NormalizedCellType type);
     static void BuildUniqueInstance(std::map<NormalizedCellType,CellModel>& map);
   public:
-    INTERPKERNEL_EXPORT static const CellModel& GetCellModel(NormalizedCellType type);
-    INTERPKERNEL_EXPORT static const std::map<NormalizedCellType,CellModel>& GetMapOfUniqueInstance();
-    INTERPKERNEL_EXPORT NormalizedCellType getEnum() const { return _type; }
-    INTERPKERNEL_EXPORT const char *getRepr() const;
-    INTERPKERNEL_EXPORT bool isExtruded() const { return _is_extruded; }
-    INTERPKERNEL_EXPORT bool isDynamic() const { return _dyn; }
-    INTERPKERNEL_EXPORT bool isQuadratic() const { return _quadratic; }
-    INTERPKERNEL_EXPORT unsigned getDimension() const { return _dim; }
-    INTERPKERNEL_EXPORT bool isCompatibleWith(NormalizedCellType type) const;
-    INTERPKERNEL_EXPORT bool isSimplex() const { return _is_simplex; }
+    static const CellModel& GetCellModel(NormalizedCellType type);
+    static const std::map<NormalizedCellType,CellModel>& GetMapOfUniqueInstance();
+    NormalizedCellType getEnum() const { return _type; }
+    const char *getRepr() const;
+    bool isExtruded() const { return _is_extruded; }
+    bool isDynamic() const { return _dyn; }
+    bool isQuadratic() const { return _quadratic; }
+    unsigned getDimension() const { return _dim; }
+    bool isCompatibleWith(NormalizedCellType type) const;
+    bool isSimplex() const { return _is_simplex; }
     //! sonId is in C format.
-    INTERPKERNEL_EXPORT const unsigned *getNodesConstituentTheSon(unsigned sonId) const { return _sons_con[sonId]; }
-    INTERPKERNEL_EXPORT const unsigned *getNodesConstituentTheLittleSon(unsigned littleSonId) const { return _little_sons_con[littleSonId]; }
-    INTERPKERNEL_EXPORT bool getOrientationStatus(mcIdType lgth, const mcIdType *conn1, const mcIdType *conn2) const;
-    INTERPKERNEL_EXPORT unsigned getNumberOfNodes() const { return _nb_of_pts; }
-    INTERPKERNEL_EXPORT unsigned getNumberOfSons() const { return _nb_of_sons; }
-    INTERPKERNEL_EXPORT unsigned getNumberOfSons2(const mcIdType *conn, mcIdType lgth) const;
-    INTERPKERNEL_EXPORT unsigned getNumberOfEdgesIn3D(const mcIdType *conn, mcIdType lgth) const;
-    INTERPKERNEL_EXPORT unsigned getNumberOfMicroEdges() const;
-    INTERPKERNEL_EXPORT unsigned getNumberOfNodesConstituentTheSon(unsigned sonId) const { return _nb_of_sons_con[sonId]; }
-    INTERPKERNEL_EXPORT unsigned getNumberOfNodesConstituentTheSon2(unsigned sonId, const mcIdType *nodalConn, mcIdType lgth) const;
-    INTERPKERNEL_EXPORT NormalizedCellType getExtrudedType() const { return _extruded_type; }
-    INTERPKERNEL_EXPORT NormalizedCellType getCorrespondingPolyType() const;
-    INTERPKERNEL_EXPORT NormalizedCellType getReverseExtrudedType() const { return _reverse_extruded_type; }
-    INTERPKERNEL_EXPORT NormalizedCellType getLinearType() const { return _linear_type; }
-    INTERPKERNEL_EXPORT NormalizedCellType getQuadraticType() const { return _quadratic_type; }
-    INTERPKERNEL_EXPORT NormalizedCellType getQuadraticType2() const { return _quadratic_type2; }
-    INTERPKERNEL_EXPORT NormalizedCellType getSonType(unsigned sonId) const { return _sons_type[sonId]; }
-    INTERPKERNEL_EXPORT NormalizedCellType getSonType2(unsigned sonId) const;
-    INTERPKERNEL_EXPORT unsigned fillSonCellNodalConnectivity(int sonId, const mcIdType *nodalConn, mcIdType *sonNodalConn) const;
-    INTERPKERNEL_EXPORT unsigned fillSonCellNodalConnectivity2(int sonId, const mcIdType *nodalConn, mcIdType lgth, mcIdType *sonNodalConn, NormalizedCellType& typeOfSon) const;
-    INTERPKERNEL_EXPORT unsigned fillSonCellNodalConnectivity4(int sonId, const mcIdType *nodalConn, mcIdType lgth, mcIdType *sonNodalConn, NormalizedCellType& typeOfSon) const;
-    INTERPKERNEL_EXPORT unsigned fillSonEdgesNodalConnectivity3D(int sonId, const mcIdType *nodalConn, mcIdType lgth, mcIdType *sonNodalConn, NormalizedCellType& typeOfSon) const;
-    INTERPKERNEL_EXPORT unsigned fillMicroEdgeNodalConnectivity(int sonId, const mcIdType *nodalConn, mcIdType *sonNodalConn, NormalizedCellType& typeOfSon) const;
-    INTERPKERNEL_EXPORT void changeOrientationOf2D(mcIdType *nodalConn, unsigned int sz) const;
-    INTERPKERNEL_EXPORT void changeOrientationOf1D(mcIdType *nodalConn, unsigned int sz) const;
-    INTERPKERNEL_EXPORT DiameterCalculator *buildInstanceOfDiameterCalulator(int spaceDim) const;
-    INTERPKERNEL_EXPORT OrientationInverter *buildOrientationInverter() const;
+    const unsigned *getNodesConstituentTheSon(unsigned sonId) const { return _sons_con[sonId]; }
+    const unsigned *getNodesConstituentTheLittleSon(unsigned littleSonId) const { return _little_sons_con[littleSonId]; }
+    bool getOrientationStatus(mcIdType lgth, const mcIdType *conn1, const mcIdType *conn2) const;
+    unsigned getNumberOfNodes() const { return _nb_of_pts; }
+    unsigned getNumberOfSons() const { return _nb_of_sons; }
+    unsigned getNumberOfSons2(const mcIdType *conn, mcIdType lgth) const;
+    unsigned getNumberOfEdgesIn3D(const mcIdType *conn, mcIdType lgth) const;
+    unsigned getNumberOfMicroEdges() const;
+    unsigned getNumberOfNodesConstituentTheSon(unsigned sonId) const { return _nb_of_sons_con[sonId]; }
+    unsigned getNumberOfNodesConstituentTheSon2(unsigned sonId, const mcIdType *nodalConn, mcIdType lgth) const;
+    NormalizedCellType getExtrudedType() const { return _extruded_type; }
+    NormalizedCellType getCorrespondingPolyType() const;
+    NormalizedCellType getReverseExtrudedType() const { return _reverse_extruded_type; }
+    NormalizedCellType getLinearType() const { return _linear_type; }
+    NormalizedCellType getQuadraticType() const { return _quadratic_type; }
+    NormalizedCellType getQuadraticType2() const { return _quadratic_type2; }
+    NormalizedCellType getSonType(unsigned sonId) const { return _sons_type[sonId]; }
+    NormalizedCellType getSonType2(unsigned sonId) const;
+    unsigned fillSonCellNodalConnectivity(int sonId, const mcIdType *nodalConn, mcIdType *sonNodalConn) const;
+    unsigned fillSonCellNodalConnectivity2(int sonId, const mcIdType *nodalConn, mcIdType lgth, mcIdType *sonNodalConn, NormalizedCellType& typeOfSon) const;
+    unsigned fillSonCellNodalConnectivity4(int sonId, const mcIdType *nodalConn, mcIdType lgth, mcIdType *sonNodalConn, NormalizedCellType& typeOfSon) const;
+    unsigned fillSonEdgesNodalConnectivity3D(int sonId, const mcIdType *nodalConn, mcIdType lgth, mcIdType *sonNodalConn, NormalizedCellType& typeOfSon) const;
+    unsigned fillMicroEdgeNodalConnectivity(int sonId, const mcIdType *nodalConn, mcIdType *sonNodalConn, NormalizedCellType& typeOfSon) const;
+    void changeOrientationOf2D(mcIdType *nodalConn, unsigned int sz) const;
+    void changeOrientationOf1D(mcIdType *nodalConn, unsigned int sz) const;
+    DiameterCalculator *buildInstanceOfDiameterCalulator(int spaceDim) const;
+    OrientationInverter *buildOrientationInverter() const;
   private:
     bool _dyn;
     bool _quadratic;

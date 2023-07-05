@@ -31,7 +31,7 @@ namespace INTERP_KERNEL
   {
   public:
     INTERPKERNEL_EXPORT static OrientationInverter *BuildInstanceFrom(NormalizedCellType gt);
-    INTERPKERNEL_EXPORT virtual ~OrientationInverter() { }
+    virtual ~OrientationInverter() { }
     INTERPKERNEL_EXPORT virtual void operate(mcIdType *beginPt, mcIdType *endPt) const = 0;
   };
 
@@ -44,7 +44,7 @@ namespace INTERP_KERNEL
   protected:
     unsigned getNbNodes() const { return _nb_nodes; }
   private:
-    void check(mcIdType *beginPt, mcIdType *endPt) const;
+    INTERPKERNEL_EXPORT void check(mcIdType *beginPt, mcIdType *endPt) const;
   private:
     unsigned _nb_nodes;
   };

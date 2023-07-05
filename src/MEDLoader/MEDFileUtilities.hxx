@@ -36,7 +36,7 @@ namespace MEDFileUtilities
   void CheckMEDCode(int code, med_idt fid, const std::string& msg);
   void CheckFileForRead(const std::string& fileName);
 
-  class AutoFid
+  class MEDLOADER_EXPORT AutoFid
   {
   public:
     AutoFid(med_idt fid);
