@@ -39,47 +39,47 @@ git clone https://github.com/jschueller/homard.git
 echo PATH=%PATH%
 rem  -G "Visual Studio 15 2017" -A amd64
 cmake -S homard -B homard_build -G "Ninja" -LAH -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=C:/work/SALOME-9.7.0/W64/homard
-  -DCONFIGURATION_ROOT_DIR=C:/work/SALOME-9.10.0/SOURCES/CONFIGURATION ^
-  -DKERNEL_ROOT_DIR=C:/work/SALOME-9.10.0/W64/KERNEL ^
-  -DGUI_ROOT_DIR=C:/work/SALOME-9.10.0/W64/GUI ^
-  -DGEOM_ROOT_DIR=C:/work/SALOME-9.10.0/W64/GEOM ^
-  -DSMESH_ROOT_DIR=C:/work/SALOME-9.10.0/W64/SMESH ^
-  -Dospray_DIR=C:/work/SALOME-9.10.0/W64/EXT/lib/cmake/ospray-2.4.0 ^
-  -Dembree_DIR=C:/work/SALOME-9.10.0/W64/EXT/lib/cmake/embree-3.12.2 ^
-  -Dopenvkl_DIR=C:/work/SALOME-9.10.0/W64/EXT/lib/cmake/openvkl-0.11.0 ^
-  -Drkcommon_DIR=C:/work/SALOME-9.10.0/W64/EXT/lib/cmake/rkcommon-1.5.1 ^
-  -DTBB_DIR=C:/work/SALOME-9.10.0/W64/EXT/lib/cmake/tbb/ -DTBB_ROOT=C:/work/SALOME-9.10.0/W64/EXT/ ^
-  -DCGNS_INCLUDE_DIR=C:/work/SALOME-9.10.0/W64/EXT/include -DCGNS_LIBRARY=C:/work/SALOME-9.10.0/W64/EXT/lib/cgns.lib ^
-  -DPYTHON_EXECUTABLE=C:/work/SALOME-9.10.0/W64/Python/python3.exe ^
-  -DPython3_EXECUTABLE=C:/work/SALOME-9.10.0/W64/Python/python3.exe ^
-  -DPYTHON_LIBRARY=C:/work/SALOME-9.10.0/W64/Python/python3.lib ^ -DPYTHON_INCLUDE_DIR=C:/work/SALOME-9.10.0/W64/Python/include ^
-  -DPYTHONINTERP_ROOT_DIR=C:/work/SALOME-9.10.0/W64/Python -DPYTHONLIBS_ROOT_DIR=C:/work/SALOME-9.10.0/W64/Python ^
-  -DPYTHON_ROOT_DIR=C:/work/SALOME-9.10.0/W64/Python ^
-  -DMEDCOUPLING_ROOT_DIR=C:/work/SALOME-9.10.0/W64/MEDCOUPLING ^
-  -DFREETYPE_INCLUDE_DIR_freetype2=C:/work/SALOME-9.10.0/W64/EXT/include/freetype2 ^
-  -DFREETYPE_INCLUDE_DIR_ft2build=C:/work/SALOME-9.10.0/W64/EXT/include/freetype2 ^
-  -DFREETYPE_LIBRARY_RELEASE=C:/work/SALOME-9.10.0/W64/EXT/lib/freetype.lib ^
-  -DBOOST_ROOT_DIR=C:/work/SALOME-9.10.0/W64/EXT ^
-  -DBoost_LIBRARY_DIR_RELEASE=C:/work/SALOME-9.10.0/W64/EXT/lib -DBOOST_LIBRARYDIR=C:/work/SALOME-9.10.0/W64/EXT/lib ^
-  -DBoost_ATOMIC_LIBRARY_RELEASE=C:/work/SALOME-9.10.0/W64/EXT/lib/boost_atomic-vc141-mt-x64-1_67.lib ^
-  -DBoost_CHRONO_LIBRARY_RELEASE==C:/work/SALOME-9.10.0/W64/EXT/lib/boost_chrono-vc141-mt-x64-1_67.lib ^
-  -DBoost_DATE_TIME_LIBRARY_RELEASE=C:/work/SALOME-9.10.0/W64/EXT/lib/boost_date_time-vc141-mt-x64-1_67.lib ^
-  -DBoost_FILESYSTEM_LIBRARY_RELEASE=C:/work/SALOME-9.10.0/W64/EXT/lib/boost_filesystem-vc141-mt-x64-1_67.lib ^
-  -DBoost_REGEX_LIBRARY_RELEASE=C:/work/SALOME-9.10.0/W64/EXT/lib/boost_regex-vc141-mt-x64-1_67.lib ^
-  -DBoost_SERIALIZATION_LIBRARY_RELEASE=C:/work/SALOME-9.10.0/W64/EXT/lib/boost_serialization-vc141-mt-x64-1_67.lib ^
-  -DBoost_SYSTEM_LIBRARY_RELEASE=C:/work/SALOME-9.10.0/W64/EXT/lib/boost_system-vc141-mt-x64-1_67.lib ^
-  -DBoost_THREAD_LIBRARY_RELEASE=C:/work/SALOME-9.10.0/W64/EXT/lib/boost_thread-vc141-mt-x64-1_67.lib ^
-  -DOMNIORB_ROOT_DIR=C:/work/SALOME-9.10.0/W64/omniORB ^
-  -DOMNIORB_LIBRARY_COS4=C:/work/SALOME-9.10.0/W64/omniORB/lib/x86_win32/COS4_rt.lib ^
-  -DOMNIORB_LIBRARY_COSDynamic4=C:/work/SALOME-9.10.0/W64/omniORB/lib/x86_win32/COSDynamic4_rt.lib ^
-  -DOMNIORB_LIBRARY_omniDynamic4=C:/work/SALOME-9.10.0/W64/omniORB/lib/x86_win32/omniDynamic4_rt.lib ^
-  -DOMNIORB_LIBRARY_omniORB4=C:/work/SALOME-9.10.0/W64/omniORB/lib/x86_win32/omniORB4_rt.lib ^
-  -DOMNIORB_LIBRARY_omnithread=C:/work/SALOME-9.10.0/W64/omniORB/lib/x86_win32/omnithread_rt.lib ^
-  -DSIP_ROOT_DIR=C:/work/SALOME-9.10.0/W64/sip ^
-  -DSIP_INCLUDE_DIR=C:/work/SALOME-9.10.0/W64/EXT/include ^
-  -DOpenCV_DIR=C:/work/SALOME-9.10.0/W64/EXT ^
-  -DZLIB_INCLUDE_DIR=C:/work/SALOME-9.10.0/W64/EXT/include -DZLIB_LIBRARY=C:/work/SALOME-9.10.0/W64/EXT/lib/zlib.lib ^
-  -DLIBXML2_INCLUDE_DIR=C:/work/SALOME-9.10.0/W64/EXT/include -DLIBXML2_LIBRARY=C:/work/SALOME-9.10.0/W64/EXT/lib/libxml2.lib
+rem    -DCONFIGURATION_ROOT_DIR=C:/work/SALOME-9.10.0/SOURCES/CONFIGURATION ^
+rem    -DKERNEL_ROOT_DIR=C:/work/SALOME-9.10.0/W64/KERNEL ^
+rem    -DGUI_ROOT_DIR=C:/work/SALOME-9.10.0/W64/GUI ^
+rem    -DGEOM_ROOT_DIR=C:/work/SALOME-9.10.0/W64/GEOM ^
+rem    -DSMESH_ROOT_DIR=C:/work/SALOME-9.10.0/W64/SMESH ^
+rem    -Dospray_DIR=C:/work/SALOME-9.10.0/W64/EXT/lib/cmake/ospray-2.4.0 ^
+rem    -Dembree_DIR=C:/work/SALOME-9.10.0/W64/EXT/lib/cmake/embree-3.12.2 ^
+rem    -Dopenvkl_DIR=C:/work/SALOME-9.10.0/W64/EXT/lib/cmake/openvkl-0.11.0 ^
+rem    -Drkcommon_DIR=C:/work/SALOME-9.10.0/W64/EXT/lib/cmake/rkcommon-1.5.1 ^
+rem    -DTBB_DIR=C:/work/SALOME-9.10.0/W64/EXT/lib/cmake/tbb/ -DTBB_ROOT=C:/work/SALOME-9.10.0/W64/EXT/ ^
+rem    -DCGNS_INCLUDE_DIR=C:/work/SALOME-9.10.0/W64/EXT/include -DCGNS_LIBRARY=C:/work/SALOME-9.10.0/W64/EXT/lib/cgns.lib ^
+rem    -DPYTHON_EXECUTABLE=C:/work/SALOME-9.10.0/W64/Python/python3.exe ^
+rem    -DPython3_EXECUTABLE=C:/work/SALOME-9.10.0/W64/Python/python3.exe ^
+rem    -DPYTHON_LIBRARY=C:/work/SALOME-9.10.0/W64/Python/python3.lib ^ -DPYTHON_INCLUDE_DIR=C:/work/SALOME-9.10.0/W64/Python/include ^
+rem    -DPYTHONINTERP_ROOT_DIR=C:/work/SALOME-9.10.0/W64/Python -DPYTHONLIBS_ROOT_DIR=C:/work/SALOME-9.10.0/W64/Python ^
+rem    -DPYTHON_ROOT_DIR=C:/work/SALOME-9.10.0/W64/Python ^
+rem    -DMEDCOUPLING_ROOT_DIR=C:/work/SALOME-9.10.0/W64/MEDCOUPLING ^
+rem    -DFREETYPE_INCLUDE_DIR_freetype2=C:/work/SALOME-9.10.0/W64/EXT/include/freetype2 ^
+rem    -DFREETYPE_INCLUDE_DIR_ft2build=C:/work/SALOME-9.10.0/W64/EXT/include/freetype2 ^
+rem    -DFREETYPE_LIBRARY_RELEASE=C:/work/SALOME-9.10.0/W64/EXT/lib/freetype.lib ^
+rem    -DBOOST_ROOT_DIR=C:/work/SALOME-9.10.0/W64/EXT ^
+rem    -DBoost_LIBRARY_DIR_RELEASE=C:/work/SALOME-9.10.0/W64/EXT/lib -DBOOST_LIBRARYDIR=C:/work/SALOME-9.10.0/W64/EXT/lib ^
+rem    -DBoost_ATOMIC_LIBRARY_RELEASE=C:/work/SALOME-9.10.0/W64/EXT/lib/boost_atomic-vc141-mt-x64-1_67.lib ^
+rem    -DBoost_CHRONO_LIBRARY_RELEASE==C:/work/SALOME-9.10.0/W64/EXT/lib/boost_chrono-vc141-mt-x64-1_67.lib ^
+rem    -DBoost_DATE_TIME_LIBRARY_RELEASE=C:/work/SALOME-9.10.0/W64/EXT/lib/boost_date_time-vc141-mt-x64-1_67.lib ^
+rem    -DBoost_FILESYSTEM_LIBRARY_RELEASE=C:/work/SALOME-9.10.0/W64/EXT/lib/boost_filesystem-vc141-mt-x64-1_67.lib ^
+rem    -DBoost_REGEX_LIBRARY_RELEASE=C:/work/SALOME-9.10.0/W64/EXT/lib/boost_regex-vc141-mt-x64-1_67.lib ^
+rem    -DBoost_SERIALIZATION_LIBRARY_RELEASE=C:/work/SALOME-9.10.0/W64/EXT/lib/boost_serialization-vc141-mt-x64-1_67.lib ^
+rem    -DBoost_SYSTEM_LIBRARY_RELEASE=C:/work/SALOME-9.10.0/W64/EXT/lib/boost_system-vc141-mt-x64-1_67.lib ^
+rem    -DBoost_THREAD_LIBRARY_RELEASE=C:/work/SALOME-9.10.0/W64/EXT/lib/boost_thread-vc141-mt-x64-1_67.lib ^
+rem    -DOMNIORB_ROOT_DIR=C:/work/SALOME-9.10.0/W64/omniORB ^
+rem    -DOMNIORB_LIBRARY_COS4=C:/work/SALOME-9.10.0/W64/omniORB/lib/x86_win32/COS4_rt.lib ^
+rem    -DOMNIORB_LIBRARY_COSDynamic4=C:/work/SALOME-9.10.0/W64/omniORB/lib/x86_win32/COSDynamic4_rt.lib ^
+rem    -DOMNIORB_LIBRARY_omniDynamic4=C:/work/SALOME-9.10.0/W64/omniORB/lib/x86_win32/omniDynamic4_rt.lib ^
+rem    -DOMNIORB_LIBRARY_omniORB4=C:/work/SALOME-9.10.0/W64/omniORB/lib/x86_win32/omniORB4_rt.lib ^
+rem    -DOMNIORB_LIBRARY_omnithread=C:/work/SALOME-9.10.0/W64/omniORB/lib/x86_win32/omnithread_rt.lib ^
+rem    -DSIP_ROOT_DIR=C:/work/SALOME-9.10.0/W64/sip ^
+rem    -DSIP_INCLUDE_DIR=C:/work/SALOME-9.10.0/W64/EXT/include ^
+rem    -DOpenCV_DIR=C:/work/SALOME-9.10.0/W64/EXT ^
+rem    -DZLIB_INCLUDE_DIR=C:/work/SALOME-9.10.0/W64/EXT/include -DZLIB_LIBRARY=C:/work/SALOME-9.10.0/W64/EXT/lib/zlib.lib ^
+rem    -DLIBXML2_INCLUDE_DIR=C:/work/SALOME-9.10.0/W64/EXT/include -DLIBXML2_LIBRARY=C:/work/SALOME-9.10.0/W64/EXT/lib/libxml2.lib
 
 rem    -DSWIG_EXECUTABLE=C:/work/SALOME-9.10.0/W64/swig/bin/swig.exe -DSWIG_ROOT_DIR=C:/work/SALOME-9.10.0/W64/swig ^
 rem    -DZSWIG_DIR=C:/work/SALOME-9.10.0/W64/swig/Lib -DSWIG_VERSION=3.0.12 -DSALOME_CMAKE_DEBUG=ON ^
