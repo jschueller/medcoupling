@@ -14,26 +14,25 @@ xcopy SalomeSMESHConfig.cmake C:\work\SALOME-9.10.0\W64\SMESH\adm_local\cmake_fi
 
 copy /b NUL C:\work\SALOME-9.10.0\W64\EXT\include\sip.h
 
-echo "ninja..."
-choco install ninja
-dir /p C:\ProgramData\chocolatey\lib\ninja\tools
-dir /p C:\ProgramData\chocolatey\lib\ninja\tools\bin
-ninja --version
-exit /b 0
-
-echo "swiglib..."
-dir /p C:\work\SALOME-9.10.0\W64\swig\bin
-C:\work\SALOME-9.10.0\W64\swig\bin\swig.exe -swiglib
-C:\work\SALOME-9.10.0\W64\swig\bin\swig.exe -version
-xcopy C:/work/SALOME-9.10.0/W64/swig/bin/swig.exe C:/work/SALOME-9.10.0/W64/swig/ /y /s
-
-
 cd C:\work
 echo PATH=%PATH%
-set "PATH=C:\Windows\system32;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Program Files (x86)\Windows Kits\10\Windows Performance Toolkit\;C:\Program Files\Git\bin"
+set "PATH=C:\Windows\system32;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Program Files (x86)\Windows Kits\10\Windows Performance Toolkit\;C:\Program Files\Git\bin;C:\ProgramData\Chocolatey\bin;C:\ProgramData\chocolatey\lib\ninja\tools"
+
+echo "ninja..."
+choco install ninja
+ninja --version
 
 call "C:\work\SALOME-9.10.0\env_launch.bat"
 echo PATH=%PATH%
+
+echo "swiglib..."
+swig -swiglib
+swig -version
+rem  dir /p C:\work\SALOME-9.10.0\W64\swig\bin
+rem  C:\work\SALOME-9.10.0\W64\swig\bin\swig.exe -swiglib
+rem  C:\work\SALOME-9.10.0\W64\swig\bin\swig.exe -version
+rem  xcopy C:/work/SALOME-9.10.0/W64/swig/bin/swig.exe C:/work/SALOME-9.10.0/W64/swig/ /y /s
+
 call "C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Auxiliary\Build\vcvarsall.bat" amd64
 git clone https://github.com/jschueller/homard.git
 
