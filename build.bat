@@ -33,10 +33,17 @@ rem  C:\work\SALOME-9.10.0\W64\swig\bin\swig.exe -swiglib
 rem  C:\work\SALOME-9.10.0\W64\swig\bin\swig.exe -version
 rem  xcopy C:/work/SALOME-9.10.0/W64/swig/bin/swig.exe C:/work/SALOME-9.10.0/W64/swig/ /y /s
 
-call "C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Auxiliary\Build\vcvarsall.bat" amd64
+
 git clone https://github.com/jschueller/homard.git
 
+set "PATH=%PATH%;C:\mingw-w64\x86_64-7.2.0-posix-seh-rt_v5-rev1\mingw64\bin"
+cmake -S homard/src/tool -B homard_fortran_build -G "Ninja" -LAH -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=C:/work/SALOME-9.7.0/W64/homard_fortran
+cmake --build homard_fortran_build --config Release --target install
+exit /b 0
+
+call "C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Auxiliary\Build\vcvarsall.bat" amd64
 echo PATH=%PATH%
+
 rem  -G "Visual Studio 15 2017" -A amd64
 cmake -S homard -B homard_build -G "Ninja" -LAH -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=C:/work/SALOME-9.7.0/W64/homard
 rem    -DCONFIGURATION_ROOT_DIR=C:/work/SALOME-9.10.0/SOURCES/CONFIGURATION ^
