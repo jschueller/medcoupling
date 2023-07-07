@@ -14,11 +14,19 @@ xcopy SalomeSMESHConfig.cmake C:\work\SALOME-9.10.0\W64\SMESH\adm_local\cmake_fi
 
 copy /b NUL C:\work\SALOME-9.10.0\W64\EXT\include\sip.h
 
+echo "ninja..."
+choco install ninja
+dir /p C:\ProgramData\chocolatey\lib\ninja\tools
+dir /p C:\ProgramData\chocolatey\lib\ninja\tools\bin
+ninja --version
+exit /b 0
+
 echo "swiglib..."
 dir /p C:\work\SALOME-9.10.0\W64\swig\bin
 C:\work\SALOME-9.10.0\W64\swig\bin\swig.exe -swiglib
 C:\work\SALOME-9.10.0\W64\swig\bin\swig.exe -version
 xcopy C:/work/SALOME-9.10.0/W64/swig/bin/swig.exe C:/work/SALOME-9.10.0/W64/swig/ /y /s
+
 
 cd C:\work
 echo PATH=%PATH%
