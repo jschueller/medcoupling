@@ -21,12 +21,14 @@ C:\work\SALOME-9.10.0\W64\swig\bin\swig.exe -version
 xcopy C:/work/SALOME-9.10.0/W64/swig/bin/swig.exe C:/work/SALOME-9.10.0/W64/swig/ /y /s
 
 cd C:\work
+echo PATH=%PATH%
 set "PATH=C:\Program Files\Git\bin"
+
+call "C:\work\SALOME-9.10.0\env_launch.bat"
+echo PATH=%PATH%
 call "C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Auxiliary\Build\vcvarsall.bat" amd64
 git clone https://github.com/jschueller/homard.git
 
-echo PATH=%PATH%
-call "C:\work\SALOME-9.10.0\env_launch.bat"
 echo PATH=%PATH%
 rem  -G "Visual Studio 15 2017" -A amd64
 cmake -S homard -B homard_build -G "Ninja" -LAH -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=C:/work/SALOME-9.7.0/W64/homard
