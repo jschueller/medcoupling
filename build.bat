@@ -22,7 +22,7 @@ xcopy C:/work/SALOME-9.10.0/W64/swig/bin/swig.exe C:/work/SALOME-9.10.0/W64/swig
 
 cd C:\work
 echo PATH=%PATH%
-set "PATH=C:\Program Files\Git\bin"
+set "PATH=C:\Windows\system32;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Program Files (x86)\Windows Kits\10\Windows Performance Toolkit\;C:\Program Files\Git\bin"
 
 call "C:\work\SALOME-9.10.0\env_launch.bat"
 echo PATH=%PATH%
