@@ -36,6 +36,9 @@ rem  xcopy C:/work/SALOME-9.10.0/W64/swig/bin/swig.exe C:/work/SALOME-9.10.0/W64
 
 git clone https://github.com/jschueller/homard.git
 
+echo #define FortranCInterface_GLOBAL(name, NAME) name##_ >> homard/src/tool/FC.h
+type homard/src/tool/FC.h
+
 set "PATH=%PATH%;C:\mingw-w64\x86_64-7.2.0-posix-seh-rt_v5-rev1\mingw64\bin"
 cmake -S homard/src/tool -B homard_fortran_build -G "Ninja" -LAH -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=C:/work/SALOME-9.7.0/W64/homard_fortran
 cmake --build homard_fortran_build --config Release --target install
