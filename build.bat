@@ -37,11 +37,12 @@ cd C:\work
 curl -LO https://files.salome-platform.org/Salome/other/med-4.1.1.tar.gz
 7z x med-4.1.1.tar.gz > nul
 7z x med-4.1.1.tar > nul
-type med-4.1.1_SRC\src\fi\CMakeLists.txt
-xcopy /y /s /f %APPVEYOR_BUILD_FOLDER%\medficmakelists.txt med-4.1.1_SRC\src\fi\CMakeLists.txt
-type med-4.1.1_SRC\src\fi\CMakeLists.txt
+rem  type med-4.1.1_SRC\src\fi\CMakeLists.txt
+rem  xcopy /y /s /f %APPVEYOR_BUILD_FOLDER%\medficmakelists.txt med-4.1.1_SRC\src\fi\CMakeLists.txt
+xcopy /y /s /f %APPVEYOR_BUILD_FOLDER%\CMakeLists.txt.medsrc med-4.1.1_SRC\src\CMakeLists.txt
+type med-4.1.1_SRC\src\CMakeLists.txt
 set "PATH=%PATH%;C:\mingw-w64\x86_64-7.2.0-posix-seh-rt_v5-rev1\mingw64\bin"
-cmake -S med-4.1.1_SRC/src/fi -B build_medfwrap -G "Ninja" -LAH -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=C:/work/SALOME-9.7.0/W64/medfwrap
+cmake -S med-4.1.1_SRC/src -B build_medfwrap -G "Ninja" -LAH -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=C:/work/SALOME-9.7.0/W64/medfwrap
 cmake --build build_medfwrap --config Release --target install
 
 
