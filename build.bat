@@ -40,6 +40,12 @@ echo #define FortranCInterface_GLOBAL(name, NAME) name##_ >> homard/src/tool/FC.
 type homard/src/tool/FC.h
 
 set "PATH=%PATH%;C:\mingw-w64\x86_64-7.2.0-posix-seh-rt_v5-rev1\mingw64\bin"
+
+git clone -b fortran https://github.com/jschueller/swig-cmake-example.git
+cmake -S swig-cmake-example -B build2 -G "Ninja" -LAH -DCMAKE_BUILD_TYPE=Release
+type build2\FC.h
+
+
 cmake -S homard/src/tool -B homard_fortran_build -G "Ninja" -LAH -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=C:/work/SALOME-9.7.0/W64/homard_fortran
 cmake --build homard_fortran_build --config Release --target install
 exit /b 0
