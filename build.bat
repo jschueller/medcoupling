@@ -50,8 +50,7 @@ cmake --build build_med --config Release --target install
 
 
 
-call "C:\work\SALOME-9.10.0\env_launch.bat"
-echo PATH=%PATH%
+
 
 echo "swiglib..."
 swig -swiglib
@@ -82,6 +81,9 @@ cmake --build homard_fortran_build --config Release --target install
 :: now build without homard fortran executable
 rem  xcopy /y /s /f %APPVEYOR_BUILD_FOLDER%\CMakeLists.txt.homardsrc homard\src
 sed -i "s|tool||g" homard\src\CMakeLists.txt
+
+call "C:\work\SALOME-9.10.0\env_launch.bat"
+echo PATH=%PATH%
 
 call "C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Auxiliary\Build\vcvarsall.bat" amd64
 echo PATH=%PATH%
