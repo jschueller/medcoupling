@@ -1,6 +1,6 @@
 cmake_minimum_required (VERSION 3.8)
 
-project(medsrc Fortran)
+project(medsrc C Fortran)
 
 option(BUILD_SHARED_LIBS "shared/static" ON)
 
@@ -21,6 +21,10 @@ IF(WIN32)
   ADD_DEFINITIONS(-DmedC_EXPORTS)
 ENDIF()
   
+macro (MED_SET_DEFINITIONS)
+endmacro ()
+  
+
 # Specific include logic - see CMakeLists.txt inside:
 #ADD_SUBDIRECTORY("2.3.6")
 
@@ -41,9 +45,9 @@ IF(CMAKE_Fortran_COMPILER_WORKS)
 
   SET(medfort_wrap_SOURCES
     MEDiteratorsF.f 
-    $<TARGET_OBJECTS:_fi236> 
+    #$<TARGET_OBJECTS:_fi236> 
     $<TARGET_OBJECTS:_fi>
-    $<TARGET_OBJECTS:_cfi236> 
+    #$<TARGET_OBJECTS:_cfi236> 
     $<TARGET_OBJECTS:_cfi>
   )
   
@@ -85,7 +89,7 @@ SET(medC_static_SOURCES
 SET(_export_group "medfileTargets")
 
 ######### Shared Libraries ##########
-IF(MEDFILE_BUILD_SHARED_LIBS)
+IF(0)
   ADD_LIBRARY(medC SHARED ${medC_SOURCES})
   SET_TARGET_PROPERTIES(medC PROPERTIES
     SOVERSION 11
@@ -125,16 +129,18 @@ IF(CMAKE_Fortran_COMPILER_WORKS)
     #TARGET_LINK_LIBRARIES(medfwrap medC)
     INSTALL(TARGETS medfwrap EXPORT ${_export_group} DESTINATION lib${LIB_SUFFIX})
 
+    if (0)
     # Add Shared MED library
-    #ADD_LIBRARY(med SHARED MEDiterators.c)
-    #SET_TARGET_PROPERTIES(med PROPERTIES
-    #  SOVERSION 11
-    #  VERSION   11.1.1)
-    #TARGET_LINK_LIBRARIES(medfwrap medC)
-    #TARGET_LINK_LIBRARIES(med medfwrap)    
+    ADD_LIBRARY(med SHARED MEDiterators.c)
+    SET_TARGET_PROPERTIES(med PROPERTIES
+      SOVERSION 11
+      VERSION   11.1.1)
+    TARGET_LINK_LIBRARIES(medfwrap medC)
+    TARGET_LINK_LIBRARIES(med medfwrap)    
    
     # Install only the resulting library:
-    #INSTALL(TARGETS med EXPORT ${_export_group} DESTINATION lib${LIB_SUFFIX})
+    INSTALL(TARGETS med EXPORT ${_export_group} DESTINATION lib${LIB_SUFFIX})
+    endif ()
   ENDIF()
 
   ######### Static Libraries ##########
