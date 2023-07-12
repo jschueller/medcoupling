@@ -41,8 +41,8 @@ type med-4.1.1_SRC\src\fi\CMakeLists.txt
 xcopy /y /s /f %APPVEYOR_BUILD_FOLDER%\medficmakelists.txt med-4.1.1_SRC\src\fi\CMakeLists.txt
 type med-4.1.1_SRC\src\fi\CMakeLists.txt
 set "PATH=%PATH%;C:\mingw-w64\x86_64-7.2.0-posix-seh-rt_v5-rev1\mingw64\bin"
-cmake -S med-4.1.1_SRC/src/fi -B build_medfi -G "Ninja" -LAH -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=C:/work/SALOME-9.7.0/W64/medfi
-cmake --build build_medfi --config Release --target install
+cmake -S med-4.1.1_SRC/src/fi -B build_medfwrap -G "Ninja" -LAH -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=C:/work/SALOME-9.7.0/W64/medfwrap
+cmake --build build_medfwrap --config Release --target install
 
 
 
@@ -73,7 +73,7 @@ rem  cmake -S swig-cmake-example -B build2 -G "Ninja" -LAH -DCMAKE_BUILD_TYPE=Re
 rem  type build2\FC.h
 
 
-cmake -S homard/src/tool -B homard_fortran_build -G "Ninja" -LAH -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=C:/work/SALOME-9.7.0/W64/homard_fortran -DMEDFILE_LIBRARIES=C:/work/SALOME-9.7.0/W64/medfi/lib/_fi.lib
+cmake -S homard/src/tool -B homard_fortran_build -G "Ninja" -LAH -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=C:/work/SALOME-9.7.0/W64/homard_fortran -DMEDFILE_LIBRARIES=C:/work/SALOME-9.7.0/W64/medfwrap/lib/medfwrap.lib
 cmake --build homard_fortran_build --config Release --target install
 exit /b 0
 

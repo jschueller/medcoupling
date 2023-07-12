@@ -2,6 +2,8 @@ cmake_minimum_required (VERSION 3.8)
 
 project(medfi Fortran)
 
+option(BUILD_SHARED_LIBS "shared/static" ON)
+
 SET(CMAKE_Fortran_FLAGS "-ffixed-line-length-0 -fdefault-double-8 -fdefault-real-8 -fdefault-integer-8 -fimplicit-none -O2")
 
 SET(fi_SOURCES
@@ -26,6 +28,6 @@ IF(MEDFILE_USE_MPI)
 LIST(APPEND fi_SOURCES medparfile.f)
 ENDIF(MEDFILE_USE_MPI)
 
-ADD_LIBRARY(_fi        OBJECT ${fi_SOURCES})
-install(TARGETS _fi DESTINATION lib)
+ADD_LIBRARY(medfwrap ${fi_SOURCES})
+install(TARGETS medfwrap DESTINATION lib)
 
