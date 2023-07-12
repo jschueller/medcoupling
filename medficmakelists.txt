@@ -1,0 +1,31 @@
+cmake_minimum_required (VERSION 3.8)
+
+project(medfi Fortran)
+
+SET(CMAKE_Fortran_FLAGS "-ffixed-line-length-0 -fdefault-double-8 -fdefault-real-8 -fdefault-integer-8 -fimplicit-none -O2")
+
+SET(fi_SOURCES
+  medsupport.f
+  medequivalence.f
+  medlink.f
+  medinterp.f
+  medstructelement.f
+  medfilter.f
+  medfile.f
+  medlocalization.f
+  medprofile.f
+  medjoint.f
+  medparameter.f
+  medfamily.f
+  medfield.f
+  medflibrary.f
+  medmesh.f
+)
+
+IF(MEDFILE_USE_MPI)
+LIST(APPEND fi_SOURCES medparfile.f)
+ENDIF(MEDFILE_USE_MPI)
+
+ADD_LIBRARY(_fi        OBJECT ${fi_SOURCES})
+install(TARGETS _fi DESTINATION lib)
+

@@ -41,12 +41,21 @@ type homard/src/tool/FC.h
 
 set "PATH=%PATH%;C:\mingw-w64\x86_64-7.2.0-posix-seh-rt_v5-rev1\mingw64\bin"
 
-git clone -b fortran https://github.com/jschueller/swig-cmake-example.git
-cmake -S swig-cmake-example -B build2 -G "Ninja" -LAH -DCMAKE_BUILD_TYPE=Release
-type build2\FC.h
+:: rebuild med fortran lib
+curl -LO https://files.salome-platform.org/Salome/other/med-4.1.1.tar.gz
+7z x med-4.1.1.tar.gz > nul
+7z x med-4.1.1.tar > nul
+xcopy /y /s /f %APPVEYOR_BUILD_FOLDER%\medficmakelists.txt med-4.1.1_SRC/src/fi/CMakeLists.txt
+
+cmake -S med-4.1.1_SRC/src/fi -B build_medfi -G "Ninja" -LAH -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=C:/work/SALOME-9.7.0/W64/medfi
+cmake --build build_medfi --config Release --target install
+
+rem  git clone -b fortran https://github.com/jschueller/swig-cmake-example.git
+rem  cmake -S swig-cmake-example -B build2 -G "Ninja" -LAH -DCMAKE_BUILD_TYPE=Release
+rem  type build2\FC.h
 
 
-cmake -S homard/src/tool -B homard_fortran_build -G "Ninja" -LAH -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=C:/work/SALOME-9.7.0/W64/homard_fortran
+cmake -S homard/src/tool -B homard_fortran_build -G "Ninja" -LAH -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=C:/work/SALOME-9.7.0/W64/homard_fortran -DMEDFILE_LIBRARIES=C:/work/SALOME-9.7.0/W64/medfi/lib/_fi.lib
 cmake --build homard_fortran_build --config Release --target install
 exit /b 0
 
