@@ -1,6 +1,21 @@
 @echo on
 :: prequisites: curl, cmake, ninja, 7z
 
+
+echo PATH=%PATH%
+rem  set "PATH=%PATH%;C:\ProgramData\Chocolatey\bin;C:\ProgramData\chocolatey\lib\ninja\tools"
+
+:: shorten PATH
+set "PATH=C:\Windows\system32;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Program Files (x86)\Windows Kits\10\Windows Performance Toolkit\;C:\Program Files\Git\bin;C:\ProgramData\Chocolatey\bin;C:\ProgramData\chocolatey\lib\ninja\tools;C:\Program Files (x86)\CMake\bin;C:\Tools\curl\bin;C:\Program Files\7-Zip"
+
+echo "ninja..."
+choco install ninja
+where ninja
+where curl
+where 7z
+where cmake
+ninja --version
+
 :: from windows binary archive
 curl -LO https://files.salome-platform.org/Salome/Salome9.10.0/SALOME-9.10.0-e3540918ac897f3118c2a971e9344502.zip
 mkdir C:\work
@@ -15,12 +30,22 @@ xcopy SalomeSMESHConfig.cmake C:\work\SALOME-9.10.0\W64\SMESH\adm_local\cmake_fi
 copy /b NUL C:\work\SALOME-9.10.0\W64\EXT\include\sip.h
 
 cd C:\work
-echo PATH=%PATH%
-set "PATH=C:\Windows\system32;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Program Files (x86)\Windows Kits\10\Windows Performance Toolkit\;C:\Program Files\Git\bin;C:\ProgramData\Chocolatey\bin;C:\ProgramData\chocolatey\lib\ninja\tools"
 
-echo "ninja..."
-choco install ninja
-ninja --version
+
+
+:: rebuild med fortran lib
+curl -LO https://files.salome-platform.org/Salome/other/med-4.1.1.tar.gz
+7z x med-4.1.1.tar.gz > nul
+7z x med-4.1.1.tar > nul
+type med-4.1.1_SRC\src\fi\CMakeLists.txt
+xcopy /y /s /f %APPVEYOR_BUILD_FOLDER%\medficmakelists.txt med-4.1.1_SRC\src\fi\CMakeLists.txt
+type med-4.1.1_SRC\src\fi\CMakeLists.txt
+set "PATH=%PATH%;C:\mingw-w64\x86_64-7.2.0-posix-seh-rt_v5-rev1\mingw64\bin"
+cmake -S med-4.1.1_SRC/src/fi -B build_medfi -G "Ninja" -LAH -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=C:/work/SALOME-9.7.0/W64/medfi
+cmake --build build_medfi --config Release --target install
+
+
+
 
 call "C:\work\SALOME-9.10.0\env_launch.bat"
 echo PATH=%PATH%
@@ -41,14 +66,7 @@ type homard/src/tool/FC.h
 
 set "PATH=%PATH%;C:\mingw-w64\x86_64-7.2.0-posix-seh-rt_v5-rev1\mingw64\bin"
 
-:: rebuild med fortran lib
-curl -LO https://files.salome-platform.org/Salome/other/med-4.1.1.tar.gz
-7z x med-4.1.1.tar.gz > nul
-7z x med-4.1.1.tar > nul
-xcopy /y /s /f %APPVEYOR_BUILD_FOLDER%\medficmakelists.txt med-4.1.1_SRC/src/fi/CMakeLists.txt
 
-cmake -S med-4.1.1_SRC/src/fi -B build_medfi -G "Ninja" -LAH -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=C:/work/SALOME-9.7.0/W64/medfi
-cmake --build build_medfi --config Release --target install
 
 rem  git clone -b fortran https://github.com/jschueller/swig-cmake-example.git
 rem  cmake -S swig-cmake-example -B build2 -G "Ninja" -LAH -DCMAKE_BUILD_TYPE=Release
