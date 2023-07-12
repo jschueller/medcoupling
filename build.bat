@@ -5,10 +5,8 @@
 echo PATH=%PATH%
 rem  set "PATH=%PATH%;C:\ProgramData\Chocolatey\bin;C:\ProgramData\chocolatey\lib\ninja\tools"
 
-where sed
-
 :: shorten PATH
-set "PATH=C:\Windows\system32;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Program Files (x86)\Windows Kits\10\Windows Performance Toolkit\;C:\Program Files\Git\bin;C:\ProgramData\Chocolatey\bin;C:\ProgramData\chocolatey\lib\ninja\tools;C:\Program Files (x86)\CMake\bin;C:\Tools\curl\bin;C:\Program Files\7-Zip"
+set "PATH=C:\Windows\system32;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Program Files (x86)\Windows Kits\10\Windows Performance Toolkit\;C:\Program Files\Git\bin;C:\Program Files\Git\usr\bin;C:\ProgramData\Chocolatey\bin;C:\ProgramData\chocolatey\lib\ninja\tools;C:\Program Files (x86)\CMake\bin;C:\Tools\curl\bin;C:\Program Files\7-Zip"
 
 echo "ninja..."
 choco install ninja
@@ -16,6 +14,7 @@ where ninja
 where curl
 where 7z
 where cmake
+where sed
 ninja --version
 
 
@@ -80,15 +79,13 @@ rem  type build2\FC.h
 cmake -S homard/src/tool -B homard_fortran_build -G "Ninja" -LAH -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=C:/work/SALOME-9.7.0/W64/homard_fortran -DMEDFILE_LIBRARIES=C:/work/SALOME-9.7.0/W64/medf/lib/libmedfwrap.dll.a
 cmake --build homard_fortran_build --config Release --target install
 
-:: now build without fortran
-xcopy /y /s /f %APPVEYOR_BUILD_FOLDER%\CMakeLists.txt.homardsrc homard\src
+:: now build without homard fortran executable
+rem  xcopy /y /s /f %APPVEYOR_BUILD_FOLDER%\CMakeLists.txt.homardsrc homard\src
+sed -i "s|tool||g" homard\src\CMakeLists.txt
 
 call "C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Auxiliary\Build\vcvarsall.bat" amd64
 echo PATH=%PATH%
 
-
-
-exit /b 0
 
 rem  -G "Visual Studio 15 2017" -A amd64
 cmake -S homard -B homard_build -G "Ninja" -LAH -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=C:/work/SALOME-9.7.0/W64/homard
