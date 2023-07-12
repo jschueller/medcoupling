@@ -20,21 +20,6 @@ ninja --version
 mkdir C:\work
 cd C:\work
 
-
-
-:: rebuild med fortran lib
-curl -LO https://files.salome-platform.org/Salome/other/med-4.1.1.tar.gz
-7z x med-4.1.1.tar.gz > nul
-7z x med-4.1.1.tar > nul
-rem  type med-4.1.1_SRC\src\fi\CMakeLists.txt
-rem  xcopy /y /s /f %APPVEYOR_BUILD_FOLDER%\medficmakelists.txt med-4.1.1_SRC\src\fi\CMakeLists.txt
-rem  xcopy /y /s /f %APPVEYOR_BUILD_FOLDER%\CMakeLists.txt.medsrc med-4.1.1_SRC\src\CMakeLists.txt
-rem  type med-4.1.1_SRC\src\CMakeLists.txt
-set "PATH=%PATH%;C:\mingw-w64\x86_64-7.2.0-posix-seh-rt_v5-rev1\mingw64\bin"
-cmake -S med-4.1.1_SRC -B build_med -G "Ninja" -LAH -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=C:/work/SALOME-9.7.0/W64/medf
-cmake --build build_med --config Release --target install
-
-
 :: from windows binary archive
 cd C:\work
 curl -LO https://files.salome-platform.org/Salome/Salome9.10.0/SALOME-9.10.0-e3540918ac897f3118c2a971e9344502.zip
@@ -48,6 +33,21 @@ xcopy SalomeGEOMConfig.cmake C:\work\SALOME-9.10.0\W64\GEOM\adm_local\cmake_file
 xcopy SalomeSMESHConfig.cmake C:\work\SALOME-9.10.0\W64\SMESH\adm_local\cmake_files /y /s
 :: missing sip headers
 copy /b NUL C:\work\SALOME-9.10.0\W64\EXT\include\sip.h
+
+
+:: rebuild med fortran lib
+curl -LO https://files.salome-platform.org/Salome/other/med-4.1.1.tar.gz
+7z x med-4.1.1.tar.gz > nul
+7z x med-4.1.1.tar > nul
+rem  type med-4.1.1_SRC\src\fi\CMakeLists.txt
+rem  xcopy /y /s /f %APPVEYOR_BUILD_FOLDER%\medficmakelists.txt med-4.1.1_SRC\src\fi\CMakeLists.txt
+rem  xcopy /y /s /f %APPVEYOR_BUILD_FOLDER%\CMakeLists.txt.medsrc med-4.1.1_SRC\src\CMakeLists.txt
+rem  type med-4.1.1_SRC\src\CMakeLists.txt
+set "PATH=%PATH%;C:\mingw-w64\x86_64-7.2.0-posix-seh-rt_v5-rev1\mingw64\bin"
+cmake -S med-4.1.1_SRC -B build_med -G "Ninja" -LAH -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=C:/work/SALOME-9.7.0/W64/medf -DMEDFILE_BUILD_TESTS=OFF -DMEDFILE_INSTALL_DOC=OFF -DHDF5_ROOT_DIR=C:/work/SALOME-9.10.0/W64/EXT -DCMAKE_Fortran_FLAGS="-ffixed-line-length-0 -fdefault-double-8 -fdefault-real-8 -fdefault-integer-8 -fimplicit-none -O2" -DZCMAKE_IMPORT_LIBRARY_PREFIX="" -DZCMAKE_IMPORT_LIBRARY_SUFFIX=".lib"
+cmake --build build_med --config Release --target install
+
+
 
 call "C:\work\SALOME-9.10.0\env_launch.bat"
 echo PATH=%PATH%
@@ -75,7 +75,7 @@ rem  cmake -S swig-cmake-example -B build2 -G "Ninja" -LAH -DCMAKE_BUILD_TYPE=Re
 rem  type build2\FC.h
 
 
-cmake -S homard/src/tool -B homard_fortran_build -G "Ninja" -LAH -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=C:/work/SALOME-9.7.0/W64/homard_fortran -DMEDFILE_LIBRARIES=C:/work/SALOME-9.7.0/W64/medf/lib/medfwrap.lib
+cmake -S homard/src/tool -B homard_fortran_build -G "Ninja" -LAH -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=C:/work/SALOME-9.7.0/W64/homard_fortran -DMEDFILE_LIBRARIES=C:/work/SALOME-9.7.0/W64/medf/lib/libmedfwrap.dll.a
 cmake --build homard_fortran_build --config Release --target install
 exit /b 0
 
