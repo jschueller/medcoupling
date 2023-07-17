@@ -22,12 +22,25 @@ mkdir C:\work
 curl -LO https://files.salome-platform.org/Salome/Salome9.10.0/SALOME-9.10.0-e3540918ac897f3118c2a971e9344502.zip
 7z x SALOME-9.10.0-e3540918ac897f3118c2a971e9344502.zip -oC:\work > nul
 :: cmake config files are not relocatable
-xcopy SalomeKERNELConfig.cmake C:\work\SALOME-9.10.0\W64\KERNEL\salome_adm\cmake_files /y /s
-xcopy LibBatchConfig.cmake C:\work\SALOME-9.10.0\W64\EXT\cmake\ /y /s
-xcopy SalomeGUIConfig.cmake C:\work\SALOME-9.10.0\W64\GUI\adm_local\cmake_files /y /s
-xcopy MEDCouplingConfig.cmake C:\work\SALOME-9.10.0\W64\MEDCOUPLING\cmake_files /y /s
-xcopy SalomeGEOMConfig.cmake C:\work\SALOME-9.10.0\W64\GEOM\adm_local\cmake_files /y /s
-xcopy SalomeSMESHConfig.cmake C:\work\SALOME-9.10.0\W64\SMESH\adm_local\cmake_files /y /s
+rem  xcopy SalomeKERNELConfig.cmake C:\work\SALOME-9.10.0\W64\KERNEL\salome_adm\cmake_files /y /s
+rem  xcopy LibBatchConfig.cmake C:\work\SALOME-9.10.0\W64\EXT\cmake\ /y /s
+rem  xcopy SalomeGUIConfig.cmake C:\work\SALOME-9.10.0\W64\GUI\adm_local\cmake_files /y /s
+rem  xcopy MEDCouplingConfig.cmake C:\work\SALOME-9.10.0\W64\MEDCOUPLING\cmake_files /y /s
+rem  xcopy SalomeGEOMConfig.cmake C:\work\SALOME-9.10.0\W64\GEOM\adm_local\cmake_files /y /s
+rem  xcopy SalomeSMESHConfig.cmake C:\work\SALOME-9.10.0\W64\SMESH\adm_local\cmake_files /y /s
+
+sed -i "s|E:/S/SALOME|C:/work/SALOME|g" C:\work\SALOME-9.10.0\W64\KERNEL\salome_adm\cmake_files\SalomeKERNELConfig.cmake
+sed -i "s|E:/S/SALOME|C:/work/SALOME|g" C:\work\SALOME-9.10.0\W64\W64\EXT\cmake\LibBatchConfig.cmake
+sed -i "s|E:/S/SALOME|C:/work/SALOME|g" C:\work\SALOME-9.10.0\W64\GUI\adm_local\cmake_files\SalomeGUIConfig.cmake
+sed -i "s|E:/S/SALOME|C:/work/SALOME|g" C:\work\SALOME-9.10.0\W64\MEDCOUPLING\cmake_files\MEDCouplingConfig.cmake
+sed -i "s|E:/S/SALOME|C:/work/SALOME|g" C:\work\SALOME-9.10.0\W64\GEOM\adm_local\cmake_files\SalomeGEOMConfig.cmake
+sed -i "s|E:/S/SALOME|C:/work/SALOME|g" C:\work\SALOME-9.10.0\SMESH\adm_local\cmake_files\SalomeSMESHConfig.cmake
+
+sed -i "s|E:/S/SALOME|C:/work/SALOME|g" C:\work\SALOME-9.10.0\W64\EXT\cmake\LibBatchTargets-release.cmake
+sed -i "s|E:/S/SALOME|C:/work/SALOME|g" C:\work\SALOME-9.10.0\W64\YACS\adm\cmake\SalomeYACSTargets-release.cmake
+sed -i "s|E:/S/SALOME|C:/work/SALOME|g" C:\work\SALOME-9.10.0\W64\GEOM\adm_local\cmake_files\SalomeGEOMTargets-release.cmake
+sed -i "s|E:/S/SALOME|C:/work/SALOME|g" C:\work\SALOME-9.10.0\W64\KERNEL\salome_adm\cmake_files\SalomeKERNELTargets-release.cmake
+
 :: missing sip headers
 copy /b NUL C:\work\SALOME-9.10.0\W64\EXT\include\sip.h
 
