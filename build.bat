@@ -16,15 +16,11 @@ where 7z
 where cmake
 where sed
 ninja --version
-
-
 mkdir C:\work
-cd C:\work
 
 :: from windows binary archive
-cd C:\work
 curl -LO https://files.salome-platform.org/Salome/Salome9.10.0/SALOME-9.10.0-e3540918ac897f3118c2a971e9344502.zip
-7z x SALOME-9.10.0-e3540918ac897f3118c2a971e9344502.zip > nul
+7z x SALOME-9.10.0-e3540918ac897f3118c2a971e9344502.zip -oC:\work > nul
 :: cmake config files are not relocatable
 xcopy SalomeKERNELConfig.cmake C:\work\SALOME-9.10.0\W64\KERNEL\salome_adm\cmake_files /y /s
 xcopy LibBatchConfig.cmake C:\work\SALOME-9.10.0\W64\EXT\cmake\ /y /s
@@ -37,6 +33,8 @@ copy /b NUL C:\work\SALOME-9.10.0\W64\EXT\include\sip.h
 
 
 :: rebuild med fortran lib
+
+cd C:\work
 curl -LO https://files.salome-platform.org/Salome/other/med-4.1.1.tar.gz
 7z x med-4.1.1.tar.gz > nul
 7z x med-4.1.1.tar > nul
