@@ -45,7 +45,7 @@ rem  xcopy /y /s /f %APPVEYOR_BUILD_FOLDER%\medficmakelists.txt med-4.1.1_SRC\sr
 rem  xcopy /y /s /f %APPVEYOR_BUILD_FOLDER%\CMakeLists.txt.medsrc med-4.1.1_SRC\src\CMakeLists.txt
 rem  type med-4.1.1_SRC\src\CMakeLists.txt
 set "PATH=%PATH%;C:\mingw-w64\x86_64-7.2.0-posix-seh-rt_v5-rev1\mingw64\bin"
-cmake -S med-4.1.1_SRC -B build_med -G "Ninja" -LAH -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=C:/work/SALOME-9.7.0/W64/medf -DMEDFILE_BUILD_TESTS=OFF -DMEDFILE_INSTALL_DOC=OFF -DHDF5_ROOT_DIR=C:/work/SALOME-9.10.0/W64/EXT -DCMAKE_Fortran_FLAGS="-ffixed-line-length-0 -fdefault-double-8 -fdefault-real-8 -fdefault-integer-8 -fimplicit-none -O2" -DMED_MEDINT_TYPE="long long" -DZCMAKE_IMPORT_LIBRARY_PREFIX="" -DZCMAKE_IMPORT_LIBRARY_SUFFIX=".lib"
+cmake -S med-4.1.1_SRC -B build_med -G "Ninja" -LAH -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=C:/work/SALOME-9.10.0/W64/medf -DMEDFILE_BUILD_TESTS=OFF -DMEDFILE_INSTALL_DOC=OFF -DHDF5_ROOT_DIR=C:/work/SALOME-9.10.0/W64/EXT -DCMAKE_Fortran_FLAGS="-ffixed-line-length-0 -fdefault-double-8 -fdefault-real-8 -fdefault-integer-8 -fimplicit-none -O2" -DMED_MEDINT_TYPE="long long" -DZCMAKE_IMPORT_LIBRARY_PREFIX="" -DZCMAKE_IMPORT_LIBRARY_SUFFIX=".lib"
 cmake --build build_med --config Release --target install
 
 
@@ -75,7 +75,7 @@ rem  cmake -S swig-cmake-example -B build2 -G "Ninja" -LAH -DCMAKE_BUILD_TYPE=Re
 rem  type build2\FC.h
 
 
-cmake -S homard/src/tool -B homard_fortran_build -G "Ninja" -LAH -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=C:/work/SALOME-9.7.0/W64/homard_fortran -DMEDFILE_LIBRARIES=C:/work/SALOME-9.7.0/W64/medf/lib/libmedfwrap.dll.a
+cmake -S homard/src/tool -B homard_fortran_build -G "Ninja" -LAH -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=C:/work/SALOME-9.10.0/W64/homard_fortran -DMEDFILE_LIBRARIES=C:/work/SALOME-9.10.0/W64/medf/lib/libmedfwrap.dll.a
 cmake --build homard_fortran_build --config Release --target install
 
 :: now build without homard fortran executable
@@ -90,7 +90,7 @@ echo PATH=%PATH%
 
 
 rem  -G "Visual Studio 15 2017" -A amd64
-cmake -S homard -B homard_build -G "Ninja" -LAH -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=C:/work/SALOME-9.7.0/W64/homard
+cmake -S homard -B homard_build -G "Ninja" -LAH -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=C:/work/SALOME-9.10.0/W64/homard
 rem    -DCONFIGURATION_ROOT_DIR=C:/work/SALOME-9.10.0/SOURCES/CONFIGURATION ^
 rem    -DKERNEL_ROOT_DIR=C:/work/SALOME-9.10.0/W64/KERNEL ^
 rem    -DGUI_ROOT_DIR=C:/work/SALOME-9.10.0/W64/GUI ^
