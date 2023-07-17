@@ -88,7 +88,7 @@ echo PATH=%PATH%
 
 
 rem  -G "Visual Studio 15 2017" -A amd64
-cmake -S homard -B homard_build -G "Ninja" -LAH -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=C:/work/SALOME-9.10.0/W64/homard
+cmake -S homard -B build_homard -G "Ninja" -LAH -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=C:/work/SALOME-9.10.0/W64/homard
 rem    -DCONFIGURATION_ROOT_DIR=C:/work/SALOME-9.10.0/SOURCES/CONFIGURATION ^
 rem    -DKERNEL_ROOT_DIR=C:/work/SALOME-9.10.0/W64/KERNEL ^
 rem    -DGUI_ROOT_DIR=C:/work/SALOME-9.10.0/W64/GUI ^
@@ -133,8 +133,7 @@ rem    -DLIBXML2_INCLUDE_DIR=C:/work/SALOME-9.10.0/W64/EXT/include -DLIBXML2_LIB
 
 rem    -DSWIG_EXECUTABLE=C:/work/SALOME-9.10.0/W64/swig/bin/swig.exe -DSWIG_ROOT_DIR=C:/work/SALOME-9.10.0/W64/swig ^
 rem    -DZSWIG_DIR=C:/work/SALOME-9.10.0/W64/swig/Lib -DSWIG_VERSION=3.0.12 -DSALOME_CMAKE_DEBUG=ON ^
-exit /b 0
-cmake --build homard_build --config Release --target install
+cmake --build build_homard --config Release --target install
 exit /b 0
 
 :: zlib
