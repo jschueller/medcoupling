@@ -155,7 +155,8 @@ echo PATH=%PATH%
 
 
 rem  -G "Visual Studio 15 2017" -A amd64
-cmake -S homard -B build_homard -G "Ninja" -LAH -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=C:/work/SALOME-9.10.0/W64/homard
+cmake -S homard -B build_homard -G "Ninja" -LAH -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=C:/work/SALOME-9.10.0/W64/homard ^
+  -DSALOME_BUILD_DOC=OFF
 rem    -DCONFIGURATION_ROOT_DIR=C:/work/SALOME-9.10.0/SOURCES/CONFIGURATION ^
 rem    -DKERNEL_ROOT_DIR=C:/work/SALOME-9.10.0/W64/KERNEL ^
 rem    -DGUI_ROOT_DIR=C:/work/SALOME-9.10.0/W64/GUI ^
