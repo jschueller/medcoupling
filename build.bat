@@ -88,14 +88,14 @@ sed -i "s|E:/S/SALOME|C:/work/SALOME|g" C:\work\SALOME-9.10.0\W64\GUI\adm_local\
 copy /b NUL C:\work\SALOME-9.10.0\W64\EXT\include\sip.h
 
 :: fatal error LNK1104: cannot open file 'libboost_filesystem-vc141-mt-x64-1_67.lib'
-dir /p C:\work\SALOME-9.10.0\W64\EXT\lib
-copy C:\work\SALOME-9.10.0\W64\EXT\lib\boost_filesystem-vc141-mt-x64-1_67.lib C:\work\SALOME-9.10.0\W64\EXT\lib\libboost_filesystem-vc141-mt-x64-1_67.lib
-copy C:\work\SALOME-9.10.0\W64\EXT\lib\boost_thread-vc141-mt-x64-1_67.lib C:\work\SALOME-9.10.0\W64\EXT\lib\libboost_thread-vc141-mt-x64-1_67.lib
-copy C:\work\SALOME-9.10.0\W64\EXT\lib\boost_regex-vc141-mt-x64-1_67.lib C:\work\SALOME-9.10.0\W64\EXT\lib\libboost_regex-vc141-mt-x64-1_67.lib
-copy C:\work\SALOME-9.10.0\W64\EXT\lib\boost_date_time-vc141-mt-x64-1_67.lib C:\work\SALOME-9.10.0\W64\EXT\lib\libboost_date_time-vc141-mt-x64-1_67.lib
-copy C:\work\SALOME-9.10.0\W64\EXT\lib\boost_chrono-vc141-mt-x64-1_67.lib C:\work\SALOME-9.10.0\W64\EXT\lib\libboost_chrono-vc141-mt-x64-1_67.lib
-copy C:\work\SALOME-9.10.0\W64\EXT\lib\boost_serialization-vc141-mt-x64-1_67.lib C:\work\SALOME-9.10.0\W64\EXT\lib\libboost_serialization-vc141-mt-x64-1_67.lib
-copy C:\work\SALOME-9.10.0\W64\EXT\lib\boost_system-vc141-mt-x64-1_67.lib C:\work\SALOME-9.10.0\W64\EXT\lib\libboost_system-vc141-mt-x64-1_67.lib
+rem  dir /p C:\work\SALOME-9.10.0\W64\EXT\lib
+rem  copy C:\work\SALOME-9.10.0\W64\EXT\lib\boost_filesystem-vc141-mt-x64-1_67.lib C:\work\SALOME-9.10.0\W64\EXT\lib\libboost_filesystem-vc141-mt-x64-1_67.lib
+rem  copy C:\work\SALOME-9.10.0\W64\EXT\lib\boost_thread-vc141-mt-x64-1_67.lib C:\work\SALOME-9.10.0\W64\EXT\lib\libboost_thread-vc141-mt-x64-1_67.lib
+rem  copy C:\work\SALOME-9.10.0\W64\EXT\lib\boost_regex-vc141-mt-x64-1_67.lib C:\work\SALOME-9.10.0\W64\EXT\lib\libboost_regex-vc141-mt-x64-1_67.lib
+rem  copy C:\work\SALOME-9.10.0\W64\EXT\lib\boost_date_time-vc141-mt-x64-1_67.lib C:\work\SALOME-9.10.0\W64\EXT\lib\libboost_date_time-vc141-mt-x64-1_67.lib
+rem  copy C:\work\SALOME-9.10.0\W64\EXT\lib\boost_chrono-vc141-mt-x64-1_67.lib C:\work\SALOME-9.10.0\W64\EXT\lib\libboost_chrono-vc141-mt-x64-1_67.lib
+rem  copy C:\work\SALOME-9.10.0\W64\EXT\lib\boost_serialization-vc141-mt-x64-1_67.lib C:\work\SALOME-9.10.0\W64\EXT\lib\libboost_serialization-vc141-mt-x64-1_67.lib
+rem  copy C:\work\SALOME-9.10.0\W64\EXT\lib\boost_system-vc141-mt-x64-1_67.lib C:\work\SALOME-9.10.0\W64\EXT\lib\libboost_system-vc141-mt-x64-1_67.lib
 
 :: rebuild med fortran lib
 
@@ -125,6 +125,7 @@ rem  xcopy C:/work/SALOME-9.10.0/W64/swig/bin/swig.exe C:/work/SALOME-9.10.0/W64
 
 
 git clone -b win32 https://github.com/jschueller/homard.git
+echo add_definitions (-DBOOST_ALL_DYN_LINK) >> homard\CMakeLists.txt
 
 echo #define FortranCInterface_GLOBAL(name, NAME) name##_ >> homard/src/tool/FC.h
 type homard/src/tool/FC.h
