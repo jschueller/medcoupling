@@ -115,7 +115,7 @@ rem  C:\work\SALOME-9.10.0\W64\swig\bin\swig.exe -version
 rem  xcopy C:/work/SALOME-9.10.0/W64/swig/bin/swig.exe C:/work/SALOME-9.10.0/W64/swig/ /y /s
 
 
-git clone https://github.com/jschueller/homard.git
+git clone -b win32 https://github.com/jschueller/homard.git
 
 echo #define FortranCInterface_GLOBAL(name, NAME) name##_ >> homard/src/tool/FC.h
 type homard/src/tool/FC.h
