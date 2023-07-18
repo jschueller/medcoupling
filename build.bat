@@ -73,6 +73,16 @@ sed -i "s|E:/S/SALOME|C:/work/SALOME|g" C:\work\SALOME-9.10.0\W64\SMESH\adm_loca
 sed -i "s|E:/S/SALOME|C:/work/SALOME|g" C:\work\SALOME-9.10.0\W64\HYBRIDPLUGIN\adm_local\cmake_files\SalomeHYBRIDPLUGINTargets-release.cmake
 sed -i "s|E:/S/SALOME|C:/work/SALOME|g" C:\work\SALOME-9.10.0\W64\GUI\adm_local\cmake_files\SalomeGUITargets-release.cmake
 
+:: 'E:/S/SALOME-9.10.0/W64/Python/python36.lib', needed by 'src/HOMARDGUI/HOMARD.dll', missing
+sed -i "s|E:/S/SALOME|C:/work/SALOME|g" C:\work\SALOME-9.10.0\W64\FIELDS\adm_local\cmake_files\SalomeFIELDSTargets-release.cmake
+sed -i "s|E:/S/SALOME|C:/work/SALOME|g" C:\work\SALOME-9.10.0\W64\BLSURFPLUGIN\adm_local\cmake_files\SalomeBLSURFPLUGINTargets-release.cmake
+sed -i "s|E:/S/SALOME|C:/work/SALOME|g" C:\work\SALOME-9.10.0\W64\YACS\adm\cmake\SalomeYACSTargets-release.cmake
+sed -i "s|E:/S/SALOME|C:/work/SALOME|g" C:\work\SALOME-9.10.0\W64\GEOM\adm_local\cmake_files\SalomeGEOMTargets-release.cmake
+sed -i "s|E:/S/SALOME|C:/work/SALOME|g" C:\work\SALOME-9.10.0\W64\KERNEL\salome_adm\cmake_files\SalomeKERNELTargets-release.cmake
+sed -i "s|E:/S/SALOME|C:/work/SALOME|g" C:\work\SALOME-9.10.0\W64\HEXABLOCK\adm_local\cmake_files\SalomeHEXABLOCKTargets-release.cmake
+sed -i "s|E:/S/SALOME|C:/work/SALOME|g" C:\work\SALOME-9.10.0\W64\GUI\adm_local\cmake_files\SalomeGUITargets-release.cmake
+sed -i "s|E:/S/SALOME|C:/work/SALOME|g" C:\work\SALOME-9.10.0\W64\GUI\adm_local\cmake_files\SalomeCURVEPLOTTargets-release.cmake
+sed -i "s|E:/S/SALOME|C:/work/SALOME|g" C:\work\SALOME-9.10.0\W64\GUI\adm_local\cmake_files\SalomeGUITargets.cmake
 
 :: missing sip headers
 copy /b NUL C:\work\SALOME-9.10.0\W64\EXT\include\sip.h
