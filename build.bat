@@ -45,6 +45,11 @@ sed -i "s|E:/S/SALOME|C:/work/SALOME|g" C:\work\SALOME-9.10.0\W64\YACS\adm\cmake
 sed -i "s|E:/S/SALOME|C:/work/SALOME|g" C:\work\SALOME-9.10.0\W64\GEOM\adm_local\cmake_files\SalomeGEOMTargets-release.cmake
 sed -i "s|E:/S/SALOME|C:/work/SALOME|g" C:\work\SALOME-9.10.0\W64\KERNEL\salome_adm\cmake_files\SalomeKERNELTargets-release.cmake
 
+sed -i "s|E:/S/SALOME|C:/work/SALOME|g" C:\work\SALOME-9.10.0\W64\CAS\cmake\OpenCASCADEModelingDataTargets.cmake
+sed -i "s|E:/S/SALOME|C:/work/SALOME|g" C:\work\SALOME-9.10.0\W64\CAS\cmake\OpenCASCADEVisualizationTargets.cmake
+sed -i "s|E:/S/SALOME|C:/work/SALOME|g" C:\work\SALOME-9.10.0\W64\CAS\cmake\OpenCASCADEFoundationClassesTargets.cmake
+sed -i "s|E:/S/SALOME|C:/work/SALOME|g" C:\work\SALOME-9.10.0\W64\CAS\cmake\OpenCASCADEModelingAlgorithmsTargets.cmake
+
 :: missing sip headers
 copy /b NUL C:\work\SALOME-9.10.0\W64\EXT\include\sip.h
 
