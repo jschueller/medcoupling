@@ -50,6 +50,30 @@ sed -i "s|E:/S/SALOME|C:/work/SALOME|g" C:\work\SALOME-9.10.0\W64\CAS\cmake\Open
 sed -i "s|E:/S/SALOME|C:/work/SALOME|g" C:\work\SALOME-9.10.0\W64\CAS\cmake\OpenCASCADEFoundationClassesTargets.cmake
 sed -i "s|E:/S/SALOME|C:/work/SALOME|g" C:\work\SALOME-9.10.0\W64\CAS\cmake\OpenCASCADEModelingAlgorithmsTargets.cmake
 
+:: 'E:/S/SALOME-9.10.0/W64/omniORB/lib/x86_win32/omniORB4_rt.lib', needed by 'src/HOMARD_I/HOMARDEngine.dll', missing
+sed -i "s|E:/S/SALOME|C:/work/SALOME|g" C:\work\SALOME-9.10.0\W64\HEXABLOCKPLUGIN\adm_local\cmake_files\SalomeHEXABLOCKPLUGINTargets-release.cmake
+sed -i "s|E:/S/SALOME|C:/work/SALOME|g" C:\work\SALOME-9.10.0\W64\CALCULATOR\adm_local\cmake_files\SalomeCALCULATORTargets-release.cmake
+sed -i "s|E:/S/SALOME|C:/work/SALOME|g" C:\work\SALOME-9.10.0\W64\FIELDS\adm_local\cmake_files\SalomeFIELDSTargets-release.cmake
+sed -i "s|E:/S/SALOME|C:/work/SALOME|g" C:\work\SALOME-9.10.0\W64\NETGENPLUGIN\adm_local\cmake_files\SalomeNETGENPLUGINTargets-release.cmake
+sed -i "s|E:/S/SALOME|C:/work/SALOME|g" C:\work\SALOME-9.10.0\W64\GMSHPLUGIN\adm_local\cmake_files\SalomeGMSHPLUGINTargets-release.cmake
+sed -i "s|E:/S/SALOME|C:/work/SALOME|g" C:\work\SALOME-9.10.0\W64\COMPONENT\adm_local\cmake_files\SalomeCOMPONENTTargets-release.cmake
+sed -i "s|E:/S/SALOME|C:/work/SALOME|g" C:\work\SALOME-9.10.0\W64\PYCALCULATOR\adm_local\cmake_files\SalomePYCALCULATORTargets-release.cmake
+sed -i "s|E:/S/SALOME|C:/work/SALOME|g" C:\work\SALOME-9.10.0\W64\BLSURFPLUGIN\adm_local\cmake_files\SalomeBLSURFPLUGINTargets-release.cmake
+sed -i "s|E:/S/SALOME|C:/work/SALOME|g" C:\work\SALOME-9.10.0\W64\EFICAS\adm_local\cmake_files\SalomeEFICASTargets-release.cmake
+sed -i "s|E:/S/SALOME|C:/work/SALOME|g" C:\work\SALOME-9.10.0\W64\YACS\adm\cmake\SalomeYACSTargets-release.cmake
+sed -i "s|E:/S/SALOME|C:/work/SALOME|g" C:\work\SALOME-9.10.0\W64\JOBMANAGER\adm_local\cmake_files\SalomeJOBMANAGERTargets-release.cmake
+sed -i "s|E:/S/SALOME|C:/work/SALOME|g" C:\work\SALOME-9.10.0\W64\SHAPERSTUDY\adm_local\cmake_files\SalomeSHAPERSTUDYTargets-release.cmake
+sed -i "s|E:/S/SALOME|C:/work/SALOME|g" C:\work\SALOME-9.10.0\W64\HexoticPLUGIN\adm_local\cmake_files\SalomeHexoticPLUGINTargets-release.cmake
+sed -i "s|E:/S/SALOME|C:/work/SALOME|g" C:\work\SALOME-9.10.0\W64\GEOM\adm_local\cmake_files\SalomeGEOMTargets-release.cmake
+sed -i "s|E:/S/SALOME|C:/work/SALOME|g" C:\work\SALOME-9.10.0\W64\GHS3DPLUGIN\adm_local\cmake_files\SalomeGHS3DPLUGINTargets-release.cmake
+sed -i "s|E:/S/SALOME|C:/work/SALOME|g" C:\work\SALOME-9.10.0\W64\KERNEL\salome_adm\cmake_files\SalomeKERNELTargets-release.cmake
+sed -i "s|E:/S/SALOME|C:/work/SALOME|g" C:\work\SALOME-9.10.0\W64\HELLO\adm_local\cmake_files\SalomeHELLOTargets-release.cmake
+sed -i "s|E:/S/SALOME|C:/work/SALOME|g" C:\work\SALOME-9.10.0\W64\PYHELLO\adm_local\cmake_files\SalomePYHELLOTargets-release.cmake
+sed -i "s|E:/S/SALOME|C:/work/SALOME|g" C:\work\SALOME-9.10.0\W64\SMESH\adm_local\cmake_files\SalomeSMESHTargets-release.cmake
+sed -i "s|E:/S/SALOME|C:/work/SALOME|g" C:\work\SALOME-9.10.0\W64\HYBRIDPLUGIN\adm_local\cmake_files\SalomeHYBRIDPLUGINTargets-release.cmake
+sed -i "s|E:/S/SALOME|C:/work/SALOME|g" C:\work\SALOME-9.10.0\W64\GUI\adm_local\cmake_files\SalomeGUITargets-release.cmake
+
+
 :: missing sip headers
 copy /b NUL C:\work\SALOME-9.10.0\W64\EXT\include\sip.h
 
