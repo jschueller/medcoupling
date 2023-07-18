@@ -147,4 +147,4 @@ rem  -G "Visual Studio 15 2017" -A amd64
 cmake -S homard -B build_homard -G "Ninja" -LAH -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=C:/work/SALOME-9.10.0/W64/homard ^
   -DSALOME_BUILD_DOC=OFF
 cmake --build build_homard --config Release --target install
-ctest -C Release --output-on-failure -V
+ctest --test-dir build_homard -C Release --output-on-failure -V
