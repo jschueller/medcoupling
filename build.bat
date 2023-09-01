@@ -135,10 +135,19 @@ cmake --build homard_fortran_build --config Release --target install
 rem  xcopy /y /s /f %APPVEYOR_BUILD_FOLDER%\CMakeLists.txt.homardsrc homard\src
 sed -i "s|tool||g" homard\src\CMakeLists.txt
 
+:: add homard env
+echo set HOMARD_ROOT_DIR=%%out_dir_Path%%\W64\HOMARD>> C:\work\SALOME-9.10.0\env_launch.bat
+echo set PATH=%%HOMARD_ROOT_DIR%%\bin\salome;%%PATH%%>> C:\work\SALOME-9.10.0\env_launch.bat
+echo set PATH=%%HOMARD_ROOT_DIR%%\lib\salome;%%PATH%%>> C:\work\SALOME-9.10.0\env_launch.bat
+echo set PYTHONPATH=%%HOMARD_ROOT_DIR%%\%%PYTHON_LIBDIR%%\salome;%%PYTHONPATH%%>> C:\work\SALOME-9.10.0\env_launch.bat
+echo set PYTHONPATH=%%HOMARD_ROOT_DIR%%\lib\salome;%%PYTHONPATH%%>> C:\work\SALOME-9.10.0\env_launch.bat
+echo set PYTHONPATH=%%HOMARD_ROOT_DIR%%\bin\salome;%%PYTHONPATH%%>> C:\work\SALOME-9.10.0\env_launch.bat
+type C:\work\SALOME-9.10.0\env_launch.bat
+
 call "C:\work\SALOME-9.10.0\env_launch.bat"
 cmake --version
 echo PATH=%PATH%
-
+echo PYTHONPATH=%PYTHONPATH%
 
 
 
@@ -151,7 +160,7 @@ echo "import omniidl_be..."
 python3 -c "import omniidl_be; print(888)"
 
 
-cmake -S homard -B build_homard -G "Ninja" -LAH -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=C:/work/SALOME-9.10.0/W64/homard ^
+cmake -S homard -B build_homard -G "Ninja" -LAH -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=C:/work/SALOME-9.10.0/W64/HOMARD ^
   -DSALOME_BUILD_DOC=OFF
 cmake --build build_homard --config Release --target install
 
