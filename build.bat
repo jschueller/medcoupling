@@ -109,12 +109,26 @@ rem  xcopy /y /s /f %APPVEYOR_BUILD_FOLDER%\CMakeLists.txt.medsrc med-4.1.1_SRC\
 rem  type med-4.1.1_SRC\src\CMakeLists.txt
 set "PATH=%PATH%;C:\mingw-w64\x86_64-7.2.0-posix-seh-rt_v5-rev1\mingw64\bin"
 
-rem taille d'entier=4
-cmake -S med-4.1.1_SRC -B build_med -G "Ninja" -LAH -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=C:/work/SALOME-9.10.0/W64/medf -DMEDFILE_BUILD_TESTS=OFF -DMEDFILE_INSTALL_DOC=OFF -DHDF5_ROOT_DIR=C:/work/SALOME-9.10.0/W64/EXT -DCMAKE_Fortran_FLAGS="-ffixed-line-length-0 -fdefault-double-8 -fdefault-real-8 -fdefault-integer-4 -fimplicit-none -O2" -DMED_MEDINT_TYPE="long long" -DZCMAKE_IMPORT_LIBRARY_PREFIX="" -DZCMAKE_IMPORT_LIBRARY_SUFFIX=".lib"
-cmake --build build_med --config Release --target install
+rem taille d'entier=8
+cmake --version
+cmake -S med-4.1.1_SRC -B build_med -G "Ninja" -LAH -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=C:/work/SALOME-9.10.0/W64/medf -DMEDFILE_BUILD_TESTS=ON -DMEDFILE_INSTALL_DOC=OFF -DHDF5_ROOT_DIR=C:/work/SALOME-9.10.0/W64/EXT -DCMAKE_Fortran_FLAGS="-ffixed-line-length-0 -fdefault-double-8 -fdefault-real-8 -fdefault-integer-8 -fimplicit-none -O2" -DMED_MEDINT_TYPE="long long" -DZCMAKE_IMPORT_LIBRARY_PREFIX="" -DZCMAKE_IMPORT_LIBRARY_SUFFIX=".lib"
+cmake --build build_med --target install
+rem  cmake --build build_med --target test1c
 
+xcopy /y /s C:\work\SALOME-9.10.0\W64\medf\lib\*.dll build_med\tests\c
+xcopy /y /s C:\work\SALOME-9.10.0\W64\EXT\bin\hdf5.dll build_med\tests\c
+xcopy /y /s C:\work\SALOME-9.10.0\W64\medf\lib\*.dll build_med\tests\f
+xcopy /y /s C:\work\SALOME-9.10.0\W64\EXT\bin\hdf5.dll build_med\tests\f
 
+rem  curl -LO https://www.dependencywalker.com/depends22_x64.zip
+rem  7z x depends22_x64.zip
+curl -LO https://github.com/lucasg/Dependencies/releases/download/v1.11.1/Dependencies_x64_Release_.without.peview.exe.zip
+7z x Dependencies_x64_Release_.without.peview.exe.zip
+dir /p
+dir /p build_med\tests\c
+Dependencies.exe -modules .\build_med\tests\c\test1.exe
 
+cd build_med && ctest --output-on-failure -R Testtest1 -V
 
 
 echo "swiglib..."
@@ -130,7 +144,7 @@ type homard/src/tool/FC.h
 
 rem  set "PATH=%PATH%;C:\mingw-w64\x86_64-7.2.0-posix-seh-rt_v5-rev1\mingw64\bin"
 
-cmake -S homard/src/tool -B homard_fortran_build -G "Ninja" -LAH -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=C:/work/SALOME-9.10.0/W64/homard_fortran -DMEDFILE_LIBRARIES=C:/work/SALOME-9.10.0/W64/medf/lib/libmedfwrap.dll.a -DCMAKE_Fortran_FLAGS="-ffixed-line-length-0 -fdefault-double-8 -fdefault-real-8 -fdefault-integer-4 -fimplicit-none -O2"
+cmake -S homard/src/tool -B homard_fortran_build -G "Ninja" -LAH -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=C:/work/SALOME-9.10.0/W64/homard_fortran -DMEDFILE_LIBRARIES=C:/work/SALOME-9.10.0/W64/medf/lib/libmedfwrap.dll.a -DCMAKE_Fortran_FLAGS="-ffixed-line-length-0 -fdefault-double-8 -fdefault-real-8 -fdefault-integer-8 -fimplicit-none -O2"
 cmake --build homard_fortran_build --config Release --target install
 
 :: now build without homard fortran executable
