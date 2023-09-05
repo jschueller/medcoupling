@@ -124,12 +124,9 @@ rem  curl -LO https://www.dependencywalker.com/depends22_x64.zip
 rem  7z x depends22_x64.zip
 curl -LO https://github.com/lucasg/Dependencies/releases/download/v1.11.1/Dependencies_x64_Release_.without.peview.exe.zip
 7z x Dependencies_x64_Release_.without.peview.exe.zip
-dir /p
-dir /p build_med\tests\c
 Dependencies.exe -modules .\build_med\tests\c\test1.exe
 
 cd build_med && ctest --output-on-failure -R Testtest1 -V
-
 
 echo "swiglib..."
 swig -swiglib
@@ -174,7 +171,8 @@ echo "import omniorb..."
 python3 -c "import omniORB; print(888)"
 echo "import omniidl_be..."
 python3 -c "import omniidl_be; print(888)"
-
+echo "medcoupling..."
+python3 C:\work\SALOME-9.10.0\W64\MEDCOUPLING\tests\RENUMBER_Swig\MEDRenumberTest.py
 
 cmake -S homard -B build_homard -G "Ninja" -LAH -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=C:/work/SALOME-9.10.0/W64/HOMARD ^
   -DSALOME_BUILD_DOC=OFF
