@@ -120,6 +120,9 @@ xcopy /y /s C:\work\SALOME-9.10.0\W64\EXT\bin\hdf5.dll build_med\tests\c
 xcopy /y /s C:\work\SALOME-9.10.0\W64\medf\lib\*.dll build_med\tests\f
 xcopy /y /s C:\work\SALOME-9.10.0\W64\EXT\bin\hdf5.dll build_med\tests\f
 
+rem replace original med libs
+xcopy /y /s C:\work\SALOME-9.10.0\W64\medf\lib\*.dll C:\work\SALOME-9.10.0\W64\EXT\lib\
+
 rem  curl -LO https://www.dependencywalker.com/depends22_x64.zip
 rem  7z x depends22_x64.zip
 curl -LO https://github.com/lucasg/Dependencies/releases/download/v1.11.1/Dependencies_x64_Release_.without.peview.exe.zip
