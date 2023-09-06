@@ -135,6 +135,10 @@ echo "swiglib..."
 swig -swiglib
 swig -version
 
+:: rebuild medcoupling
+rem  git clone --depth 1 -b V9_10_0 http://git.salome-platform.org/gitpub/tools/medcoupling.git
+rem  cmake -S medcoupling -B build_medcoupling -G "Ninja" -LAH -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=C:/work/SALOME-9.10.0/W64/MEDCOUPLING -DMEDCOUPLING_BUILD_DOC=OFF
+rem  cmake --build build_medcoupling --config Release --target install
 
 git clone -b win32 https://github.com/jschueller/homard.git
 rem  echo add_definitions (-DBOOST_ALL_DYN_LINK) >> homard\CMakeLists.txt
@@ -144,7 +148,7 @@ type homard/src/tool/FC.h
 
 rem  set "PATH=%PATH%;C:\mingw-w64\x86_64-7.2.0-posix-seh-rt_v5-rev1\mingw64\bin"
 
-cmake -S homard/src/tool -B homard_fortran_build -G "Ninja" -LAH -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=C:/work/SALOME-9.10.0/W64/homard_fortran -DMEDFILE_LIBRARIES=C:/work/SALOME-9.10.0/W64/medf/lib/libmedfwrap.dll.a -DCMAKE_Fortran_FLAGS="-ffixed-line-length-0 -fdefault-double-8 -fdefault-real-8 -fdefault-integer-8 -fimplicit-none -O2"
+cmake -S homard/src/tool -B homard_fortran_build -G "Ninja" -LAH -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=C:/work/SALOME-9.10.0/W64/homard_fortran -DZMEDFILE_LIBRARIES=C:/work/SALOME-9.10.0/W64/medf/lib/libmedfwrap.dll.a -DMEDFILE_LIBRARIES=C:/work/SALOME-9.10.0/W64/MED/lib/medC.lib -DCMAKE_Fortran_FLAGS="-ffixed-line-length-0 -fdefault-double-8 -fdefault-real-8 -fdefault-integer-8 -fimplicit-none -O2"
 cmake --build homard_fortran_build --config Release --target install
 
 :: now build without homard fortran executable
