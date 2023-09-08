@@ -164,6 +164,8 @@ echo set PYTHONPATH=%%HOMARD_ROOT_DIR%%\lib\salome;%%PYTHONPATH%%>> C:\work\SALO
 echo set PYTHONPATH=%%HOMARD_ROOT_DIR%%\bin\salome;%%PYTHONPATH%%>> C:\work\SALOME-9.10.0\env_launch.bat
 type C:\work\SALOME-9.10.0\env_launch.bat
 
+echo set SALOME_VERBOSE=1 >> C:\work\SALOME-9.10.0\env_launch.bat
+
 call "C:\work\SALOME-9.10.0\env_launch.bat"
 cmake --version
 echo PATH=%PATH%
