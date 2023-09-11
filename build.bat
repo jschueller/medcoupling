@@ -156,7 +156,7 @@ rem  xcopy /y /s /f %APPVEYOR_BUILD_FOLDER%\CMakeLists.txt.homardsrc homard\src
 sed -i "s|tool||g" homard\src\CMakeLists.txt
 
 :: drop GUI part for now
-sed -i "s|ADD_LIBRARY(HOMARD|ADD_LIBRARY(HOMARD EXCLUDE_FROM_ALL|g" homard\src\HOMARDGUI\CMakeLists.txt
+rem  sed -i "s|ADD_LIBRARY(HOMARD|ADD_LIBRARY(HOMARD EXCLUDE_FROM_ALL|g" homard\src\HOMARDGUI\CMakeLists.txt
 
 :: try static libs
 sed -i "s|SET(BUILD_SHARED_LIBS TRUE)|SET(BUILD_SHARED_LIBS FALSE)|g" homard\CMakeLists.txt
