@@ -159,8 +159,8 @@ sed -i "s|tool||g" homard\src\CMakeLists.txt
 rem  sed -i "s|ADD_LIBRARY(HOMARD|ADD_LIBRARY(HOMARD EXCLUDE_FROM_ALL|g" homard\src\HOMARDGUI\CMakeLists.txt
 
 :: try static libs
-sed -i "s|SET(BUILD_SHARED_LIBS TRUE)|SET(BUILD_SHARED_LIBS FALSE)|g" homard\CMakeLists.txt
-sed -i "/HOMARDENGINE_EXPORT/d" homard\src\HOMARD_I\HOMARD_Gen_i_Session.cxx
+rem  sed -i "s|SET(BUILD_SHARED_LIBS TRUE)|SET(BUILD_SHARED_LIBS FALSE)|g" homard\CMakeLists.txt
+rem  sed -i "/HOMARDENGINE_EXPORT/d" homard\src\HOMARD_I\HOMARD_Gen_i_Session.cxx
 
 :: add homard env
 echo set HOMARD_ROOT_DIR=%%out_dir_Path%%\W64\HOMARD>> C:\work\SALOME-9.10.0\env_launch.bat
