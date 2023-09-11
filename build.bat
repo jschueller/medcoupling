@@ -156,7 +156,7 @@ rem  xcopy /y /s /f %APPVEYOR_BUILD_FOLDER%\CMakeLists.txt.homardsrc homard\src
 sed -i "s|tool||g" homard\src\CMakeLists.txt
 
 :: drop GUI part for now
-sed -i "/HOMARDGUI/d" homard\src\CMakeLists.txt
+rem  sed -i "/HOMARDGUI/d" homard\src\CMakeLists.txt
 
 :: try static libs
 sed -i "s|SET(BUILD_SHARED_LIBS TRUE)|SET(BUILD_SHARED_LIBS FALSE)|g" homard\CMakeLists.txt
@@ -168,6 +168,8 @@ echo set PATH=%%HOMARD_ROOT_DIR%%\lib\salome;%%PATH%%>> C:\work\SALOME-9.10.0\en
 echo set PYTHONPATH=%%HOMARD_ROOT_DIR%%\%%PYTHON_LIBDIR%%\salome;%%PYTHONPATH%%>> C:\work\SALOME-9.10.0\env_launch.bat
 echo set PYTHONPATH=%%HOMARD_ROOT_DIR%%\lib\salome;%%PYTHONPATH%%>> C:\work\SALOME-9.10.0\env_launch.bat
 echo set PYTHONPATH=%%HOMARD_ROOT_DIR%%\bin\salome;%%PYTHONPATH%%>> C:\work\SALOME-9.10.0\env_launch.bat
+echo set HOMARD_REP_EXE=%%HOMARD_ROOT_DIR%%\bin>> C:\work\SALOME-9.10.0\env_launch.bat
+echo set HOMARD_EXE=%%HOMARD_ROOT_DIR%%\bin\homard.exe>> C:\work\SALOME-9.10.0\env_launch.bat
 type C:\work\SALOME-9.10.0\env_launch.bat
 
 echo set SALOME_VERBOSE=1 >> C:\work\SALOME-9.10.0\env_launch.bat
