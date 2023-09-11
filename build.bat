@@ -155,6 +155,12 @@ cmake --build homard_fortran_build --config Release --target install
 rem  xcopy /y /s /f %APPVEYOR_BUILD_FOLDER%\CMakeLists.txt.homardsrc homard\src
 sed -i "s|tool||g" homard\src\CMakeLists.txt
 
+:: drop GUI part for now
+sed -i "/HOMARDGUI/d" homard\src\CMakeLists.txt
+
+:: try static libs
+sed -i "s|SET(BUILD_SHARED_LIBS TRUE)|SET(BUILD_SHARED_LIBS FALSE)|g" homard\CMakeLists.txt
+
 :: add homard env
 echo set HOMARD_ROOT_DIR=%%out_dir_Path%%\W64\HOMARD>> C:\work\SALOME-9.10.0\env_launch.bat
 echo set PATH=%%HOMARD_ROOT_DIR%%\bin\salome;%%PATH%%>> C:\work\SALOME-9.10.0\env_launch.bat
