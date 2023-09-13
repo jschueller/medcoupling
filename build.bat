@@ -173,7 +173,7 @@ echo set HOMARD_REP_EXE=%%HOMARD_ROOT_DIR%%\bin>> C:\work\SALOME-9.10.0\env_laun
 echo set HOMARD_EXE=%%HOMARD_ROOT_DIR%%\bin\homard.exe>> C:\work\SALOME-9.10.0\env_launch.bat
 type C:\work\SALOME-9.10.0\env_launch.bat
 
-echo set SALOME_VERBOSE=1 >> C:\work\SALOME-9.10.0\env_launch.bat
+rem  echo set SALOME_VERBOSE=1 >> C:\work\SALOME-9.10.0\env_launch.bat
 
 call "C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Auxiliary\Build\vcvarsall.bat" amd64
 echo PATH=%PATH%
