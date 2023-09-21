@@ -1,3 +1,4 @@
+
 @echo on
 :: prequisites: curl, cmake, ninja, 7z
 
