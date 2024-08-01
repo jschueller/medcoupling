@@ -1,5 +1,6 @@
 import medcoupling as mc
-from MEDCouplingIterativeStatistics import IterativeMoments, IterativeSobol, AbstractExperiment
+from MEDCouplingIterativeStatistics import IterativeFieldMoments, IterativeFieldSobol
+from iterative_stats.experimental_design.experiment import AbstractExperiment
 from numpy.testing import assert_allclose
 import numpy as np
 import unittest
@@ -10,7 +11,7 @@ class MEDCouplingIterativeStatisticsTest(unittest.TestCase):
         #! [UG_MEDCouplingIterativeStatistics_1]
         # check moments on simple linear 3-d field defined on an 1-d mesh
         import medcoupling as mc
-        from MEDCouplingIterativeStatistics import IterativeMoments
+        from MEDCouplingIterativeStatistics import IterativeFieldMoments
 
         # 1-d mesh
         size = int(1e1)
@@ -20,7 +21,7 @@ class MEDCouplingIterativeStatisticsTest(unittest.TestCase):
         mesh.setCoords(arrX)
 
         # compute statistics
-        istats = IterativeMoments()
+        istats = IterativeFieldMoments()
 
         # aggregate 3-d fields
         sampling_size = 10
@@ -100,7 +101,7 @@ class MEDCouplingIterativeStatisticsTest(unittest.TestCase):
         mesh.setCoords(arrX)
 
         # compute mean only
-        istats = IterativeMoments(enable_variance=False, enable_covariance=False)
+        istats = IterativeFieldMoments(enable_variance=False, enable_covariance=False)
 
         # aggregate 2-d fields
         sampling_size = 10
@@ -120,7 +121,8 @@ class MEDCouplingIterativeStatisticsTest(unittest.TestCase):
 
         # Sobol' test over an 1-d mesh
         import medcoupling as mc
-        from MEDCouplingIterativeStatistics import IterativeSobol, AbstractExperiment
+        from MEDCouplingIterativeStatistics import IterativeFieldSobol
+        from iterative_stats.experimental_design.experiment import AbstractExperiment
 
         # 1-d mesh [-1; -1]
         size = int(1e2)
@@ -140,7 +142,7 @@ class MEDCouplingIterativeStatisticsTest(unittest.TestCase):
                 return np.random.rand(1, self.nb_parms)
 
         # aggregate the nb_sim simulations
-        isobol = IterativeSobol(nb_parms)
+        isobol = IterativeFieldSobol(nb_parms)
         for pf_sample in ABSampler().generator():
             # build the fields of the time-series f(a, b)_x=a+bx^2 for each (a,b) tuple in the pick-freeze sample
             fields = [mesh.fillFromAnalytic(mc.ON_NODES, 1, f"({a}+{b}*x*x)*IVec") for a,b in pf_sample]
