@@ -53,6 +53,14 @@ def AdvancedExtensionsStr(sz=60):
             SubExtension(MEDPartitioner.AllAlgorithms(),MEDPartitioner.AvailableAlgorithms(),pad,tab, sts)
             pass
         pass
+
+    try:
+        import iterative_stats
+        isOK = 1
+    except ImportError:
+        isOk = 0
+    sts.append(f"Iterative statistics {tab[isOK].rjust(3):.>{sz-20}}")
+
     return "\n".join(sts)
 
 def ShowAdvancedExtensions(sz=60):
